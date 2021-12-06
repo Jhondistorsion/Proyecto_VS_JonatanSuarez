@@ -29,5 +29,23 @@ namespace Proyecto_VS_JonatanSuarez.Services
         {
             return listaProveedores;
         }
+
+        internal static bool GuardarProveedor(ProveedoresModel Proveedor)
+        {
+            bool okguardar = false;
+
+            foreach(ProveedoresModel p in listaProveedores)
+            {
+                if(p._id == Proveedor._id)
+                {
+                    p.Nombre = Proveedor.Nombre;
+                    p.Poblacion = Proveedor.Poblacion;
+                    p.Telefono = Proveedor.Telefono;
+                    okguardar = true;
+                    break;
+                }
+            }
+            return okguardar;
+        }
     }
 }

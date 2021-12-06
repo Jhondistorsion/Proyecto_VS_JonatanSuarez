@@ -69,7 +69,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Commands\CargarProveedoresCommand.cs" />
+    <Compile Include="Commands\ProveedoresCommands\CargarProveedorCommand.cs" />
+    <Compile Include="Commands\ProveedoresCommands\CargarProveedoresCommand.cs" />
+    <Compile Include="Commands\ProveedoresCommands\GuardarProveedorCommand.cs" />
     <Compile Include="Commands\UpdateViewCommand.cs" />
     <Compile Include="Models\ProveedoresModel.cs" />
     <Compile Include="Services\ProveedoresDBHandler.cs" />

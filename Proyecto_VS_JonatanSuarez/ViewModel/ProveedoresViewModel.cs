@@ -1,4 +1,5 @@
 ﻿using Proyecto_VS_JonatanSuarez.Commands;
+using Proyecto_VS_JonatanSuarez.Commands.ProveedoresCommands;
 using Proyecto_VS_JonatanSuarez.Models;
 using System;
 using System.Collections.Generic;
@@ -19,12 +20,34 @@ namespace Proyecto_VS_JonatanSuarez.ViewModel
             set { listaProveedores = value;  OnPropertyChanged(nameof(ListaProveedores)); }
         }
 
+        private ProveedoresModel currentProveedor;
+        public ProveedoresModel CurrentProveedor
+        {
+            get { return currentProveedor; }
+            set { currentProveedor = value; OnPropertyChanged(nameof(CurrentProveedor)); }
+        }
+
+        private ProveedoresModel selectedProveedor;
+        public ProveedoresModel SelectedProveedor
+        {
+            get { return selectedProveedor;}
+            set { selectedProveedor = value; OnPropertyChanged(nameof (SelectedProveedor)); }
+        }
+        
+
         public ICommand CargarProveedoresCommand { get; set; }
+
+        public ICommand CargarProveedorCommand { get; set; }
+
+        public ICommand GuardarProveedorCommand { get; set; }
 
         public ProveedoresViewModel()
         {
             ListaProveedores = new ObservableCollection<ProveedoresModel>();
             CargarProveedoresCommand = new CargarProveedoresCommand(this);
+            CargarProveedorCommand = new CargarProveedorCommand(this);
+            GuardarProveedorCommand = new GuardarProveedorCommand(this);
+            CurrentProveedor = new ProveedoresModel();
 
         }
     }

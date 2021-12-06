@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:local="clr-namespace:Proyecto_VS_JonatanSuarez.Views"
+             x:Name="vistaProveedores"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
 
@@ -46,10 +47,10 @@
                 <TextBlock Grid.Column="2" Grid.Row="0" TextAlignment="Right" Margin="5" Text="Población:"/>
                 <TextBlock Grid.Column="2" Grid.Row="1" TextAlignment="Right" Margin="5" Text="Teléfono:"/>
 
-                <TextBox Grid.Column="1" Grid.Row="0" TextAlignment="Left" Text="cif" Cursor="IBeam"/>
-                <TextBox Grid.Column="1" Grid.Row="1" TextAlignment="Left" Text="nombre" Cursor="IBeam"/>
-                <TextBox Grid.Column="3" Grid.Row="0" TextAlignment="Left" Text="pobla" Cursor="IBeam"/>
-                <TextBox Grid.Column="3" Grid.Row="1" TextAlignment="Left" Text="telf" Cursor="IBeam"/>
+                <TextBox x:Name="textCif" Grid.Column="1" Grid.Row="0" TextAlignment="Left" Text="{Binding CurrentProveedor._id, UpdateSourceTrigger=PropertyChanged}" Cursor="IBeam"/>
+                <TextBox x:Name="textNombre" Grid.Column="1" Grid.Row="1" TextAlignment="Left" Text="{Binding CurrentProveedor.Nombre, UpdateSourceTrigger=PropertyChanged}" Cursor="IBeam"/>
+                <TextBox x:Name="textPoblacion" Grid.Column="3" Grid.Row="0" TextAlignment="Left" Text="{Binding CurrentProveedor.Poblacion, UpdateSourceTrigger=PropertyChanged}" Cursor="IBeam"/>
+                <TextBox x:Name="textTelefono" Grid.Column="3" Grid.Row="1" TextAlignment="Left" Text="{Binding CurrentProveedor.Telefono, UpdateSourceTrigger=PropertyChanged}" Cursor="IBeam"/>
 
             </Grid>
         </StackPanel>
@@ -57,8 +58,8 @@
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button x:Name="btnCrear" Content="CREAR" Width="110" HorizontalAlignment="Center" Margin="10"/>
             <Button x:Name="btnNuevo" Content="NUEVO" Width="110" HorizontalAlignment="Center" Margin="10"/>
-            <Button x:Name="btnGuardar" Content="GUARDAR" Width="110" HorizontalAlignment="Center" Margin="10"/>
-            <Button x:Name="btnModificar" Content="MODIFICAR" Width="110" HorizontalAlignment="Center" Margin="10"/>
+            <Button x:Name="btnGuardar" Content="GUARDAR" Width="110" HorizontalAlignment="Center" Margin="10" Command="{Binding GuardarProveedorCommand}" CommandParameter="{Binding ElementName=vistaProveedores}" Cursor="Hand"/>
+            <Button x:Name="btnModificar" Content="MODIFICAR" Width="110" HorizontalAlignment="Center" Margin="10" Cursor="Hand"/>
             <Button x:Name="btnBorrar" Content="BORRAR" Width="110" HorizontalAlignment="Center" Margin="10"/>
             <Button x:Name="btnCancelar" Content="CANCELAR" Width="110" HorizontalAlignment="Center" Margin="10"/>
 
@@ -69,6 +70,12 @@
 
 
             <ListView x:Name="proveedoresListView" ItemsSource="{Binding ListaProveedores}" MaxHeight="500">
+
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding CargarProveedorCommand}" CommandParameter="{Binding ElementName=proveedoresListView, Path=SelectedItem}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
 
                 <ListView.View>
                     <GridView>
