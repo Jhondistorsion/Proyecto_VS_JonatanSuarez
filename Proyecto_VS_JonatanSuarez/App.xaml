@@ -2,8 +2,33 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Proyecto_VS_JonatanSuarez"
+             xmlns:views="clr-namespace:Proyecto_VS_JonatanSuarez.Views"
+             xmlns:viewmodels="clr-namespace:Proyecto_VS_JonatanSuarez.ViewModel"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+                     
+        <ResourceDictionary>
+            <DataTemplate DataType="{x:Type viewmodels:BienvenidaViewModel}">
+                <views:BienvenidaView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:ProductosViewModel}">
+                <views:ProductosView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:ProveedoresViewModel}">
+                <views:ProveedoresView/>
+            </DataTemplate>
+        
+                    
+            <!--Librerias Material Design-->
+           
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+            </ResourceDictionary.MergedDictionaries>
          
+
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

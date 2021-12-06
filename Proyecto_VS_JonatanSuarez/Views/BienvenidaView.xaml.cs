@@ -1,5 +1,4 @@
-﻿using Proyecto_VS_JonatanSuarez.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Proyecto_VS_JonatanSuarez
+namespace Proyecto_VS_JonatanSuarez.Views
 {
     /// <summary>
-    /// Lógica de interacción para MainWindow.xaml
+    /// Lógica de interacción para BienvenidaView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class BienvenidaView : UserControl
     {
-        public MainWindow()
+        public BienvenidaView()
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
         }
     }
 }
