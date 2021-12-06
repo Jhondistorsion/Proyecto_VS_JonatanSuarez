@@ -69,10 +69,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\UpdateViewCommand.cs" />
     <Compile Include="ViewModel\BienvenidaViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ProductosViewModel.cs" />
     <Compile Include="ViewModel\ProveedoresViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="Views\BienvenidaView.xaml.cs">
       <DependentUpon>BienvenidaView.xaml</DependentUpon>
     </Compile>
@@ -135,7 +137,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Commands\" />
     <Folder Include="Models\" />
     <Folder Include="Resources\" />
     <Folder Include="Services\" />

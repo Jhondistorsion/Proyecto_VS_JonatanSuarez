@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:Proyecto_VS_JonatanSuarez.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Background="Azure">
+        <TextBlock Text="PROVEEDORES" FontSize="40" FontWeight="Bold" HorizontalAlignment="Center"/>
             
     </Grid>
 </UserControl>

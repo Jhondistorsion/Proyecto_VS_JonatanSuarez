@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Proyecto_VS_JonatanSuarez.ViewModel
 {
-    class ProveedoresViewModel
+    class ProveedoresViewModel : ViewModelBase
     {
     }
 }
