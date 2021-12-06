@@ -4,10 +4,75 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Proyecto_VS_JonatanSuarez.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d">
     <Grid Background="Azure">
-        <TextBlock Text="PROVEEDORES" FontSize="40" FontWeight="Bold" HorizontalAlignment="Center"/>
+
+        <!--GRID BASE_____________________________________ -->
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <!--GRID SUPERIOR__________________________________________-->
+        <StackPanel HorizontalAlignment="Center">
             
+        
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="150" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Column="0" Grid.Row="0" TextAlignment="Right" Margin="5" Text="CIF:"/>
+            <TextBlock Grid.Column="0" Grid.Row="1" TextAlignment="Right" Margin="5" Text="Nombre:"/>
+            <TextBlock Grid.Column="2" Grid.Row="0" TextAlignment="Right" Margin="5" Text="Población:"/>
+            <TextBlock Grid.Column="2" Grid.Row="1" TextAlignment="Right" Margin="5" Text="Teléfono:"/>
+            
+            <TextBox Grid.Column="1" Grid.Row="0" TextAlignment="Left" Text="cif" Cursor="IBeam"/>
+            <TextBox Grid.Column="1" Grid.Row="1" TextAlignment="Left" Text="nombre" Cursor="IBeam"/>
+            <TextBox Grid.Column="3" Grid.Row="0" TextAlignment="Left" Text="pobla" Cursor="IBeam"/>
+            <TextBox Grid.Column="3" Grid.Row="1" TextAlignment="Left" Text="telf" Cursor="IBeam"/>
+
+        </Grid>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="btnCrear" Content="CREAR" Width="110" HorizontalAlignment="Center" Margin="10"/>
+            <Button x:Name="btnNuevo" Content="NUEVO" Width="110" HorizontalAlignment="Center" Margin="10"/>
+            <Button x:Name="btnGuardar" Content="GUARDAR" Width="110" HorizontalAlignment="Center" Margin="10"/>
+            <Button x:Name="btnModificar" Content="MODIFICAR" Width="110" HorizontalAlignment="Center" Margin="10"/>
+            <Button x:Name="btnBorrar" Content="BORRAR" Width="110" HorizontalAlignment="Center" Margin="10"/>
+            <Button x:Name="btnCancelar" Content="CANCELAR" Width="110" HorizontalAlignment="Center" Margin="10"/>
+
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" HorizontalAlignment="Center">
+            
+        
+
+        <ListView x:Name="proveedoresListView" ItemsSource="{Binding ListaProveedores}">
+
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="CIF" DisplayMemberBinding="{Binding Path=_id}"/>
+                    <GridViewColumn Header="Nombre" DisplayMemberBinding="{Binding Path=Nombre}"/>
+                    <GridViewColumn Header="Población" DisplayMemberBinding="{Binding Path=Poblacion}"/>
+                    <GridViewColumn Header="Teléfono" DisplayMemberBinding="{Binding Path=Telefono}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        </StackPanel>
+
+
+
     </Grid>
 </UserControl>
