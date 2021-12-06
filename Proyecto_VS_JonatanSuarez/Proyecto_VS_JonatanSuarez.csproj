@@ -69,7 +69,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\CargarProveedoresCommand.cs" />
     <Compile Include="Commands\UpdateViewCommand.cs" />
+    <Compile Include="Models\ProveedoresModel.cs" />
+    <Compile Include="Services\ProveedoresDBHandler.cs" />
     <Compile Include="ViewModel\BienvenidaViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ProductosViewModel.cs" />
@@ -137,9 +140,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="Resources\" />
-    <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.3.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.3.0\build\MaterialDesignThemes.targets')" />
