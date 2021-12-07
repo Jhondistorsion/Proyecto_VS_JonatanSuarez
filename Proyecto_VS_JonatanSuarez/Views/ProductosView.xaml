@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:local="clr-namespace:Proyecto_VS_JonatanSuarez.Views"
+             x:Name="vistaProductos"
              mc:Ignorable="d" 
              d:DesignHeight="750" d:DesignWidth="800">
 
@@ -89,43 +90,43 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="Código de barras" Margin="5"/>
-                    <TextBox Grid.Row="1" Grid.Column="0" Text="{Binding CurrentProducto._id, UpdateSourceTrigger=PropertyChanged}" Margin="5" Cursor="IBeam"/>
+                    <TextBox x:Name="textBarras" Grid.Row="1" Grid.Column="0" Text="{Binding CurrentProducto._id, UpdateSourceTrigger=PropertyChanged}" Margin="5" Cursor="IBeam"/>
 
                     <TextBlock Grid.Row="0" Grid.Column="1" Text="Referencia" Margin="5"/>
-                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding CurrentProducto.Referencia, UpdateSourceTrigger=PropertyChanged}" Margin="5" Cursor="IBeam"/>
+                    <TextBox x:Name="textReferencia" Grid.Row="1" Grid.Column="1" Text="{Binding CurrentProducto.Referencia, UpdateSourceTrigger=PropertyChanged}" Margin="5" Cursor="IBeam"/>
 
                     <TextBlock Grid.Row="2" Grid.Column="0" Text="Proveedor" Margin="5"/>
-                    <ComboBox Grid.Row="3" Grid.Column="0" Margin="5" Text="{Binding CurrentProducto.Proveedor.Nombre}" ItemsSource="{Binding ListaProveedores}"/>
+                    <ComboBox x:Name="cmbProveedor" Grid.Row="3" Grid.Column="0" Margin="5" Text="{Binding CurrentProducto.Proveedor.Nombre}" ItemsSource="{Binding ListaProveedores}"/>
 
                     <TextBlock Grid.Row="2" Grid.Column="1" Text="Descripción" Margin="5"/>
-                    <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding CurrentProducto.Descripcion, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                    <TextBox x:Name="textDescripcion" Grid.Row="3" Grid.Column="1" Text="{Binding CurrentProducto.Descripcion, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
 
                     <TextBlock Grid.Row="4" Grid.Column="0" Text="Fabricante" Margin="5"/>
-                    <ComboBox Grid.Row="5" Grid.Column="0" Margin="5" Text="{Binding CurrentProducto.Fabricante}" ItemsSource="{Binding ListaFabricantes}"/>
+                    <ComboBox x:Name="cmbFabricante" Grid.Row="5" Grid.Column="0" Margin="5" Text="{Binding CurrentProducto.Fabricante}" ItemsSource="{Binding ListaFabricantes}"/>
 
                     <TextBlock Grid.Row="4" Grid.Column="1" Text="Precio" Margin="5"/>
-                    <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding CurrentProducto.Precio, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                    <TextBox x:Name="textPrecio" Grid.Row="5" Grid.Column="1" Text="{Binding CurrentProducto.Precio, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
 
                     <TextBlock Grid.Row="6" Grid.Column="0" Text="Formato" Margin="5"/>
-                    <ComboBox Grid.Row="7" Grid.Column="0" Margin="5" Text="{Binding CurrentProducto.Formato}" ItemsSource="{Binding ListaFormatos}"/>
+                    <ComboBox x:Name="cmbFormato" Grid.Row="7" Grid.Column="0" Margin="5" Text="{Binding CurrentProducto.Formato}" ItemsSource="{Binding ListaFormatos}"/>
 
                     <TextBlock Grid.Row="6" Grid.Column="1" Text="Fecha" Margin="5"/>
-                    <DatePicker Grid.Row="7" Grid.Column="1" SelectedDate="{Binding CurrentProducto.FechaEntrada, StringFormat=dd/MM/yyyy, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                    <DatePicker x:Name="dateFecha" Grid.Row="7" Grid.Column="1" SelectedDate="{Binding CurrentProducto.FechaEntrada, StringFormat=dd/MM/yyyy, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
 
                     <TextBlock Grid.Row="8" Grid.Column="0" Text="Conector" Margin="5"/>
-                    <ComboBox Grid.Row="9" Grid.Column="0" Margin="5" Text="{Binding CurrentProducto.Conector}" ItemsSource="{Binding ListaConectores}"/>
+                    <ComboBox x:Name="cmbConector" Grid.Row="9" Grid.Column="0" Margin="5" Text="{Binding CurrentProducto.Conector}" ItemsSource="{Binding ListaConectores}"/>
 
                     <TextBlock Grid.Row="8" Grid.Column="1" Text="Stock" Margin="5"/>
-                    <TextBox Grid.Row="9" Grid.Column="1" Text="{Binding CurrentProducto.Stock, UpdateSourceTrigger=PropertyChanged}" Margin="5" Cursor="IBeam"/>
+                    <TextBox x:Name="textStock" Grid.Row="9" Grid.Column="1" Text="{Binding CurrentProducto.Stock, UpdateSourceTrigger=PropertyChanged}" Margin="5" Cursor="IBeam"/>
 
 
                     <StackPanel Grid.Row="10" Orientation="Horizontal" HorizontalAlignment="Center" Grid.ColumnSpan="2" Margin="10">
-                        <Button Content="CREAR" Margin="5"/>
-                        <Button Content="NUEVO" Margin="5"/>
-                        <Button Content="GUARDAR" Margin="5"/>
-                        <Button Content="MODIFICAR" Margin="5"/>
-                        <Button Content="BORRAR" Margin="5"/>
-                        <Button Content="CANCELAR" Margin="5"/>
+                        <Button x:Name="btnCrear" Content="CREAR" Margin="5"/>
+                        <Button x:Name="btnNuevo" Content="NUEVO" Margin="5"/>
+                        <Button x:Name="btnGuardar" Content="GUARDAR" Margin="5"/>
+                        <Button x:Name="btnModificar" Content="MODIFICAR" Margin="5"/>
+                        <Button x:Name="btnBorrar" Content="BORRAR" Margin="5"/>
+                        <Button x:Name="btnCancelar" Content="CANCELAR" Margin="5"/>
                     </StackPanel>
 
                 </Grid>
@@ -147,16 +148,16 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock Grid.Row="0" Grid.Column="0" Margin="5" Text="CIF:"/>
-                    <TextBlock Grid.Row="1" Grid.Column="0" Margin="5" Text="cf" FontWeight="Bold"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Margin="5" Text="{Binding CurrentProducto.Proveedor._id, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold"/>
 
                     <TextBlock Grid.Row="0" Grid.Column="1" Margin="5" Text="Nombre:"/>
-                    <TextBlock Grid.Row="1" Grid.Column="1" Margin="5" Text="nom" FontWeight="Bold"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding CurrentProducto.Proveedor.Nombre, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold"/>
 
                     <TextBlock Grid.Row="2" Grid.Column="0" Margin="5" Text="Población:"/>
-                    <TextBlock Grid.Row="3" Grid.Column="0" Margin="5" Text="pob" FontWeight="Bold"/>
+                    <TextBlock Grid.Row="3" Grid.Column="0" Margin="5" Text="{Binding CurrentProducto.Proveedor.Poblacion, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold"/>
 
                     <TextBlock Grid.Row="2" Grid.Column="1" Margin="5" Text="Teléfono:"/>
-                    <TextBlock Grid.Row="3" Grid.Column="1" Margin="5" Text="telf" FontWeight="Bold"/>
+                    <TextBlock Grid.Row="3" Grid.Column="1" Margin="5" Text="{Binding CurrentProducto.Proveedor.Telefono, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold"/>
                 </Grid>
 
             </StackPanel>

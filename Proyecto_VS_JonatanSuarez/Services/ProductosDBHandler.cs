@@ -25,7 +25,7 @@ namespace Proyecto_VS_JonatanSuarez.Services
                 Random r = new Random();
                 int numFabricantes = r.Next(5);
 
-                Console.WriteLine("Numero fabricante: " + numFabricantes);
+                //Console.WriteLine("Numero fabricante: " + numFabricantes);
 
                 Random r2 = new Random();
                 int numFormatosConectores = r2.Next(3);
@@ -47,9 +47,9 @@ namespace Proyecto_VS_JonatanSuarez.Services
 
                 p.Referencia = "Artículo de tipo bombilla";
                 p.Descripcion = "Iluminación led de 3000 lumens";
-                p.Precio = (numFormatosConectores * (i + 1)).ToString() + " €";
+                p.Precio = (numFormatosConectores * (i + 2)).ToString() + " €";
                 p.FechaEntrada = DateTime.Today;
-                p.Stock = (1 + numFormatosConectores) * (1 + numFabricantes);
+                p.Stock = (2 + numFormatosConectores) * (2 + numFabricantes);
 
                 listaProductos.Add(p);
             }
