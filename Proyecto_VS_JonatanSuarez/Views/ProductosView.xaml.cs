@@ -24,7 +24,7 @@ namespace Proyecto_VS_JonatanSuarez.Views
         public ProductosView()
         {
             InitializeComponent();
-            E00EstadoInicial();
+            E00EstadoInicial();          
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -46,7 +46,7 @@ namespace Proyecto_VS_JonatanSuarez.Views
             btnCrear.Visibility = Visibility.Collapsed;
             btnGuardar.Visibility = Visibility.Collapsed;
             btnCancelar.Visibility = Visibility.Collapsed;
-
+            
             textBarras.IsEnabled = false;
             textReferencia.IsEnabled = false;
             cmbProveedor.IsEnabled = false;
@@ -58,18 +58,108 @@ namespace Proyecto_VS_JonatanSuarez.Views
             cmbConector.IsEnabled = false;
             textStock.IsEnabled = false;
 
+            
             textBarras.Text = "";
             textReferencia.Text = "";
-            cmbProveedor.Text = "";
+            cmbProveedor.SelectedIndex = 0;
             textDescripcion.Text = "";
-            cmbFabricante.Text = "";
-            textPrecio.Text = "";
-            cmbFormato.Text = "";
-            dateFecha.Text = "";
-            cmbConector.Text = "";
-            textStock.Text = "";
+            cmbFabricante.SelectedIndex = 0;
+            textPrecio.Text = "0";
+            cmbFormato.SelectedIndex = 0;
+            dateFecha.Text = DateTime.Today.ToString();
+            cmbConector.SelectedIndex = 0;
+            textStock.Text = "0";
+            
+            
+            productosListView.IsEnabled = true;
+            
+
+        }
+
+        public void E01NuevoProveedor()
+        {
+            
+            btnCrear.Visibility = Visibility.Visible;
+            btnCancelar.Visibility = Visibility.Visible;
+
+            btnNuevo.Visibility = Visibility.Collapsed;
+            btnModificar.Visibility = Visibility.Collapsed;
+            btnBorrar.Visibility = Visibility.Collapsed;
+            btnGuardar.Visibility = Visibility.Collapsed;
+            
+            textBarras.IsEnabled = true;
+            textReferencia.IsEnabled = true;
+            cmbProveedor.IsEnabled = true;
+            textDescripcion.IsEnabled = true;
+            cmbFabricante.IsEnabled = true;
+            textPrecio.IsEnabled = true;
+            cmbFormato.IsEnabled = true;
+            dateFecha.IsEnabled = true;
+            cmbConector.IsEnabled = true;
+            textStock.IsEnabled = true;
+            
+            textBarras.Text = "";
+            textReferencia.Text = "";
+            cmbProveedor.SelectedIndex = 0;
+            textDescripcion.Text = "";
+            cmbFabricante.SelectedIndex = 0;
+            textPrecio.Text = "0";
+            cmbFormato.SelectedIndex = 0;
+            dateFecha.Text = DateTime.Today.ToString();
+            cmbConector.SelectedIndex = 0;
+            textStock.Text = "0";
+            
+            
 
 
+            productosListView.IsEnabled = false;
+            
+        }
+
+        public void E02ModificarProveedor()
+        {
+            btnGuardar.Visibility = Visibility.Visible;
+            btnCancelar.Visibility = Visibility.Visible;
+
+            btnCrear.Visibility = Visibility.Collapsed;
+            btnNuevo.Visibility = Visibility.Collapsed;
+            btnBorrar.Visibility = Visibility.Collapsed;
+            btnModificar.Visibility = Visibility.Collapsed;
+
+            textBarras.IsEnabled = false;
+            textReferencia.IsEnabled = true;
+            cmbProveedor.IsEnabled = true;
+            textDescripcion.IsEnabled = true;
+            cmbFabricante.IsEnabled = true;
+            textPrecio.IsEnabled = true;
+            cmbFormato.IsEnabled = true;
+            dateFecha.IsEnabled = true;
+            cmbConector.IsEnabled = true;
+            textStock.IsEnabled = true;
+        }
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Operación cancelada", "Atención");
+            E00EstadoInicial();
+        }
+
+        private void btnModificar_Click(object sender, RoutedEventArgs e)
+        {
+            if (textBarras.Text.Equals("") || textBarras.Text is null)
+            {
+                MessageBox.Show("Debes seleccionar un producto", "Atención");
+            }
+            else
+            {
+                E02ModificarProveedor();
+            }
+
+        }
+
+        private void btnNuevo_Click(object sender, RoutedEventArgs e)
+        {
+            E01NuevoProveedor();
         }
 
     }

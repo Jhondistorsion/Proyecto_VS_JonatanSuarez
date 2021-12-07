@@ -22,7 +22,7 @@
             <ColumnDefinition Width="340"/>
         </Grid.ColumnDefinitions>
 
-        <ListView x:Name="productosListView" Grid.Column="0" MaxWidth="600" MaxHeight="600" ItemsSource="{Binding ListaProductos}">
+        <ListView x:Name="productosListView" Grid.Column="0" MaxWidth="600" MaxHeight="600" ItemsSource="{Binding ListaProductos}" d:ItemsSource="{d:SampleData ItemCount=5}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">
@@ -38,7 +38,7 @@
                     <GridViewColumn Header="Formato" DisplayMemberBinding="{Binding Path=Formato}"/>
                     <GridViewColumn Header="Conector" DisplayMemberBinding="{Binding Path=Conector}"/>
                     <GridViewColumn Header="Ref." DisplayMemberBinding="{Binding Path=Referencia}"/>
-                    <GridViewColumn Header="Descrip" DisplayMemberBinding="{Binding Path=Descripcion}"/>
+                    <GridViewColumn Header="Descrip." DisplayMemberBinding="{Binding Path=Descripcion}"/>
                     <GridViewColumn Header="Precio" DisplayMemberBinding="{Binding Path=Precio}"/>
                     <GridViewColumn Header="F.Entrada" DisplayMemberBinding="{Binding Path=FechaEntrada}"/>
                     <GridViewColumn Header="Stock" DisplayMemberBinding="{Binding Path=Stock}"/>
@@ -122,11 +122,11 @@
 
                     <StackPanel Grid.Row="10" Orientation="Horizontal" HorizontalAlignment="Center" Grid.ColumnSpan="2" Margin="10">
                         <Button x:Name="btnCrear" Content="CREAR" Margin="5"/>
-                        <Button x:Name="btnNuevo" Content="NUEVO" Margin="5"/>
-                        <Button x:Name="btnGuardar" Content="GUARDAR" Margin="5"/>
-                        <Button x:Name="btnModificar" Content="MODIFICAR" Margin="5"/>
+                        <Button x:Name="btnNuevo" Content="NUEVO" Margin="5" Click="btnNuevo_Click" Cursor="Hand"/>
+                        <Button x:Name="btnGuardar" Content="GUARDAR" Margin="5" Command="{Binding GuardarProductoCommand}" CommandParameter="{Binding ElementName=vistaProductos}" Cursor="Hand"/>
+                        <Button x:Name="btnModificar" Content="MODIFICAR" Margin="5" Click="btnModificar_Click" />
                         <Button x:Name="btnBorrar" Content="BORRAR" Margin="5"/>
-                        <Button x:Name="btnCancelar" Content="CANCELAR" Margin="5"/>
+                        <Button x:Name="btnCancelar" Content="CANCELAR" Margin="5" Click="btnCancelar_Click" />
                     </StackPanel>
 
                 </Grid>

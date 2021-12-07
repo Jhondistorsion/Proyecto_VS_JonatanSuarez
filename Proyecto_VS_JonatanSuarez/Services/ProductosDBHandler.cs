@@ -47,7 +47,7 @@ namespace Proyecto_VS_JonatanSuarez.Services
 
                 p.Referencia = "Artículo de tipo bombilla";
                 p.Descripcion = "Iluminación led de 3000 lumens";
-                p.Precio = (numFormatosConectores * (i + 2)).ToString() + " €";
+                p.Precio = (numFormatosConectores * (i + 2));
                 p.FechaEntrada = DateTime.Today;
                 p.Stock = (2 + numFormatosConectores) * (2 + numFabricantes);
 
@@ -59,6 +59,31 @@ namespace Proyecto_VS_JonatanSuarez.Services
         public static ObservableCollection<ProductoModel> ObtenerListaProductos()
         {
             return listaProductos;
+        }
+
+        public static bool GuardarProducto(ProductoModel Producto)
+        {
+            bool okguardar = false;
+
+            foreach (ProductoModel p in listaProductos)
+            {
+                if (p._id == Producto._id)
+                {
+                    p.Referencia = Producto.Referencia;
+                    p.Proveedor = Producto.Proveedor;
+                    p.Descripcion = Producto.Descripcion;
+                    p.Fabricante = Producto.Fabricante;
+                    p.Precio= Producto.Precio;
+                    p.Formato = Producto.Formato;
+                    p.FechaEntrada= Producto.FechaEntrada;
+                    p.Conector = Producto.Conector;
+                    p.Stock= Producto.Stock;
+
+                    okguardar = true;
+                    break;
+                }
+            }
+            return okguardar;
         }
     }
 }

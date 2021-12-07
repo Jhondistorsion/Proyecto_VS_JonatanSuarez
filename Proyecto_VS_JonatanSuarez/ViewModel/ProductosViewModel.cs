@@ -48,6 +48,7 @@ namespace Proyecto_VS_JonatanSuarez.ViewModel
         public ICommand CargarProveedoresProdCommand { get; set; }
         public ICommand CargarProductosCommand { get; set; }
         public ICommand CargarProductoCommand { get; set; }
+        public ICommand GuardarProductoCommand { get; set; }
 
         public ProductosViewModel()
         {
@@ -59,6 +60,7 @@ namespace Proyecto_VS_JonatanSuarez.ViewModel
             CargarProveedoresProdCommand = new CargarProveedoresProdCommand(this);
             CargarProductosCommand = new CargarProductosCommand(this);
             CargarProductoCommand = new CargarProductoCommand(this);
+            GuardarProductoCommand = new GuardarProductoCommand(this);
             CurrentProducto = new ProductoModel();
         }
     }

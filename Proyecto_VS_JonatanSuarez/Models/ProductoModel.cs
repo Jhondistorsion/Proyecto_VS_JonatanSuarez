@@ -74,8 +74,8 @@ namespace Proyecto_VS_JonatanSuarez.Models
             set { descripcion = value; OnPropertyChanged(nameof(Descripcion));}
         }
 
-        private string precio;
-        public string Precio
+        private double precio;
+        public double Precio
         {
             get { return precio; }
             set { precio = value; OnPropertyChanged(nameof(Precio)); }
