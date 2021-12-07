@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace Proyecto_VS_JonatanSuarez.Commands.ProveedoresCommands
 {
-    public class GuardarProveedorCommand : ICommand
+    public class NuevoProveedorCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
 
@@ -22,7 +22,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProveedoresCommands
 
         private ProveedoresViewModel proveedoresViewModel { get; set; }
 
-        public GuardarProveedorCommand(ProveedoresViewModel proveedoresViewModel)
+        public NuevoProveedorCommand(ProveedoresViewModel proveedoresViewModel)
         {
             this.proveedoresViewModel = proveedoresViewModel;
         }
@@ -30,38 +30,45 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProveedoresCommands
         public void Execute(object parameter)
         {
             ProveedoresView vistaProveedores = (ProveedoresView)parameter;
-
-            if (proveedoresViewModel.CurrentProveedor.Nombre.Equals("") || proveedoresViewModel.CurrentProveedor.Nombre is null)
+            if (proveedoresViewModel.CurrentProveedor._id.Equals(""))
+            {
+                MessageBox.Show("Debes introducir un CIF");
+            }
+            else if (proveedoresViewModel.CurrentProveedor.Nombre.Equals(""))
             {
                 MessageBox.Show("Debes introducir un nombre");
-            }else if (vistaProveedores.textPoblacion.Text.Equals(""))
+            }
+            else if (proveedoresViewModel.CurrentProveedor.Poblacion.Equals(""))
             {
                 MessageBox.Show("Debes introducir una población");
-            }else if (vistaProveedores.textTelefono.Text.Equals(""))
+            }
+            else if (proveedoresViewModel.CurrentProveedor.Telefono.Equals(""))
             {
                 MessageBox.Show("Debes introducir un teléfono");
             }
             else
             {
-                MessageBoxResult result = MessageBox.Show("¿Deseas realizar los cambios?", "Modificar", MessageBoxButton.YesNo);
+
+
+                MessageBoxResult result = MessageBox.Show("¿Deseas crear el proveedor?", "Nuevo proveedor", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
-                    bool okguardar = ProveedoresDBHandler.GuardarProveedor(proveedoresViewModel.CurrentProveedor);
-                    if (okguardar)
-                    {
-                        MessageBox.Show("Proveedor modificado con éxito", "Modificar");
+                    bool okinsertar = ProveedoresDBHandler.NuevoProveedor(proveedoresViewModel.CurrentProveedor);
+                    if (okinsertar)
+                    {                    
+                        MessageBox.Show("Se ha creado el proveedor", "Atención");
                         vistaProveedores.E00EstadoInicial();
                     }
                     else
                     {
-                        MessageBox.Show("Error al modificar", "Modificar");
-
+                        MessageBox.Show("Error al crear el proveedor", "Atención");
                     }
-
-                } else if(result == MessageBoxResult.No)
-                {
-                    MessageBox.Show("Operación cancelada", "Modificar");
                 }
+                else if (result == MessageBoxResult.No)
+                {
+                    MessageBox.Show("Operación cancelada");
+                }
+
             }
         }
     }

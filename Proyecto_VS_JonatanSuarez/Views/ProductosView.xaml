@@ -20,7 +20,7 @@
             <ColumnDefinition Width="340"/>
         </Grid.ColumnDefinitions>
 
-        <ListView Grid.Column="0" MaxWidth="600">
+        <ListView Grid.Column="0" MaxWidth="300" MaxHeight="300">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Cod.Barras" DisplayMemberBinding="{Binding Path=_id}"/>

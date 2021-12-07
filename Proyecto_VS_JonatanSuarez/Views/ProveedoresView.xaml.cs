@@ -123,5 +123,6 @@ namespace Proyecto_VS_JonatanSuarez.Views
         {
             E01NuevoProveedor();
         }
+
     }
 }

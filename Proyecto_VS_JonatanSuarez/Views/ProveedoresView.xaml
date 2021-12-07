@@ -56,8 +56,8 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:Name="btnCrear" Content="CREAR" Width="110" HorizontalAlignment="Center" Margin="10"/>
-            <Button x:Name="btnNuevo" Content="NUEVO" Width="110" HorizontalAlignment="Center" Margin="10" Click="btnNuevo_Click"/>
+            <Button x:Name="btnCrear" Content="CREAR" Width="110" HorizontalAlignment="Center" Margin="10" Command="{Binding NuevoProveedorCommand}" CommandParameter="{Binding ElementName=vistaProveedores}" Cursor="Hand"/>
+            <Button x:Name="btnNuevo" Content="NUEVO" Width="110" HorizontalAlignment="Center" Margin="10" Click="btnNuevo_Click" Cursor="Hand"/>
             <Button x:Name="btnGuardar" Content="GUARDAR" Width="110" HorizontalAlignment="Center" Margin="10" Command="{Binding GuardarProveedorCommand}" CommandParameter="{Binding ElementName=vistaProveedores}" Cursor="Hand"/>
             <Button x:Name="btnModificar" Content="MODIFICAR" Width="110" HorizontalAlignment="Center" Margin="10" Cursor="Hand" Click="btnModificar_Click"/>
             <Button x:Name="btnBorrar" Content="BORRAR" Width="110" HorizontalAlignment="Center" Margin="10" Command="{Binding BorrarProveedorCommand}" Cursor="Hand"/>

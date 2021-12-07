@@ -74,6 +74,7 @@
     <Compile Include="Commands\ProveedoresCommands\CargarProveedorCommand.cs" />
     <Compile Include="Commands\ProveedoresCommands\CargarProveedoresCommand.cs" />
     <Compile Include="Commands\ProveedoresCommands\GuardarProveedorCommand.cs" />
+    <Compile Include="Commands\ProveedoresCommands\NuevoProveedorCommand.cs" />
     <Compile Include="Commands\UpdateViewCommand.cs" />
     <Compile Include="Models\ProductoModel.cs" />
     <Compile Include="Models\ProveedoresModel.cs" />

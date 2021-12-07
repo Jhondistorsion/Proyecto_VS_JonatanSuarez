@@ -43,6 +43,8 @@ namespace Proyecto_VS_JonatanSuarez.ViewModel
 
         public ICommand BorrarProveedorCommand { get; set; }
 
+        public ICommand NuevoProveedorCommand { get; set; }
+
         public ProveedoresViewModel()
         {
             ListaProveedores = new ObservableCollection<ProveedoresModel>();
@@ -50,6 +52,7 @@ namespace Proyecto_VS_JonatanSuarez.ViewModel
             CargarProveedorCommand = new CargarProveedorCommand(this);
             GuardarProveedorCommand = new GuardarProveedorCommand(this);
             BorrarProveedorCommand = new BorrarProveedorCommand(this);
+            NuevoProveedorCommand = new NuevoProveedorCommand(this);
             CurrentProveedor = new ProveedoresModel();
 
         }

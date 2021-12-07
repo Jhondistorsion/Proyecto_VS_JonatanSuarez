@@ -20,7 +20,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProveedoresCommands
             return true;
         }
 
-        public ProveedoresViewModel proveedoresViewModel { get; set; }
+        private ProveedoresViewModel proveedoresViewModel { get; set; }
 
         public BorrarProveedorCommand(ProveedoresViewModel proveedoresViewModel)
         {

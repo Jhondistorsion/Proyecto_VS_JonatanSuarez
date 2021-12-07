@@ -18,7 +18,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands
             return true;
         }
 
-        public ProveedoresViewModel proveedoresViewModel;
+        private ProveedoresViewModel proveedoresViewModel { get; set; }
 
         public CargarProveedoresCommand(ProveedoresViewModel proveedoresViewModel)
         {

@@ -78,5 +78,21 @@ namespace Proyecto_VS_JonatanSuarez.Services
             }
             return okborrar;
         }
+
+        public static bool NuevoProveedor(ProveedoresModel proveedor)
+        {
+            Console.WriteLine("Nombre proveedor:" + proveedor.Nombre.ToString());
+            Console.WriteLine("Poblacion proveedor:" + proveedor.Poblacion.ToString());
+
+            bool okinsertar = false;
+            try
+            {             
+                listaProveedores.Add(proveedor);
+                okinsertar = true;
+            }
+            catch (Exception ex) { }
+
+            return okinsertar;
+        }
     }
 }
