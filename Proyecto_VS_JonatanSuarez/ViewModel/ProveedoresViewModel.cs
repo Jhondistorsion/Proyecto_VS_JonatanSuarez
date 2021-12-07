@@ -41,12 +41,15 @@ namespace Proyecto_VS_JonatanSuarez.ViewModel
 
         public ICommand GuardarProveedorCommand { get; set; }
 
+        public ICommand BorrarProveedorCommand { get; set; }
+
         public ProveedoresViewModel()
         {
             ListaProveedores = new ObservableCollection<ProveedoresModel>();
             CargarProveedoresCommand = new CargarProveedoresCommand(this);
             CargarProveedorCommand = new CargarProveedorCommand(this);
             GuardarProveedorCommand = new GuardarProveedorCommand(this);
+            BorrarProveedorCommand = new BorrarProveedorCommand(this);
             CurrentProveedor = new ProveedoresModel();
 
         }

@@ -69,6 +69,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\ProveedoresCommands\BorrarProveedorCommand.cs" />
     <Compile Include="Commands\ProveedoresCommands\CargarProveedorCommand.cs" />
     <Compile Include="Commands\ProveedoresCommands\CargarProveedoresCommand.cs" />
     <Compile Include="Commands\ProveedoresCommands\GuardarProveedorCommand.cs" />

@@ -30,7 +30,7 @@ namespace Proyecto_VS_JonatanSuarez.Services
             return listaProveedores;
         }
 
-        internal static bool GuardarProveedor(ProveedoresModel Proveedor)
+        public static bool GuardarProveedor(ProveedoresModel Proveedor)
         {
             bool okguardar = false;
 
@@ -46,6 +46,22 @@ namespace Proyecto_VS_JonatanSuarez.Services
                 }
             }
             return okguardar;
+        }
+
+        public static bool BorrarProveedor(ProveedoresModel Proveedor)
+        {
+            bool okborrar = false;
+
+            foreach (ProveedoresModel p in listaProveedores)
+            {
+                if (p._id == Proveedor._id)
+                {
+                    listaProveedores.Remove(p);
+                    okborrar = true;
+                    break;
+                }
+            }
+            return okborrar;
         }
     }
 }

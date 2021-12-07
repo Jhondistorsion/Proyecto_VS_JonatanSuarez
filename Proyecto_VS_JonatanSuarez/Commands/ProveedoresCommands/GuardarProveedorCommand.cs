@@ -50,6 +50,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProveedoresCommands
                     if (okguardar)
                     {
                         MessageBox.Show("Proveedor modificado con éxito", "Modificar");
+                        vistaProveedores.E00EstadoInicial();
                     }
                     else
                     {
