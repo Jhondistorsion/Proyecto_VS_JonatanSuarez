@@ -69,6 +69,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\ProductosCommands\CargarProductoCommand.cs" />
+    <Compile Include="Commands\ProductosCommands\CargarProductosCommand.cs" />
     <Compile Include="Commands\ProductosCommands\CargarProveedoresProdCommand.cs" />
     <Compile Include="Commands\ProveedoresCommands\BorrarProveedorCommand.cs" />
     <Compile Include="Commands\ProveedoresCommands\CargarProveedorCommand.cs" />
@@ -78,6 +80,7 @@
     <Compile Include="Commands\UpdateViewCommand.cs" />
     <Compile Include="Models\ProductoModel.cs" />
     <Compile Include="Models\ProveedoresModel.cs" />
+    <Compile Include="Services\ProductosDBHandler.cs" />
     <Compile Include="Services\ProveedoresDBHandler.cs" />
     <Compile Include="ViewModel\BienvenidaViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />

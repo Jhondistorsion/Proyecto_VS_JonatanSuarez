@@ -11,6 +11,7 @@
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding CargarProveedoresProdCommand}"/>
+            <i:InvokeCommandAction Command="{Binding CargarProductosCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
@@ -20,11 +21,18 @@
             <ColumnDefinition Width="340"/>
         </Grid.ColumnDefinitions>
 
-        <ListView Grid.Column="0" MaxWidth="300" MaxHeight="300">
+        <ListView x:Name="productosListView" Grid.Column="0" MaxWidth="600" MaxHeight="600" ItemsSource="{Binding ListaProductos}">
+
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding CargarProductoCommand}" CommandParameter="{Binding ElementName=productosListView, Path=SelectedItem}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Cod.Barras" DisplayMemberBinding="{Binding Path=_id}"/>
-                    <GridViewColumn Header="Proveedor" DisplayMemberBinding="{Binding Path=Proveedor}"/>
+                    <GridViewColumn Header="Proveedor" DisplayMemberBinding="{Binding Path=Proveedor.Nombre}"/>
                     <GridViewColumn Header="Fabricante" DisplayMemberBinding="{Binding Path=Fabricante}"/>
                     <GridViewColumn Header="Formato" DisplayMemberBinding="{Binding Path=Formato}"/>
                     <GridViewColumn Header="Conector" DisplayMemberBinding="{Binding Path=Conector}"/>
@@ -81,34 +89,34 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="Código de barras" Margin="5"/>
-                    <TextBox Grid.Row="1" Grid.Column="0" Text="cod" Margin="5"/>
+                    <TextBox Grid.Row="1" Grid.Column="0" Text="{Binding CurrentProducto._id, UpdateSourceTrigger=PropertyChanged}" Margin="5" Cursor="IBeam"/>
 
                     <TextBlock Grid.Row="0" Grid.Column="1" Text="Referencia" Margin="5"/>
-                    <TextBox Grid.Row="1" Grid.Column="1" Text="ref" Margin="5" Cursor="IBeam"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding CurrentProducto.Referencia, UpdateSourceTrigger=PropertyChanged}" Margin="5" Cursor="IBeam"/>
 
                     <TextBlock Grid.Row="2" Grid.Column="0" Text="Proveedor" Margin="5"/>
-                    <ComboBox Grid.Row="3" Grid.Column="0" Margin="5" ItemsSource="{Binding ListaProveedores}"/>
+                    <ComboBox Grid.Row="3" Grid.Column="0" Margin="5" Text="{Binding CurrentProducto.Proveedor.Nombre}" ItemsSource="{Binding ListaProveedores}"/>
 
                     <TextBlock Grid.Row="2" Grid.Column="1" Text="Descripción" Margin="5"/>
-                    <ComboBox Grid.Row="3" Grid.Column="1" Margin="5"/>
+                    <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding CurrentProducto.Descripcion, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
 
                     <TextBlock Grid.Row="4" Grid.Column="0" Text="Fabricante" Margin="5"/>
-                    <ComboBox Grid.Row="5" Grid.Column="0" Margin="5"/>
+                    <ComboBox Grid.Row="5" Grid.Column="0" Margin="5" Text="{Binding CurrentProducto.Fabricante}" ItemsSource="{Binding ListaFabricantes}"/>
 
                     <TextBlock Grid.Row="4" Grid.Column="1" Text="Precio" Margin="5"/>
-                    <TextBox Grid.Row="5" Grid.Column="1" Text="prec" Margin="5"/>
+                    <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding CurrentProducto.Precio, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
 
                     <TextBlock Grid.Row="6" Grid.Column="0" Text="Formato" Margin="5"/>
-                    <ComboBox Grid.Row="7" Grid.Column="0" Margin="5"/>
+                    <ComboBox Grid.Row="7" Grid.Column="0" Margin="5" Text="{Binding CurrentProducto.Formato}" ItemsSource="{Binding ListaFormatos}"/>
 
                     <TextBlock Grid.Row="6" Grid.Column="1" Text="Fecha" Margin="5"/>
-                    <DatePicker Grid.Row="7" Grid.Column="1" Margin="5"/>
+                    <DatePicker Grid.Row="7" Grid.Column="1" SelectedDate="{Binding CurrentProducto.FechaEntrada, StringFormat=dd/MM/yyyy, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
 
                     <TextBlock Grid.Row="8" Grid.Column="0" Text="Conector" Margin="5"/>
-                    <ComboBox Grid.Row="9" Grid.Column="0" Margin="5"/>
+                    <ComboBox Grid.Row="9" Grid.Column="0" Margin="5" Text="{Binding CurrentProducto.Conector}" ItemsSource="{Binding ListaConectores}"/>
 
                     <TextBlock Grid.Row="8" Grid.Column="1" Text="Stock" Margin="5"/>
-                    <TextBox Grid.Row="9" Grid.Column="1" Text="stk" Margin="5" Cursor="IBeam"/>
+                    <TextBox Grid.Row="9" Grid.Column="1" Text="{Binding CurrentProducto.Stock, UpdateSourceTrigger=PropertyChanged}" Margin="5" Cursor="IBeam"/>
 
 
                     <StackPanel Grid.Row="10" Orientation="Horizontal" HorizontalAlignment="Center" Grid.ColumnSpan="2" Margin="10">

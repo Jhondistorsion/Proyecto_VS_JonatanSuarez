@@ -32,8 +32,8 @@ namespace Proyecto_VS_JonatanSuarez.Models
             set { id = value; OnPropertyChanged(nameof(_id)); }
         }
 
-        private ObservableCollection<ProveedoresModel> proveedor;
-        public ObservableCollection<ProveedoresModel> Proveedor
+        private ProveedoresModel proveedor;
+        public ProveedoresModel Proveedor
         {
             get { return proveedor; }
             set { proveedor = value; OnPropertyChanged(nameof(Proveedor)); }
@@ -98,7 +98,7 @@ namespace Proyecto_VS_JonatanSuarez.Models
         public ProductoModel()
         {
             fechaEntrada = DateTime.Today;
-            proveedor = new ObservableCollection<ProveedoresModel>();
+            proveedor = new ProveedoresModel();
         }
     }
 }
