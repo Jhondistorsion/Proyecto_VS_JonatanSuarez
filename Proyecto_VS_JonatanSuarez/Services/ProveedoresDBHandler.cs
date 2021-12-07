@@ -25,9 +25,24 @@ namespace Proyecto_VS_JonatanSuarez.Services
             }
         }
 
+
         public static ObservableCollection<ProveedoresModel> ObtenerListaProveedores()
         {
             return listaProveedores;
+        }
+
+        private static ObservableCollection<string> listaProveedoresProductos = new ObservableCollection<string>();
+        public static void CargarListaProveedoresProductos()
+        {
+            foreach (ProveedoresModel p in listaProveedores)
+            {
+                listaProveedoresProductos.Add(p.Nombre);
+            }
+        }
+
+        public static ObservableCollection<string> ObtenerListaProveedoresProductos()
+        {
+            return listaProveedoresProductos;
         }
 
         public static bool GuardarProveedor(ProveedoresModel Proveedor)
