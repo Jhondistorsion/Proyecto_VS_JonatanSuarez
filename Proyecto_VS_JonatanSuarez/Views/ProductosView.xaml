@@ -121,11 +121,11 @@
 
 
                     <StackPanel Grid.Row="10" Orientation="Horizontal" HorizontalAlignment="Center" Grid.ColumnSpan="2" Margin="10">
-                        <Button x:Name="btnCrear" Content="CREAR" Margin="5"/>
+                        <Button x:Name="btnCrear" Content="CREAR" Margin="5" Command="{Binding NuevoProductoCommand}" CommandParameter="{Binding ElementName=vistaProductos}" />
                         <Button x:Name="btnNuevo" Content="NUEVO" Margin="5" Click="btnNuevo_Click" Cursor="Hand"/>
                         <Button x:Name="btnGuardar" Content="GUARDAR" Margin="5" Command="{Binding GuardarProductoCommand}" CommandParameter="{Binding ElementName=vistaProductos}" Cursor="Hand"/>
                         <Button x:Name="btnModificar" Content="MODIFICAR" Margin="5" Click="btnModificar_Click" />
-                        <Button x:Name="btnBorrar" Content="BORRAR" Margin="5"/>
+                        <Button x:Name="btnBorrar" Content="BORRAR" Margin="5" Command="{Binding BorrarProductoCommand}" CommandParameter="{Binding ElementName=vistaProductos}" Cursor="Hand" Click="btnBorrar_Click" />
                         <Button x:Name="btnCancelar" Content="CANCELAR" Margin="5" Click="btnCancelar_Click" />
                     </StackPanel>
 

@@ -69,10 +69,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\ProductosCommands\BorrarProductoCommand.cs" />
     <Compile Include="Commands\ProductosCommands\CargarProductoCommand.cs" />
     <Compile Include="Commands\ProductosCommands\CargarProductosCommand.cs" />
     <Compile Include="Commands\ProductosCommands\CargarProveedoresProdCommand.cs" />
     <Compile Include="Commands\ProductosCommands\GuardarProductoCommand.cs" />
+    <Compile Include="Commands\ProductosCommands\NuevoProductoCommand.cs" />
     <Compile Include="Commands\ProveedoresCommands\BorrarProveedorCommand.cs" />
     <Compile Include="Commands\ProveedoresCommands\CargarProveedorCommand.cs" />
     <Compile Include="Commands\ProveedoresCommands\CargarProveedoresCommand.cs" />

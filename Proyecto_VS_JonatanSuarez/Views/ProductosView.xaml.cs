@@ -162,5 +162,12 @@ namespace Proyecto_VS_JonatanSuarez.Views
             E01NuevoProveedor();
         }
 
+        private void btnBorrar_Click(object sender, RoutedEventArgs e)
+        {
+            if (textBarras.Text.Equals("") || textBarras.Text is null)
+            {
+                MessageBox.Show("Debes seleccionar un producto", "Atención");
+            }
+        }
     }
 }

@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace Proyecto_VS_JonatanSuarez.Commands.ProveedoresCommands
+namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
 {
-    public class BorrarProveedorCommand : ICommand
+    public class BorrarProductoCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
 
@@ -20,35 +20,35 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProveedoresCommands
             return true;
         }
 
-        private ProveedoresViewModel proveedoresViewModel { get; set; }
+        private ProductosViewModel productosViewModel { get; set; }
 
-        public BorrarProveedorCommand(ProveedoresViewModel proveedoresViewModel)
+        public BorrarProductoCommand(ProductosViewModel productosViewModel)
         {
-            this.proveedoresViewModel = proveedoresViewModel;
+            this.productosViewModel = productosViewModel;
         }
 
         public void Execute(object parameter)
         {
-            ProveedoresView vistaProveedores = (ProveedoresView)parameter;
+            ProductosView vistaProveedores = (ProductosView)parameter;
 
-            if (proveedoresViewModel.CurrentProveedor._id is null || proveedoresViewModel.CurrentProveedor._id.Equals(""))
-            {
+            if (productosViewModel.CurrentProducto._id is null || productosViewModel.CurrentProducto._id.Equals(""))
+            {               
                 vistaProveedores.E00EstadoInicial();
             }
             else
             {
-                MessageBoxResult result = MessageBox.Show("¿Deseas eliminar el proveedor?", "Borrar", MessageBoxButton.YesNo);
+                MessageBoxResult result = MessageBox.Show("¿Deseas eliminar el producto?", "Borrar", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
-                    bool borrado = ProveedoresDBHandler.BorrarProveedor(proveedoresViewModel.CurrentProveedor);
+                    bool borrado = ProductosDBHandler.BorrarProducto(productosViewModel.CurrentProducto);
                     if (borrado)
                     {
-                        MessageBox.Show("Proveedor eliminado correctamente", "Borrar");
+                        MessageBox.Show("Producto eliminado correctamente", "Borrar");
                         vistaProveedores.E00EstadoInicial();
                     }
                     else
                     {
-                        MessageBox.Show("Error al eliminar proveedor", "Borrar");
+                        MessageBox.Show("Error al eliminar producto", "Borrar");
                     }
                 }
                 else if (result == MessageBoxResult.No)
@@ -57,7 +57,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProveedoresCommands
                 }
             }
 
-            
+
         }
     }
 }

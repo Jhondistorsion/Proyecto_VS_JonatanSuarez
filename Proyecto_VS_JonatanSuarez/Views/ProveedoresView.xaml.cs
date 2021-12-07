@@ -124,5 +124,13 @@ namespace Proyecto_VS_JonatanSuarez.Views
             E01NuevoProveedor();
         }
 
+        private void btnBorrar_Click(object sender, RoutedEventArgs e)
+        {
+            if (textCif.Text.Equals("") || textCif.Text is null)
+            {
+                MessageBox.Show("Debes seleccionar un proveedor", "Atención");
+            }
+
+        }
     }
 }

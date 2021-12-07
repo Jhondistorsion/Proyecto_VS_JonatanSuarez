@@ -85,5 +85,35 @@ namespace Proyecto_VS_JonatanSuarez.Services
             }
             return okguardar;
         }
+
+        public static bool BorrarProducto(ProductoModel Producto)
+        {
+            bool okborrar = false;
+
+            foreach (ProductoModel p in listaProductos)
+            {
+                if (p._id == Producto._id)
+                {
+                    listaProductos.Remove(p);
+                    okborrar = true;
+                    break;
+                }
+            }
+            return okborrar;
+        }
+
+        public static bool NuevoProducto(ProductoModel producto)
+        {         
+
+            bool okinsertar = false;
+            try
+            {
+                listaProductos.Add(producto);
+                okinsertar = true;
+            }
+            catch (Exception ex) { }
+
+            return okinsertar;
+        }
     }
 }

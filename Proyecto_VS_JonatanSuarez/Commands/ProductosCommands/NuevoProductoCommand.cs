@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
 {
-    public class GuardarProductoCommand : ICommand
+    public class NuevoProductoCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
 
@@ -22,7 +22,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
 
         private ProductosViewModel productosViewModel { get; set; }
 
-        public GuardarProductoCommand(ProductosViewModel productosViewModel)
+        public NuevoProductoCommand(ProductosViewModel productosViewModel)
         {
             this.productosViewModel = productosViewModel;
         }
@@ -31,7 +31,11 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
         {
             ProductosView vistaProductos = (ProductosView)parameter;
 
-            if (productosViewModel.CurrentProducto.Referencia.Equals(""))
+            if (productosViewModel.CurrentProducto._id.Equals(""))
+            {
+                MessageBox.Show("Debes introducir un código de barras");
+            }
+            else if (productosViewModel.CurrentProducto.Referencia.Equals(""))
             {
                 MessageBox.Show("Debes introducir una referencia");
             }
@@ -50,26 +54,26 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
             else
             {
 
-                MessageBoxResult result = MessageBox.Show("¿Deseas realizar los cambios?", "Modificar", MessageBoxButton.YesNo);
+
+                MessageBoxResult result = MessageBox.Show("¿Deseas crear el producto?", "Nuevo producto", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
-                    bool okguardar = ProductosDBHandler.GuardarProducto(productosViewModel.CurrentProducto);
-                    if (okguardar)
+                    bool okinsertar = ProductosDBHandler.NuevoProducto(productosViewModel.CurrentProducto);
+                    if (okinsertar)
                     {
-                        MessageBox.Show("Producto modificado con éxito", "Modificar");
+                        MessageBox.Show("Se ha creado el producto", "Atención");
                         vistaProductos.E00EstadoInicial();
                     }
                     else
                     {
-                        MessageBox.Show("Error al modificar", "Modificar");
-
+                        MessageBox.Show("Error al crear el producto", "Atención");
                     }
-
                 }
                 else if (result == MessageBoxResult.No)
                 {
-                    MessageBox.Show("Operación cancelada", "Modificar");
+                    MessageBox.Show("Operación cancelada");
                 }
+
             }
         }
     }
