@@ -30,14 +30,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
         public void Execute(object parameter)
         {
             if (parameter == null)
-            {
-                if (ProductosDBHandler.activaCargarListaProductos)
-                {
-                    ObservableCollection<ProveedoresModel> ListaProveedores = new ObservableCollection<ProveedoresModel>();
-                    ProductosDBHandler.CargarListaProductos(ListaProveedores, productosViewModel.ListaFabricantes, productosViewModel.ListaFormatos, productosViewModel.ListaConectores);
-                    ProductosDBHandler.activaCargarListaProductos = false;
-                }
-                
+            {                            
                 productosViewModel.ListaProductos = ProductosDBHandler.ObtenerListaProductos();
             }
             else if(parameter is string)

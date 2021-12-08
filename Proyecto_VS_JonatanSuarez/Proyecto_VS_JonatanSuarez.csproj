@@ -69,6 +69,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\CargaBaseDatosCommand.cs" />
     <Compile Include="Commands\ProductosCommands\BorrarProductoCommand.cs" />
     <Compile Include="Commands\ProductosCommands\CargarProductoCommand.cs" />
     <Compile Include="Commands\ProductosCommands\CargarProductosCommand.cs" />
