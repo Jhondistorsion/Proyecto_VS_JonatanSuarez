@@ -58,7 +58,7 @@ namespace Proyecto_VS_JonatanSuarez.Views
             cmbConector.IsEnabled = false;
             textStock.IsEnabled = false;
 
-            
+            /*
             textBarras.Text = "";
             textReferencia.Text = "";
             cmbProveedor.SelectedIndex = 0;
@@ -69,6 +69,7 @@ namespace Proyecto_VS_JonatanSuarez.Views
             dateFecha.Text = DateTime.Today.ToString();
             cmbConector.SelectedIndex = 0;
             textStock.Text = "0";
+            */
             
             
             productosListView.IsEnabled = true;

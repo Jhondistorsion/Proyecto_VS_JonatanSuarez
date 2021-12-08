@@ -24,8 +24,9 @@ namespace Proyecto_VS_JonatanSuarez.ViewModel
         public ProveedoresModel CurrentProveedor
         {
             get { return currentProveedor; }
-            set { currentProveedor = value; OnPropertyChanged(nameof(CurrentProveedor)); }
+            set { currentProveedor = value; OnPropertyChanged(nameof (CurrentProveedor)); }
         }
+  
 
         private ProveedoresModel selectedProveedor;
         public ProveedoresModel SelectedProveedor

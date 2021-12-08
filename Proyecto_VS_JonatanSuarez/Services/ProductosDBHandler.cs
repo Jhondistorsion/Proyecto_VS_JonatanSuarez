@@ -15,6 +15,8 @@ namespace Proyecto_VS_JonatanSuarez.Services
         public static void CargarListaProductos(ObservableCollection<ProveedoresModel> ListaProveedores, ObservableCollection<string> ListaFabricantes, ObservableCollection<string> ListaFormatos, ObservableCollection<string> ListaConectores)
         {
 
+            listaProductos = new ObservableCollection<ProductoModel>();
+
             ProveedoresDBHandler.CargarListaProveedores();
             ListaProveedores = ProveedoresDBHandler.ObtenerListaProveedores();
 

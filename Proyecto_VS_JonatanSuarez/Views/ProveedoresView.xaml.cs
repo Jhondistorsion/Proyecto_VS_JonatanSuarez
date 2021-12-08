@@ -51,11 +51,12 @@ namespace Proyecto_VS_JonatanSuarez.Views
             textNombre.IsEnabled = false;
             textPoblacion.IsEnabled = false;
             textTelefono.IsEnabled = false;
-
+            /*
             textCif.Text = "";
             textNombre.Text = "";
             textPoblacion.Text = "";
             textTelefono.Text = "0";
+            */
 
             proveedoresListView.IsEnabled = true;
         }
@@ -74,11 +75,12 @@ namespace Proyecto_VS_JonatanSuarez.Views
             textNombre.IsEnabled = true;
             textPoblacion.IsEnabled = true;
             textTelefono.IsEnabled = true;
-
+            
             textCif.Text = "";
             textNombre.Text = "";
             textPoblacion.Text = "";
             textTelefono.Text = "0";
+            
 
             proveedoresListView.IsEnabled = false;
 

@@ -14,6 +14,8 @@ namespace Proyecto_VS_JonatanSuarez.Services
 
         public static void CargarListaProveedores()
         {
+            listaProveedores = new ObservableCollection<ProveedoresModel>();
+
             Random rnd = new Random();
 
             for(int i = 0; i < 20; i++)
@@ -83,8 +85,6 @@ namespace Proyecto_VS_JonatanSuarez.Services
 
         public static bool NuevoProveedor(ProveedoresModel proveedor)
         {
-            Console.WriteLine("Nombre proveedor:" + proveedor.Nombre.ToString());
-            Console.WriteLine("Poblacion proveedor:" + proveedor.Poblacion.ToString());
 
             bool okinsertar = false;
             try
@@ -93,6 +93,7 @@ namespace Proyecto_VS_JonatanSuarez.Services
                 okinsertar = true;
             }
             catch (Exception ex) { }
+
 
             return okinsertar;
         }
