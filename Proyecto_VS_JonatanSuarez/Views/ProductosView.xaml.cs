@@ -169,5 +169,18 @@ namespace Proyecto_VS_JonatanSuarez.Views
                 MessageBox.Show("Debes seleccionar un producto", "Atención");
             }
         }
+
+        private void btnBuscar_Click(object sender, RoutedEventArgs e)
+        {
+            btnBuscar.Visibility = Visibility.Collapsed;
+            btnBuscarCancelar.Visibility = Visibility.Visible;
+        }
+
+        private void btnBuscarCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            btnBuscar.Visibility = Visibility.Visible;
+            btnBuscarCancelar.Visibility = Visibility.Collapsed;
+            textBusqueda.Text = "";
+        }
     }
 }

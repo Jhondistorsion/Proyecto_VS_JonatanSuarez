@@ -29,7 +29,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
 
         public void Execute(object parameter)
         {
-            ProductosView vistaProveedores = (ProductosView)parameter;
+            ProductosView vistaProveedores = (ProductosView)parameter;           
 
             if (productosViewModel.CurrentProducto._id is null || productosViewModel.CurrentProducto._id.Equals(""))
             {               

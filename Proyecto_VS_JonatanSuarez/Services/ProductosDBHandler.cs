@@ -18,38 +18,28 @@ namespace Proyecto_VS_JonatanSuarez.Services
             ProveedoresDBHandler.CargarListaProveedores();
             ListaProveedores = ProveedoresDBHandler.ObtenerListaProveedores();
 
-           
+            Random r = new Random();
+
             for (int i = 0; i < 20; i++)
             {
-               
-                Random r = new Random();
-                int numFabricantes = r.Next(5);
-
-                //Console.WriteLine("Numero fabricante: " + numFabricantes);
-
-                Random r2 = new Random();
-                int numFormatosConectores = r2.Next(3);
-
-                Random r3 = new Random();
-                int numProveedores = r3.Next(19);
 
                 ProductoModel p = new ProductoModel();
-                p._id = ((100 + i) * (numProveedores)).ToString();
+                p._id = r.Next(100, 999).ToString();
 
                 p.Proveedor._id = ListaProveedores.ElementAt(i)._id;
                 p.Proveedor.Nombre = ListaProveedores.ElementAt(i).Nombre;
                 p.Proveedor.Poblacion = ListaProveedores.ElementAt(i).Poblacion;
                 p.Proveedor.Telefono = ListaProveedores.ElementAt(i).Telefono;
 
-                p.Fabricante = ListaFabricantes.ElementAt(numFabricantes);
-                p.Formato = ListaFormatos.ElementAt(numFormatosConectores);
-                p.Conector = ListaConectores.ElementAt(numFormatosConectores);
+                p.Fabricante = ListaFabricantes.ElementAt(r.Next(5));
+                p.Formato = ListaFormatos.ElementAt(r.Next(3));
+                p.Conector = ListaConectores.ElementAt(r.Next(3));
 
                 p.Referencia = "Artículo de tipo bombilla";
                 p.Descripcion = "Iluminación led de 3000 lumens";
-                p.Precio = (numFormatosConectores * (i + 2));
+                p.Precio = r.Next(20, 150);
                 p.FechaEntrada = DateTime.Today;
-                p.Stock = (2 + numFormatosConectores) * (2 + numFabricantes);
+                p.Stock = r.Next(1, 500);
 
                 listaProductos.Add(p);
             }
@@ -60,6 +50,39 @@ namespace Proyecto_VS_JonatanSuarez.Services
         {
             return listaProductos;
         }
+
+        private static ObservableCollection<ProductoModel> listaProductosBusqueda = new ObservableCollection<ProductoModel>();
+
+        public static void CargarListaProveedoresBusqueda(string busqueda)
+        {
+            listaProductosBusqueda = new ObservableCollection<ProductoModel>();
+
+            foreach(ProductoModel p in listaProductos)
+            {
+                if (p._id.Contains(busqueda) || 
+                    p.Referencia.Contains(busqueda) ||
+                    p.Proveedor.Nombre.Contains(busqueda) ||
+                    p.Proveedor._id.Contains(busqueda) ||
+                    p.Proveedor.Poblacion.Contains(busqueda) ||
+                    p.Proveedor.Telefono.ToString().Contains(busqueda) ||
+                    p.Descripcion.Contains(busqueda) ||
+                    p.Fabricante.Contains(busqueda) ||
+                    p.Precio.ToString().Contains(busqueda) ||
+                    p.Formato.Contains(busqueda) ||
+                    p.FechaEntrada.ToString().Contains(busqueda) ||
+                    p.Conector.Contains(busqueda) ||
+                    p.Stock.ToString().Contains(busqueda))
+                {
+                    listaProductosBusqueda.Add(p);
+                }
+            }
+        }
+
+        public static ObservableCollection<ProductoModel> ObtenerListaProductosBusqueda()
+        {
+            return listaProductosBusqueda;
+        }
+
 
         public static bool GuardarProducto(ProductoModel Producto)
         {

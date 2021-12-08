@@ -45,6 +45,14 @@ namespace Proyecto_VS_JonatanSuarez.ViewModel
             set { selectedProducto = value; OnPropertyChanged(nameof(SelectedProducto)); }
         }
 
+        private string busqueda;
+        public string Busqueda
+        {
+            get { return busqueda; }
+            set { busqueda = value; OnPropertyChanged(nameof(Busqueda)); }
+        }
+
+
         public ICommand CargarProveedoresProdCommand { get; set; }
         public ICommand CargarProductosCommand { get; set; }
         public ICommand CargarProductoCommand { get; set; }
@@ -66,6 +74,7 @@ namespace Proyecto_VS_JonatanSuarez.ViewModel
             BorrarProductoCommand = new BorrarProductoCommand(this);
             NuevoProductoCommand = new NuevoProductoCommand(this);
             CurrentProducto = new ProductoModel();
+            Busqueda = "";
         }
     }
 }

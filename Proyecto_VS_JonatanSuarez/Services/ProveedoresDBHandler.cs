@@ -14,13 +14,15 @@ namespace Proyecto_VS_JonatanSuarez.Services
 
         public static void CargarListaProveedores()
         {
+            Random rnd = new Random();
+
             for(int i = 0; i < 20; i++)
             {
                 ProveedoresModel p = new ProveedoresModel();
-                p._id = i.ToString();
+                p._id = rnd.Next(1000, 9000).ToString();
                 p.Nombre = "Almacén " + i.ToString();
                 p.Poblacion = "Población " + i.ToString();
-                p.Telefono = 90052512 + i;
+                p.Telefono = rnd.Next(900000, 999999);
                 listaProveedores.Add(p);
             }
         }

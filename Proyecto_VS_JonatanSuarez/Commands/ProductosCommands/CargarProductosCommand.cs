@@ -28,10 +28,36 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
         }
 
         public void Execute(object parameter)
-        { 
-            ObservableCollection<ProveedoresModel>ListaProveedores = new ObservableCollection<ProveedoresModel>();
-            ProductosDBHandler.CargarListaProductos(ListaProveedores, productosViewModel.ListaFabricantes, productosViewModel.ListaFormatos,productosViewModel.ListaConectores);
-            productosViewModel.ListaProductos = ProductosDBHandler.ObtenerListaProductos();
+        {
+            if (parameter == null)
+            {
+                ObservableCollection<ProveedoresModel> ListaProveedores = new ObservableCollection<ProveedoresModel>();
+                ProductosDBHandler.CargarListaProductos(ListaProveedores, productosViewModel.ListaFabricantes, productosViewModel.ListaFormatos, productosViewModel.ListaConectores);
+                productosViewModel.ListaProductos = ProductosDBHandler.ObtenerListaProductos();
+            }
+            else if(parameter is string)
+            {
+                string orden = parameter.ToString();
+                if (orden.Equals("buscar"))
+                {
+                    ProductosDBHandler.CargarListaProveedoresBusqueda(productosViewModel.Busqueda);
+                    productosViewModel.ListaProductos = ProductosDBHandler.ObtenerListaProductosBusqueda();
+
+                }else if (orden.Equals("cancelar"))
+                {
+                    productosViewModel.ListaProductos = ProductosDBHandler.ObtenerListaProductos();
+                }
+                
+            }
+            
+            
+
+           
+ 
+            //Console.WriteLine("Busqueda contiene: " + productosViewModel.Busqueda);
+                
+            
+            
         }
     }
 }

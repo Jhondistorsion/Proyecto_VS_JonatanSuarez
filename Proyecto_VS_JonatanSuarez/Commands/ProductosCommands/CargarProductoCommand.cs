@@ -32,7 +32,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
                 ProductoModel productos = (ProductoModel)parameter;
 
                 productosViewModel.CurrentProducto = (ProductoModel)productos.Clone();
-                productosViewModel.SelectedProducto = (ProductoModel)productos.Clone();
+                productosViewModel.SelectedProducto = (ProductoModel)productos.Clone();              
             }
         }
     }

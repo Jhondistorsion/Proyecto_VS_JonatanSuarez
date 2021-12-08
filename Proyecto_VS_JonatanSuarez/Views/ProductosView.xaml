@@ -56,14 +56,21 @@
 
             <!--STACK BÚSQUEDA____________________________________-->
 
-            <StackPanel Grid.Row="0" Margin="10,10,10,10">
+            <StackPanel Grid.Row="0" Width="250">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="Filtrar por Código de barras o Referencia:"/>
-                    <TextBox Grid.Row="1"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Filtrar por un criterio de búsqueda" FontWeight="Bold" Margin="8"/>
+                    <TextBox x:Name="textBusqueda" Grid.Row="1" Grid.Column="0" Margin="0,0,0,-18" Cursor="IBeam" Text="{Binding Busqueda, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Button x:Name="btnBuscar" Content="BUSCAR" Grid.Column="1" Grid.Row="1" Margin="0,0,0,-18" Height="30" Width="80" FontSize="12" Command="{Binding CargarProductosCommand}" CommandParameter="buscar" Cursor="Hand" Click="btnBuscar_Click"/>
+                    <Button x:Name="btnBuscarCancelar" Content="CANCELAR" Grid.Column="1" Grid.Row="1" Margin="0,0,0,-18" Height="30" Width="80" FontSize="9" Command="{Binding CargarProductosCommand}" CommandParameter="cancelar" Visibility="Collapsed" Click="btnBuscarCancelar_Click" Cursor="Hand"/>
+
                 </Grid>
             </StackPanel>
 
