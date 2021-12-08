@@ -27,7 +27,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands
 
         public void Execute(object parameter)
         {         
-            proveedoresViewModel.ListaProveedores = ProveedoresDBHandler.ObtenerListaProveedores();
+            proveedoresViewModel.ListaProveedores = ProveedoresDBHandler.ObtenerListaProveedores();           
 
         }
     }

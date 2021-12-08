@@ -16,10 +16,7 @@ namespace Proyecto_VS_JonatanSuarez.Services
 
         public static void CargarListaProductos(ObservableCollection<ProveedoresModel> ListaProveedores, ObservableCollection<string> ListaFabricantes, ObservableCollection<string> ListaFormatos, ObservableCollection<string> ListaConectores)
         {
-
-            listaProductos = new ObservableCollection<ProductoModel>();
-
-            ProveedoresDBHandler.CargarListaProveedores();
+        
             ListaProveedores = ProveedoresDBHandler.ObtenerListaProveedores();
 
             Random r = new Random();
@@ -46,7 +43,7 @@ namespace Proyecto_VS_JonatanSuarez.Services
                 p.Stock = r.Next(1, 500);
 
                 listaProductos.Add(p);
-            }
+            }           
         }
 
 
@@ -90,7 +87,21 @@ namespace Proyecto_VS_JonatanSuarez.Services
 
         public static bool GuardarProducto(ProductoModel Producto)
         {
+
+            ObservableCollection<ProveedoresModel> ListaProveedores = ProveedoresDBHandler.ObtenerListaProveedores();
+
             bool okguardar = false;
+
+            foreach (ProveedoresModel proveedor in ListaProveedores)
+            {
+                if (Producto.Proveedor.Nombre.Equals(proveedor.Nombre))
+                {
+                    Producto.Proveedor._id = proveedor._id;
+                    Producto.Proveedor.Poblacion = proveedor.Poblacion;
+                    Producto.Proveedor.Telefono = proveedor.Telefono;
+                }
+            }
+
 
             foreach (ProductoModel p in listaProductos)
             {
@@ -130,15 +141,27 @@ namespace Proyecto_VS_JonatanSuarez.Services
         }
 
         public static bool NuevoProducto(ProductoModel producto)
-        {         
+        {
+            ObservableCollection<ProveedoresModel> ListaProveedores = ProveedoresDBHandler.ObtenerListaProveedores();          
 
             bool okinsertar = false;
             try
             {
+                foreach (ProveedoresModel proveedor in ListaProveedores)
+                {
+                    if (producto.Proveedor.Nombre.Equals(proveedor.Nombre))
+                    {
+                        
+                        producto.Proveedor._id = proveedor._id;
+                        producto.Proveedor.Poblacion = proveedor.Poblacion;
+                        producto.Proveedor.Telefono = proveedor.Telefono;
+                    }
+                }                
+                
                 listaProductos.Add(producto);
                 okinsertar = true;
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { }        
 
             return okinsertar;
         }

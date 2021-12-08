@@ -56,20 +56,7 @@ namespace Proyecto_VS_JonatanSuarez.Views
             cmbFormato.IsEnabled = false;
             dateFecha.IsEnabled = false;
             cmbConector.IsEnabled = false;
-            textStock.IsEnabled = false;
-
-            /*
-            textBarras.Text = "";
-            textReferencia.Text = "";
-            cmbProveedor.SelectedIndex = 0;
-            textDescripcion.Text = "";
-            cmbFabricante.SelectedIndex = 0;
-            textPrecio.Text = "0";
-            cmbFormato.SelectedIndex = 0;
-            dateFecha.Text = DateTime.Today.ToString();
-            cmbConector.SelectedIndex = 0;
-            textStock.Text = "0";
-            */
+            textStock.IsEnabled = false;        
             
             
             productosListView.IsEnabled = true;
@@ -111,8 +98,6 @@ namespace Proyecto_VS_JonatanSuarez.Views
             textStock.Text = "0";
             
             
-
-
             productosListView.IsEnabled = false;
             
         }
@@ -137,6 +122,8 @@ namespace Proyecto_VS_JonatanSuarez.Views
             dateFecha.IsEnabled = true;
             cmbConector.IsEnabled = true;
             textStock.IsEnabled = true;
+
+            productosListView.IsEnabled = false;
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)

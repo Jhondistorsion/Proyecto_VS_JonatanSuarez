@@ -100,6 +100,8 @@ namespace Proyecto_VS_JonatanSuarez.Views
             textNombre.IsEnabled = true;
             textPoblacion.IsEnabled = true;
             textTelefono.IsEnabled = true;
+
+            proveedoresListView.IsEnabled = false;
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
