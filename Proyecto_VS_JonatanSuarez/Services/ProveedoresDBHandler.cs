@@ -12,6 +12,8 @@ namespace Proyecto_VS_JonatanSuarez.Services
     {
         private static ObservableCollection<ProveedoresModel> listaProveedores = new ObservableCollection<ProveedoresModel>();
 
+        public static bool activaCargaProveedores = true;
+
         public static void CargarListaProveedores()
         {
             listaProveedores = new ObservableCollection<ProveedoresModel>();
@@ -27,6 +29,7 @@ namespace Proyecto_VS_JonatanSuarez.Services
                 p.Telefono = rnd.Next(900000, 999999);
                 listaProveedores.Add(p);
             }
+            Console.WriteLine("Lista proveedores cargada");
         }
 
 

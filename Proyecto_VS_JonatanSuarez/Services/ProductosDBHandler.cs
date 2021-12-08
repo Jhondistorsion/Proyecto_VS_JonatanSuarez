@@ -12,6 +12,8 @@ namespace Proyecto_VS_JonatanSuarez.Services
     {
         private static ObservableCollection<ProductoModel> listaProductos = new ObservableCollection<ProductoModel>();
 
+        public static bool activaCargarListaProductos = true;
+
         public static void CargarListaProductos(ObservableCollection<ProveedoresModel> ListaProveedores, ObservableCollection<string> ListaFabricantes, ObservableCollection<string> ListaFormatos, ObservableCollection<string> ListaConectores)
         {
 
