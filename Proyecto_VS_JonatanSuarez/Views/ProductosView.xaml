@@ -104,7 +104,7 @@
                     <TextBox x:Name="textReferencia" Grid.Row="1" Grid.Column="1" Text="{Binding CurrentProducto.Referencia, UpdateSourceTrigger=PropertyChanged}" Margin="5" Cursor="IBeam"/>
 
                     <TextBlock Grid.Row="2" Grid.Column="0" Text="Proveedores" Margin="5"/>
-                    <ComboBox x:Name="cmbProveedor" Grid.Row="3" Grid.Column="0" Margin="5,5,55,5" ItemsSource="{Binding CurrentProducto.Proveedores}" Text="{Binding CurrentProducto.Proveedores[0]}">
+                    <ComboBox x:Name="cmbProveedor" Grid.Row="3" Grid.Column="0" Margin="5,5,55,5" ItemsSource="{Binding CurrentProducto.Proveedores}">
                         
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="SelectionChanged">
@@ -125,8 +125,7 @@
                                       FontSize="18" FontWeight="SemiBold" 
                                       Cursor="Hand"
                                       VerticalContentAlignment="Top"
-                                      ItemsSource="{Binding ListaProveedores}"
-                                      Text="{Binding ListaProveedores[0]}"/>
+                                      ItemsSource="{Binding ListaProveedores}"/>
 
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                     <Button x:Name="btnAceptarProveedor" Style="{StaticResource MaterialDesignFlatButton}"

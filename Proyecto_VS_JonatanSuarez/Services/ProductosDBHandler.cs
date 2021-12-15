@@ -28,7 +28,6 @@ namespace Proyecto_VS_JonatanSuarez.Services
                 p._id = r.Next(100, 999).ToString();
 
                 p.Proveedores.Add(ListaProveedores.ElementAt(r.Next(19)));
-                p.Proveedores.Add(ListaProveedores.ElementAt(r.Next(19)));
 
                 p.Fabricante = ListaFabricantes.ElementAt(r.Next(5));
                 p.Formato = ListaFormatos.ElementAt(r.Next(3));
@@ -92,7 +91,6 @@ namespace Proyecto_VS_JonatanSuarez.Services
                 if (p._id == Producto._id)
                 {
                     p.Referencia = Producto.Referencia;
-                    //p.Proveedor = Producto.Proveedor;
                     p.Descripcion = Producto.Descripcion;
                     p.Fabricante = Producto.Fabricante;
                     p.Precio= Producto.Precio;
@@ -126,8 +124,7 @@ namespace Proyecto_VS_JonatanSuarez.Services
 
         public static bool NuevoProducto(ProductoModel producto)
         {
-            ObservableCollection<ProveedoresModel> ListaProveedores = ProveedoresDBHandler.ObtenerListaProveedores();          
-
+                   
             bool okinsertar = false;
             try
             {
