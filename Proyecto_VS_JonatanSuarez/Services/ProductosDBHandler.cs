@@ -14,10 +14,10 @@ namespace Proyecto_VS_JonatanSuarez.Services
 
         public static bool activaCargarListaProductos = true;
 
-        public static void CargarListaProductos(ObservableCollection<ProveedoresModel> ListaProveedores, ObservableCollection<string> ListaFabricantes, ObservableCollection<string> ListaFormatos, ObservableCollection<string> ListaConectores)
+        public static void CargarListaProductos(ObservableCollection<string> ListaProveedores, ObservableCollection<string> ListaFabricantes, ObservableCollection<string> ListaFormatos, ObservableCollection<string> ListaConectores)
         {
-        
-            ListaProveedores = ProveedoresDBHandler.ObtenerListaProveedores();
+
+            ListaProveedores = ProveedoresDBHandler.ObtenerListaProveedoresProductos();
 
             Random r = new Random();
 
@@ -27,8 +27,8 @@ namespace Proyecto_VS_JonatanSuarez.Services
                 ProductoModel p = new ProductoModel();
                 p._id = r.Next(100, 999).ToString();
 
-                p.Proveedores.Add("Proveedor Prueba");
-                p.Proveedores.Add("Proveedor Prueba 2");
+                p.Proveedores.Add(ListaProveedores.ElementAt(r.Next(19)));
+                p.Proveedores.Add(ListaProveedores.ElementAt(r.Next(19)));
 
                 p.Fabricante = ListaFabricantes.ElementAt(r.Next(5));
                 p.Formato = ListaFormatos.ElementAt(r.Next(3));

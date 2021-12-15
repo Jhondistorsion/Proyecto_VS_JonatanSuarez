@@ -34,20 +34,13 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Cod.Barras" DisplayMemberBinding="{Binding Path=_id}"/>
-                    <GridViewColumn Header="Proveedores">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <ComboBox Width="100" ItemsSource="{Binding Proveedores}" Text="{Binding Proveedores[0]}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
                     <GridViewColumn Header="Fabricante" DisplayMemberBinding="{Binding Path=Fabricante}"/>
-                    <GridViewColumn Header="Formato" DisplayMemberBinding="{Binding Path=Formato}"/>
-                    <GridViewColumn Header="Conector" DisplayMemberBinding="{Binding Path=Conector}"/>
-                    <GridViewColumn Header="Ref." DisplayMemberBinding="{Binding Path=Referencia}"/>
-                    <GridViewColumn Header="Descrip." DisplayMemberBinding="{Binding Path=Descripcion}"/>
+                   <!-- <GridViewColumn Header="Formato" DisplayMemberBinding="{Binding Path=Formato}"/> -->
+                    <!-- <GridViewColumn Header="Conector" DisplayMemberBinding="{Binding Path=Conector}"/> -->
+                    <!-- <GridViewColumn Header="Ref." DisplayMemberBinding="{Binding Path=Referencia}"/> -->
+                    <!-- <GridViewColumn Header="Descrip." DisplayMemberBinding="{Binding Path=Descripcion}"/> -->
                     <GridViewColumn Header="Precio" DisplayMemberBinding="{Binding Path=Precio}"/>
-                    <GridViewColumn Header="F.Entrada" DisplayMemberBinding="{Binding Path=FechaEntrada}"/>
+                    <!-- <GridViewColumn Header="F.Entrada" DisplayMemberBinding="{Binding Path=FechaEntrada}"/> -->
                     <GridViewColumn Header="Stock" DisplayMemberBinding="{Binding Path=Stock}"/>
 
                 </GridView>
@@ -101,6 +94,7 @@
                         <RowDefinition/>
                         <RowDefinition/>
                         <RowDefinition/>
+                        <RowDefinition/>
                     </Grid.RowDefinitions>
 
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="Código de barras" Margin="5"/>
@@ -110,7 +104,14 @@
                     <TextBox x:Name="textReferencia" Grid.Row="1" Grid.Column="1" Text="{Binding CurrentProducto.Referencia, UpdateSourceTrigger=PropertyChanged}" Margin="5" Cursor="IBeam"/>
 
                     <TextBlock Grid.Row="2" Grid.Column="0" Text="Proveedores" Margin="5"/>
-                    <ComboBox x:Name="cmbProveedor" Grid.Row="3" Grid.Column="0" Margin="5,5,55,5" ItemsSource="{Binding CurrentProducto.Proveedores}"/>
+                    <ComboBox x:Name="cmbProveedor" Grid.Row="3" Grid.Column="0" Margin="5,5,55,5" ItemsSource="{Binding CurrentProducto.Proveedores}" Text="{Binding CurrentProducto.Proveedores[0]}">
+                        
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding MostrarProveedorCommand}" CommandParameter="{Binding ElementName=cmbProveedor, Path=SelectedItem}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ComboBox>
 
                     <!--VENTANA EMERGENTE SELECCION DE PROVEEDOR________________________________________________________-->
                     <materialDesign:DialogHost x:Name="dialogProveedores" DialogTheme="Light" Grid.Column="0" Grid.Row="3"               >
@@ -185,13 +186,12 @@
                         <Button x:Name="btnBorrar" Content="BORRAR" Margin="5" Command="{Binding BorrarProductoCommand}" CommandParameter="{Binding ElementName=vistaProductos}" Cursor="Hand" Click="btnBorrar_Click" />
                         <Button x:Name="btnCancelar" Content="CANCELAR" Margin="5" Click="btnCancelar_Click" Cursor="Hand" />
                     </StackPanel>
-
+                    <Button x:Name="btnProveedor" Grid.ColumnSpan="2" Grid.Row="11" Content="MOSTRAR INFO DEL PROVEEDOR" Margin="5" Click="btnProveedor_Click"/>
                 </Grid>
             </StackPanel>
 
             <!--STACK PROVEEDOR____________________________________-->
-            <StackPanel Grid.Row="2">
-                <TextBlock TextAlignment="Center" FontSize="16" FontWeight="Bold" Text="PROVEEDOR" Margin="10"/>
+            <StackPanel x:Name="stackProveedor" Grid.Row="2">
                 <Grid Height="143">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -205,16 +205,16 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock Grid.Row="0" Grid.Column="0" Margin="5" Text="CIF:"/>
-                    <TextBlock Grid.Row="1" Grid.Column="0" Margin="5" Text="Prueba" FontWeight="Bold"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Margin="5" Text="{Binding P_cif, UpdateSourceTrigger=PropertyChanged}"  FontWeight="Bold"/>
 
                     <TextBlock Grid.Row="0" Grid.Column="1" Margin="5" Text="Nombre:"/>
-                    <TextBlock Grid.Row="1" Grid.Column="1" Margin="5" Text="Prueba" FontWeight="Bold"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding P_nombre}" FontWeight="Bold"/>
 
                     <TextBlock Grid.Row="2" Grid.Column="0" Margin="5" Text="Población:"/>
-                    <TextBlock Grid.Row="3" Grid.Column="0" Margin="5" Text="Prueba" FontWeight="Bold"/>
+                    <TextBlock Grid.Row="3" Grid.Column="0" Margin="5" Text="{Binding P_poblacion}" FontWeight="Bold"/>
 
                     <TextBlock Grid.Row="2" Grid.Column="1" Margin="5" Text="Teléfono:"/>
-                    <TextBlock Grid.Row="3" Grid.Column="1" Margin="5" Text="Prueba" FontWeight="Bold"/>
+                    <TextBlock Grid.Row="3" Grid.Column="1" Margin="5" Text="{Binding P_telefono}" FontWeight="Bold"/>
                 </Grid>
 
             </StackPanel>

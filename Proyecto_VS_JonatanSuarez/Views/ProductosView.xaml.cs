@@ -24,7 +24,7 @@ namespace Proyecto_VS_JonatanSuarez.Views
         public ProductosView()
         {
             InitializeComponent();
-            E00EstadoInicial();          
+            E00EstadoInicial();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -53,7 +53,7 @@ namespace Proyecto_VS_JonatanSuarez.Views
 
             textBarras.IsEnabled = false;
             textReferencia.IsEnabled = false;
-            cmbProveedor.IsEnabled = false;
+            cmbProveedor.IsEnabled = true;
             textDescripcion.IsEnabled = false;
             cmbFabricante.IsEnabled = false;
             textPrecio.IsEnabled = false;
@@ -61,16 +61,18 @@ namespace Proyecto_VS_JonatanSuarez.Views
             dateFecha.IsEnabled = false;
             cmbConector.IsEnabled = false;
             textStock.IsEnabled = false;
-            
-            
+
+
             productosListView.IsEnabled = true;
-            
+            stackProveedor.Visibility = Visibility.Collapsed;
+            stackProveedor.IsEnabled = false;
+
 
         }
 
         public void E01NuevoProveedor()
         {
-            
+
             btnCrear.Visibility = Visibility.Visible;
             btnCancelar.Visibility = Visibility.Visible;
 
@@ -91,7 +93,7 @@ namespace Proyecto_VS_JonatanSuarez.Views
             dateFecha.IsEnabled = true;
             cmbConector.IsEnabled = true;
             textStock.IsEnabled = true;
-            
+
             textBarras.Text = "";
             textReferencia.Text = "";
             cmbProveedor.SelectedIndex = 0;
@@ -102,10 +104,10 @@ namespace Proyecto_VS_JonatanSuarez.Views
             dateFecha.Text = DateTime.Today.ToString();
             cmbConector.SelectedIndex = 0;
             textStock.Text = "0";
-            
-            
+
+
             productosListView.IsEnabled = false;
-            
+
         }
 
         public void E02ModificarProveedor()
@@ -146,7 +148,7 @@ namespace Proyecto_VS_JonatanSuarez.Views
                 MessageBox.Show("Operación cancelada", "Atención");
                 E00EstadoInicial();
             }
-                       
+
         }
 
         private void btnModificar_Click(object sender, RoutedEventArgs e)
@@ -176,22 +178,47 @@ namespace Proyecto_VS_JonatanSuarez.Views
         }
 
         private void btnBuscar_Click(object sender, RoutedEventArgs e)
-        {                    
-            btnBuscar.Visibility = Visibility.Collapsed;
-            btnBuscarCancelar.Visibility = Visibility.Visible;
+        {
+            if (textBusqueda.Text.Equals(""))
+            {
+
+                MessageBox.Show("Escribe un criterio de búsqueda", "Atención");
+            }
+            else
+
+            {
+                btnBuscar.Visibility = Visibility.Collapsed;
+                btnBuscarCancelar.Visibility = Visibility.Visible;
+            }
         }
 
         private void btnBuscarCancelar_Click(object sender, RoutedEventArgs e)
         {
+
             btnBuscar.Visibility = Visibility.Visible;
             btnBuscarCancelar.Visibility = Visibility.Collapsed;
             textBusqueda.Text = "";
+
         }
 
         private void btnAceptarProveedor_Click(object sender, RoutedEventArgs e)
         {
             dialogProveedores.IsOpen = false;
             cmbProveedor.SelectedIndex = cmbProveedor.Items.Count;
+        }
+
+        private void btnProveedor_Click(object sender, RoutedEventArgs e)
+        {
+            if (!stackProveedor.IsEnabled)
+            {
+                stackProveedor.Visibility = Visibility.Visible;
+                stackProveedor.IsEnabled = true;
+            }
+            else
+            {
+                stackProveedor.Visibility = Visibility.Collapsed;
+                stackProveedor.IsEnabled = false;
+            }
         }
     }
 }

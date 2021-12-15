@@ -52,6 +52,34 @@ namespace Proyecto_VS_JonatanSuarez.ViewModel
             set { busqueda = value; OnPropertyChanged(nameof(Busqueda)); }
         }
 
+        private string p_cif;
+        public string P_cif
+        {
+            get { return p_cif; }
+            set { p_cif = value; OnPropertyChanged(nameof(P_cif)); }
+        }
+
+        private string p_nombre;
+        public string P_nombre
+        {
+            get { return p_nombre; }
+            set { p_nombre = value; OnPropertyChanged(nameof(P_nombre));}
+        }
+
+        private string p_poblacion;
+        public string P_poblacion
+        {
+            get { return p_poblacion;}
+            set { p_poblacion = value; OnPropertyChanged(nameof (P_poblacion));}
+        }
+
+        private string p_telefono;
+        public string P_telefono
+        {
+            get { return p_telefono; }
+            set { p_telefono = value; OnPropertyChanged(nameof(P_telefono));}
+        }
+
 
         public ICommand CargarProveedoresProdCommand { get; set; }
         public ICommand CargarProductosCommand { get; set; }
@@ -61,11 +89,21 @@ namespace Proyecto_VS_JonatanSuarez.ViewModel
         public ICommand NuevoProductoCommand { get; set; }
         public ICommand CargaBaseDatos { get; set; }
         public ICommand AgregaProveedorCommand { get; set; }
+        public ICommand MostrarProveedorCommand { get; set; }
+
+        private ObservableCollection<ProveedoresModel> listaProveedoresFull;
+        public ObservableCollection<ProveedoresModel> ListaProveedoresFull
+        {
+            get { return listaProveedoresFull; }
+            set { listaProveedoresFull = value; OnPropertyChanged(nameof (ListaProveedoresFull));}
+        }
+
 
         public ProductosViewModel()
         {
             ListaProductos = new ObservableCollection<ProductoModel>();
             ListaProveedores = new ObservableCollection<string>();
+            ListaProveedoresFull = new ObservableCollection<ProveedoresModel>();
             ListaFabricantes = new ObservableCollection<string>() { "Lexman", "Bosh", "Philips", "Osram","Ilumax","Panasonic"};
             ListaFormatos = new ObservableCollection<string>() { "Rosca", "Panel", "Tira", "Tubo" };
             ListaConectores = new ObservableCollection<string>() { "E14", "E22", "GU10", "G9" };
@@ -77,8 +115,13 @@ namespace Proyecto_VS_JonatanSuarez.ViewModel
             NuevoProductoCommand = new NuevoProductoCommand(this);
             CargaBaseDatos = new CargaBaseDatosCommand(this);
             AgregaProveedorCommand = new AgregaProveedorCommand(this);
+            MostrarProveedorCommand = new MostrarProveedorCommand(this);
             CurrentProducto = new ProductoModel();
             Busqueda = "";
+            P_cif = "";
+            P_nombre = "";
+            P_poblacion = "";
+            P_telefono = "";
         }
     }
 }
