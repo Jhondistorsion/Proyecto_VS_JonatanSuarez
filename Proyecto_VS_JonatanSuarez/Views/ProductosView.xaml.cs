@@ -47,6 +47,8 @@ namespace Proyecto_VS_JonatanSuarez.Views
             btnGuardar.Visibility = Visibility.Collapsed;
             btnCancelar.Visibility = Visibility.Collapsed;
 
+            btnCancelar.Content = "CANCELAR";
+
             btnNuevoProveedor.IsEnabled = false;
 
             textBarras.IsEnabled = false;
@@ -110,6 +112,7 @@ namespace Proyecto_VS_JonatanSuarez.Views
         {
             btnGuardar.Visibility = Visibility.Visible;
             btnCancelar.Visibility = Visibility.Visible;
+            btnCancelar.Content = "VOLVER";
 
             btnCrear.Visibility = Visibility.Collapsed;
             btnNuevo.Visibility = Visibility.Collapsed;
@@ -134,8 +137,16 @@ namespace Proyecto_VS_JonatanSuarez.Views
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Operación cancelada", "Atención");
-            E00EstadoInicial();
+            if (btnCancelar.Content.Equals("VOLVER"))
+            {
+                E00EstadoInicial();
+            }
+            else
+            {
+                MessageBox.Show("Operación cancelada", "Atención");
+                E00EstadoInicial();
+            }
+                       
         }
 
         private void btnModificar_Click(object sender, RoutedEventArgs e)
@@ -165,7 +176,7 @@ namespace Proyecto_VS_JonatanSuarez.Views
         }
 
         private void btnBuscar_Click(object sender, RoutedEventArgs e)
-        {
+        {                    
             btnBuscar.Visibility = Visibility.Collapsed;
             btnBuscarCancelar.Visibility = Visibility.Visible;
         }
@@ -175,6 +186,12 @@ namespace Proyecto_VS_JonatanSuarez.Views
             btnBuscar.Visibility = Visibility.Visible;
             btnBuscarCancelar.Visibility = Visibility.Collapsed;
             textBusqueda.Text = "";
+        }
+
+        private void btnAceptarProveedor_Click(object sender, RoutedEventArgs e)
+        {
+            dialogProveedores.IsOpen = false;
+            cmbProveedor.SelectedIndex = cmbProveedor.Items.Count;
         }
     }
 }

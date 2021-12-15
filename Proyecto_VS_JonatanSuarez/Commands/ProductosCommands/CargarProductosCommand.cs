@@ -47,14 +47,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
                 }
                 
             }
-            
-            
 
-           
- 
-            //Console.WriteLine("Busqueda contiene: " + productosViewModel.Busqueda);
-                
-            
             
         }
     }

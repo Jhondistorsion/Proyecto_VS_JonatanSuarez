@@ -31,12 +31,12 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
             if (parameter != null)
             {
                 ProductoModel productos = (ProductoModel)parameter;
-                //ProveedoresModel proveedores = (ProveedoresModel)parameter;
+                
 
                 productosViewModel.CurrentProducto = (ProductoModel)productos.Clone();            
                 productosViewModel.SelectedProducto = (ProductoModel)productos.Clone();
 
-                //productosViewModel.CurrentProducto.Proveedor = (ProductoModel)productos.Clone();
+                
 
                 Console.WriteLine("Item seleccionado: " + parameter.ToString());
             }

@@ -27,10 +27,8 @@ namespace Proyecto_VS_JonatanSuarez.Services
                 ProductoModel p = new ProductoModel();
                 p._id = r.Next(100, 999).ToString();
 
-                p.Proveedor._id = ListaProveedores.ElementAt(i)._id;
-                p.Proveedor.Nombre = ListaProveedores.ElementAt(i).Nombre;
-                p.Proveedor.Poblacion = ListaProveedores.ElementAt(i).Poblacion;
-                p.Proveedor.Telefono = ListaProveedores.ElementAt(i).Telefono;
+                p.Proveedores.Add("Proveedor Prueba");
+                p.Proveedores.Add("Proveedor Prueba 2");
 
                 p.Fabricante = ListaFabricantes.ElementAt(r.Next(5));
                 p.Formato = ListaFormatos.ElementAt(r.Next(3));
@@ -62,10 +60,7 @@ namespace Proyecto_VS_JonatanSuarez.Services
             {
                 if (p._id.Contains(busqueda) || 
                     p.Referencia.Contains(busqueda) ||
-                    p.Proveedor.Nombre.Contains(busqueda) ||
-                    p.Proveedor._id.Contains(busqueda) ||
-                    p.Proveedor.Poblacion.Contains(busqueda) ||
-                    p.Proveedor.Telefono.ToString().Contains(busqueda) ||
+                    p.Proveedores.Contains(busqueda) ||                   
                     p.Descripcion.Contains(busqueda) ||
                     p.Fabricante.Contains(busqueda) ||
                     p.Precio.ToString().Contains(busqueda) ||
@@ -92,23 +87,12 @@ namespace Proyecto_VS_JonatanSuarez.Services
 
             bool okguardar = false;
 
-            foreach (ProveedoresModel proveedor in ListaProveedores)
-            {
-                if (Producto.Proveedor.Nombre.Equals(proveedor.Nombre))
-                {
-                    Producto.Proveedor._id = proveedor._id;
-                    Producto.Proveedor.Poblacion = proveedor.Poblacion;
-                    Producto.Proveedor.Telefono = proveedor.Telefono;
-                }
-            }
-
-
             foreach (ProductoModel p in listaProductos)
             {
                 if (p._id == Producto._id)
                 {
                     p.Referencia = Producto.Referencia;
-                    p.Proveedor = Producto.Proveedor;
+                    //p.Proveedor = Producto.Proveedor;
                     p.Descripcion = Producto.Descripcion;
                     p.Fabricante = Producto.Fabricante;
                     p.Precio= Producto.Precio;
@@ -147,17 +131,6 @@ namespace Proyecto_VS_JonatanSuarez.Services
             bool okinsertar = false;
             try
             {
-                foreach (ProveedoresModel proveedor in ListaProveedores)
-                {
-                    if (producto.Proveedor.Nombre.Equals(proveedor.Nombre))
-                    {
-                        
-                        producto.Proveedor._id = proveedor._id;
-                        producto.Proveedor.Poblacion = proveedor.Poblacion;
-                        producto.Proveedor.Telefono = proveedor.Telefono;
-                    }
-                }                
-                
                 listaProductos.Add(producto);
                 okinsertar = true;
             }

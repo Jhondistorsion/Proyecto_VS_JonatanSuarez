@@ -1,0 +1,14 @@
+ARCHIVOS AFECTADOS MODIFICACIÓN ATRIBUTO PROVEEDOR EN PRODUCTMODEL
+------------------------------------------------------------------
+
+---------------------ProductoModel
+---------------------ProductoViewModel? "Modificar tabla y cuadro proveedores************************
+---------------------ProductoView
+
+-ProductoDBHandler
+-BorrarProductoCommand
+-CargarProductoCommand
+-CargarProductosCommand
+-CargarProveedoresProdCommand
+---------------------AgregarProveedorCommand
+---------------------ProductoView(OCULTO)

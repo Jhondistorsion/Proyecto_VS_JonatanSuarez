@@ -32,11 +32,11 @@ namespace Proyecto_VS_JonatanSuarez.Models
             set { id = value; OnPropertyChanged(nameof(_id)); }
         }
 
-        private ProveedoresModel proveedor;
-        public ProveedoresModel Proveedor
+        private ObservableCollection<string> proveedores;
+        public ObservableCollection<string> Proveedores
         {
-            get { return proveedor; }
-            set { proveedor = value; OnPropertyChanged(nameof(Proveedor)); }
+            get { return proveedores; }
+            set { proveedores = value; OnPropertyChanged(nameof(Proveedores)); }
         }
 
         private string fabricante;
@@ -98,7 +98,7 @@ namespace Proyecto_VS_JonatanSuarez.Models
         public ProductoModel()
         {
             fechaEntrada = DateTime.Today;
-            proveedor = new ProveedoresModel();
+            proveedores = new ObservableCollection<string>();
         }
     }
 }

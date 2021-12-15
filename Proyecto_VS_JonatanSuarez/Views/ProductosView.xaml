@@ -34,7 +34,13 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Cod.Barras" DisplayMemberBinding="{Binding Path=_id}"/>
-                    <GridViewColumn Header="Proveedor" DisplayMemberBinding="{Binding Path=Proveedor.Nombre}"/>
+                    <GridViewColumn Header="Proveedores">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox Width="100" ItemsSource="{Binding Proveedores}" Text="{Binding Proveedores[0]}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                     <GridViewColumn Header="Fabricante" DisplayMemberBinding="{Binding Path=Fabricante}"/>
                     <GridViewColumn Header="Formato" DisplayMemberBinding="{Binding Path=Formato}"/>
                     <GridViewColumn Header="Conector" DisplayMemberBinding="{Binding Path=Conector}"/>
@@ -103,8 +109,8 @@
                     <TextBlock Grid.Row="0" Grid.Column="1" Text="Referencia" Margin="5"/>
                     <TextBox x:Name="textReferencia" Grid.Row="1" Grid.Column="1" Text="{Binding CurrentProducto.Referencia, UpdateSourceTrigger=PropertyChanged}" Margin="5" Cursor="IBeam"/>
 
-                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Proveedor" Margin="5"/>
-                    <ComboBox x:Name="cmbProveedor" Grid.Row="3" Grid.Column="0" Margin="5,5,55,5" Text="{Binding CurrentProducto.Proveedor.Nombre}" ItemsSource="{Binding ListaProveedores}"/>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Proveedores" Margin="5"/>
+                    <ComboBox x:Name="cmbProveedor" Grid.Row="3" Grid.Column="0" Margin="5,5,55,5" ItemsSource="{Binding CurrentProducto.Proveedores}"/>
 
                     <!--VENTANA EMERGENTE SELECCION DE PROVEEDOR________________________________________________________-->
                     <materialDesign:DialogHost x:Name="dialogProveedores" DialogTheme="Light" Grid.Column="0" Grid.Row="3"               >
@@ -118,24 +124,17 @@
                                       FontSize="18" FontWeight="SemiBold" 
                                       Cursor="Hand"
                                       VerticalContentAlignment="Top"
-                                      ItemsSource="{Binding ListaProveedores}"/>
+                                      ItemsSource="{Binding ListaProveedores}"
+                                      Text="{Binding ListaProveedores[0]}"/>
 
-                               <!--CODIGO CON COMMANDS_______
-                                
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                     <Button x:Name="btnAceptarProveedor" Style="{StaticResource MaterialDesignFlatButton}"
-                                        IsDefault="True" Margin="0,8,8,0" Content="ACCEPTAR"
-                                        Command="{Binding AddPToProductCommand}" 
+                                        IsDefault="True" Margin="0,8,8,0" Content="ACEPTAR"
+                                        Command="{Binding AgregaProveedorCommand}" 
                                         CommandParameter="{Binding ElementName=cmbListaProveedores, Path=SelectedItem}"
-                                        Click="btnAceptarProveedor_Click"> 
-                                -->
-
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                    <Button x:Name="btnAceptarProveedor" Style="{StaticResource MaterialDesignFlatButton}"
-                                        IsDefault="True" Margin="0,8,8,0" Content="ACCEPTAR">
-
-
+                                        Click="btnAceptarProveedor_Click">        
                                     </Button>
+                                    
                                     <Button Style="{StaticResource MaterialDesignFlatButton}" IsCancel="True"
                                     Margin="0,8,8,0" Content="CANCELAR"
                                     Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
@@ -184,7 +183,7 @@
                         <Button x:Name="btnGuardar" Content="GUARDAR" Margin="5" Command="{Binding GuardarProductoCommand}" CommandParameter="{Binding ElementName=vistaProductos}" Cursor="Hand"/>
                         <Button x:Name="btnModificar" Content="MODIFICAR" Margin="5" Click="btnModificar_Click" />
                         <Button x:Name="btnBorrar" Content="BORRAR" Margin="5" Command="{Binding BorrarProductoCommand}" CommandParameter="{Binding ElementName=vistaProductos}" Cursor="Hand" Click="btnBorrar_Click" />
-                        <Button x:Name="btnCancelar" Content="CANCELAR" Margin="5" Click="btnCancelar_Click" />
+                        <Button x:Name="btnCancelar" Content="CANCELAR" Margin="5" Click="btnCancelar_Click" Cursor="Hand" />
                     </StackPanel>
 
                 </Grid>
@@ -206,16 +205,16 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock Grid.Row="0" Grid.Column="0" Margin="5" Text="CIF:"/>
-                    <TextBlock Grid.Row="1" Grid.Column="0" Margin="5" Text="{Binding CurrentProducto.Proveedor._id, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Margin="5" Text="Prueba" FontWeight="Bold"/>
 
                     <TextBlock Grid.Row="0" Grid.Column="1" Margin="5" Text="Nombre:"/>
-                    <TextBlock Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding CurrentProducto.Proveedor.Nombre, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Margin="5" Text="Prueba" FontWeight="Bold"/>
 
                     <TextBlock Grid.Row="2" Grid.Column="0" Margin="5" Text="Población:"/>
-                    <TextBlock Grid.Row="3" Grid.Column="0" Margin="5" Text="{Binding CurrentProducto.Proveedor.Poblacion, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold"/>
+                    <TextBlock Grid.Row="3" Grid.Column="0" Margin="5" Text="Prueba" FontWeight="Bold"/>
 
                     <TextBlock Grid.Row="2" Grid.Column="1" Margin="5" Text="Teléfono:"/>
-                    <TextBlock Grid.Row="3" Grid.Column="1" Margin="5" Text="{Binding CurrentProducto.Proveedor.Telefono, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold"/>
+                    <TextBlock Grid.Row="3" Grid.Column="1" Margin="5" Text="Prueba" FontWeight="Bold"/>
                 </Grid>
 
             </StackPanel>
