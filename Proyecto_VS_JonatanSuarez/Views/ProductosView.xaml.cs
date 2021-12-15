@@ -46,7 +46,9 @@ namespace Proyecto_VS_JonatanSuarez.Views
             btnCrear.Visibility = Visibility.Collapsed;
             btnGuardar.Visibility = Visibility.Collapsed;
             btnCancelar.Visibility = Visibility.Collapsed;
-            
+
+            btnNuevoProveedor.IsEnabled = false;
+
             textBarras.IsEnabled = false;
             textReferencia.IsEnabled = false;
             cmbProveedor.IsEnabled = false;
@@ -56,7 +58,7 @@ namespace Proyecto_VS_JonatanSuarez.Views
             cmbFormato.IsEnabled = false;
             dateFecha.IsEnabled = false;
             cmbConector.IsEnabled = false;
-            textStock.IsEnabled = false;        
+            textStock.IsEnabled = false;
             
             
             productosListView.IsEnabled = true;
@@ -74,7 +76,9 @@ namespace Proyecto_VS_JonatanSuarez.Views
             btnModificar.Visibility = Visibility.Collapsed;
             btnBorrar.Visibility = Visibility.Collapsed;
             btnGuardar.Visibility = Visibility.Collapsed;
-            
+
+            btnNuevoProveedor.IsEnabled = true;
+
             textBarras.IsEnabled = true;
             textReferencia.IsEnabled = true;
             cmbProveedor.IsEnabled = true;
@@ -111,6 +115,8 @@ namespace Proyecto_VS_JonatanSuarez.Views
             btnNuevo.Visibility = Visibility.Collapsed;
             btnBorrar.Visibility = Visibility.Collapsed;
             btnModificar.Visibility = Visibility.Collapsed;
+
+            btnNuevoProveedor.IsEnabled = true;
 
             textBarras.IsEnabled = false;
             textReferencia.IsEnabled = true;

@@ -4,10 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Proyecto_VS_JonatanSuarez.Views"
              x:Name="vistaProductos"
              mc:Ignorable="d" 
-             d:DesignHeight="750" d:DesignWidth="800">
+             d:DesignHeight="750" d:DesignWidth="1000">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -103,7 +104,57 @@
                     <TextBox x:Name="textReferencia" Grid.Row="1" Grid.Column="1" Text="{Binding CurrentProducto.Referencia, UpdateSourceTrigger=PropertyChanged}" Margin="5" Cursor="IBeam"/>
 
                     <TextBlock Grid.Row="2" Grid.Column="0" Text="Proveedor" Margin="5"/>
-                    <ComboBox x:Name="cmbProveedor" Grid.Row="3" Grid.Column="0" Margin="5" Text="{Binding CurrentProducto.Proveedor.Nombre}" ItemsSource="{Binding ListaProveedores}"/>
+                    <ComboBox x:Name="cmbProveedor" Grid.Row="3" Grid.Column="0" Margin="5,5,55,5" Text="{Binding CurrentProducto.Proveedor.Nombre}" ItemsSource="{Binding ListaProveedores}"/>
+
+                    <!--VENTANA EMERGENTE SELECCION DE PROVEEDOR________________________________________________________-->
+                    <materialDesign:DialogHost x:Name="dialogProveedores" DialogTheme="Light" Grid.Column="0" Grid.Row="3"               >
+                        <materialDesign:DialogHost.DialogContent>
+                            <StackPanel Margin="16">
+                                <TextBlock Text="Selecciona un proveedor" />
+
+                                <ComboBox x:Name="cmbListaProveedores"
+                                      Margin="10,0"
+                                      VerticalAlignment="Center" 
+                                      FontSize="18" FontWeight="SemiBold" 
+                                      Cursor="Hand"
+                                      VerticalContentAlignment="Top"
+                                      ItemsSource="{Binding ListaProveedores}"/>
+
+                               <!--CODIGO CON COMMANDS_______
+                                
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Button x:Name="btnAceptarProveedor" Style="{StaticResource MaterialDesignFlatButton}"
+                                        IsDefault="True" Margin="0,8,8,0" Content="ACCEPTAR"
+                                        Command="{Binding AddPToProductCommand}" 
+                                        CommandParameter="{Binding ElementName=cmbListaProveedores, Path=SelectedItem}"
+                                        Click="btnAceptarProveedor_Click"> 
+                                -->
+
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Button x:Name="btnAceptarProveedor" Style="{StaticResource MaterialDesignFlatButton}"
+                                        IsDefault="True" Margin="0,8,8,0" Content="ACCEPTAR">
+
+
+                                    </Button>
+                                    <Button Style="{StaticResource MaterialDesignFlatButton}" IsCancel="True"
+                                    Margin="0,8,8,0" Content="CANCELAR"
+                                    Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
+                                    </Button>
+
+                                </StackPanel>
+                            </StackPanel>
+                        </materialDesign:DialogHost.DialogContent>
+
+                        <Button x:Name="btnNuevoProveedor" 
+                              Content="{materialDesign:PackIcon AccountMultiplePlusOutline, Size=18}"
+                              Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+							  Height="30"
+							  Margin="110,0,0,0"
+                              Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" Cursor="Hand"/>
+                    </materialDesign:DialogHost>
+                    <!--FIN VENTANA EMERGENTE SELECCION DE PROVEEDOR________________________________________________________-->
+
+
 
                     <TextBlock Grid.Row="2" Grid.Column="1" Text="Descripción" Margin="5"/>
                     <TextBox x:Name="textDescripcion" Grid.Row="3" Grid.Column="1" Text="{Binding CurrentProducto.Descripcion, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
