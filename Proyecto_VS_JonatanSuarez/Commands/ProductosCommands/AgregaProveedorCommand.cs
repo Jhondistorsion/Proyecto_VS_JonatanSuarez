@@ -32,12 +32,13 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
             {
                 string proveedor = parameter.ToString();
 
+                
                 try
                 {
                     foreach (string p in productosViewModel.CurrentProducto.Proveedores)
                     {
 
-                        if (proveedor.Equals(p))
+                        if (p.Equals(proveedor))
                         {
                             MessageBox.Show("El proveedor ya existe en la lista de proveedores", "Atención");
                             break;
@@ -63,6 +64,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
                 {
                     Console.WriteLine("items de la lista " + p);
                 }
+                
 
             }
 

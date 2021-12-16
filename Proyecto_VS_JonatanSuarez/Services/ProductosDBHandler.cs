@@ -28,6 +28,7 @@ namespace Proyecto_VS_JonatanSuarez.Services
                 p._id = r.Next(100, 999).ToString();
 
                 p.Proveedores.Add(ListaProveedores.ElementAt(r.Next(19)));
+                p.Proveedores.Add(ListaProveedores.ElementAt(r.Next(19)));
 
                 p.Fabricante = ListaFabricantes.ElementAt(r.Next(5));
                 p.Formato = ListaFormatos.ElementAt(r.Next(3));
@@ -81,8 +82,6 @@ namespace Proyecto_VS_JonatanSuarez.Services
 
         public static bool GuardarProducto(ProductoModel Producto)
         {
-
-            ObservableCollection<ProveedoresModel> ListaProveedores = ProveedoresDBHandler.ObtenerListaProveedores();
 
             bool okguardar = false;
 

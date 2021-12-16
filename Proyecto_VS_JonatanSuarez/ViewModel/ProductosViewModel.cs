@@ -91,6 +91,8 @@ namespace Proyecto_VS_JonatanSuarez.ViewModel
         public ICommand AgregaProveedorCommand { get; set; }
         public ICommand MostrarProveedorCommand { get; set; }
 
+        public ICommand IniciaNuevoProductoCommand { get; set; }
+
         private ObservableCollection<ProveedoresModel> listaProveedoresFull;
         public ObservableCollection<ProveedoresModel> ListaProveedoresFull
         {
@@ -107,6 +109,7 @@ namespace Proyecto_VS_JonatanSuarez.ViewModel
             ListaFabricantes = new ObservableCollection<string>() { "Lexman", "Bosh", "Philips", "Osram","Ilumax","Panasonic"};
             ListaFormatos = new ObservableCollection<string>() { "Rosca", "Panel", "Tira", "Tubo" };
             ListaConectores = new ObservableCollection<string>() { "E14", "E22", "GU10", "G9" };
+
             CargarProveedoresProdCommand = new CargarProveedoresProdCommand(this);
             CargarProductosCommand = new CargarProductosCommand(this);
             CargarProductoCommand = new CargarProductoCommand(this);
@@ -116,6 +119,8 @@ namespace Proyecto_VS_JonatanSuarez.ViewModel
             CargaBaseDatos = new CargaBaseDatosCommand(this);
             AgregaProveedorCommand = new AgregaProveedorCommand(this);
             MostrarProveedorCommand = new MostrarProveedorCommand(this);
+            IniciaNuevoProductoCommand = new IniciaNuevoProductoCommand(this);
+
             CurrentProducto = new ProductoModel();
             Busqueda = "";
             P_cif = "";
