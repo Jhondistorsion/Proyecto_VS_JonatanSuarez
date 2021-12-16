@@ -1,6 +1,7 @@
 ﻿using Proyecto_VS_JonatanSuarez.Commands;
 using Proyecto_VS_JonatanSuarez.Commands.ProductosCommands;
 using Proyecto_VS_JonatanSuarez.Models;
+using Proyecto_VS_JonatanSuarez.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,6 +14,13 @@ namespace Proyecto_VS_JonatanSuarez.ViewModel
 {
     public class ProductosViewModel : ViewModelBase
     {
+        private ObservableCollection<ProveedoresModel> listaproveedorestotal { get; set; }
+        public ObservableCollection<ProveedoresModel> Listaproveedorestotal
+        {
+            get { return listaproveedorestotal; }
+            set { listaproveedorestotal = value; OnPropertyChanged(nameof(Listaproveedorestotal));}
+        }
+        
         private ObservableCollection<string> listaProveedores { get; set; }
         public ObservableCollection<string> ListaProveedores
         {
@@ -104,7 +112,11 @@ namespace Proyecto_VS_JonatanSuarez.ViewModel
         public ProductosViewModel()
         {
             ListaProductos = new ObservableCollection<ProductoModel>();
+
             ListaProveedores = new ObservableCollection<string>();
+            //ListaProveedores = ProveedoresDBHandler.ObtenerListaProveedores();
+            listaproveedorestotal = ProveedoresDBHandler.ObtenerListaProveedores();
+
             ListaProveedoresFull = new ObservableCollection<ProveedoresModel>();
             ListaFabricantes = new ObservableCollection<string>() { "Lexman", "Bosh", "Philips", "Osram","Ilumax","Panasonic"};
             ListaFormatos = new ObservableCollection<string>() { "Rosca", "Panel", "Tira", "Tubo" };

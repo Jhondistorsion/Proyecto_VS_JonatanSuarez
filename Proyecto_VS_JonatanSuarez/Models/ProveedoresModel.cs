@@ -56,5 +56,10 @@ namespace Proyecto_VS_JonatanSuarez.Models
         {
 
         }
+
+        public override string ToString()
+        {
+            return Nombre;
+        }
     }
 }

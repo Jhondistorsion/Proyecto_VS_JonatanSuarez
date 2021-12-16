@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:Proyecto_VS_JonatanSuarez"
              xmlns:views="clr-namespace:Proyecto_VS_JonatanSuarez.Views"
              xmlns:viewmodels="clr-namespace:Proyecto_VS_JonatanSuarez.ViewModel"
-             StartupUri="MainWindow.xaml">
+             StartupUri="Login.xaml">
     <Application.Resources>
                      
         <ResourceDictionary>
@@ -22,10 +22,13 @@
             <!--Librerias Material Design-->
            
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Dictionaries/ImagesDictionary.xaml"/>
+
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml"/>
             </ResourceDictionary.MergedDictionaries>
          
 

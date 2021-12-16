@@ -27,7 +27,9 @@ namespace Proyecto_VS_JonatanSuarez.Services
                 p.Poblacion = "Población " + i.ToString();
                 p.Telefono = rnd.Next(900000, 999999);
                 listaProveedores.Add(p);
-            }            
+            }
+
+            Console.WriteLine("Lista proveedores generada");
         }
 
 

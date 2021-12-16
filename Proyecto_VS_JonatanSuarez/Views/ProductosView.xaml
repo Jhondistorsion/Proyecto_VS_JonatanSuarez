@@ -125,7 +125,7 @@
                                       FontSize="18" FontWeight="SemiBold" 
                                       Cursor="Hand"
                                       VerticalContentAlignment="Top"
-                                      ItemsSource="{Binding ListaProveedores}"/>
+                                      ItemsSource="{Binding Listaproveedorestotal, UpdateSourceTrigger=PropertyChanged}"/>
 
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                     <Button x:Name="btnAceptarProveedor" Style="{StaticResource MaterialDesignFlatButton}"
