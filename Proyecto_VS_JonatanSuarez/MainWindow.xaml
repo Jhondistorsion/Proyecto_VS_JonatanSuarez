@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:Proyecto_VS_JonatanSuarez"
         mc:Ignorable="d"
         Title="MainWindow" Height="750" Width="1250">
-    <StackPanel>
+    <StackPanel Background="{StaticResource fondoMenu}">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>
@@ -15,9 +15,9 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Left">
-                <Button Margin="5" Width="150" Content="INICIO" Command="{Binding UpdateViewCommand}" CommandParameter="inicio"/>
-                <Button Margin="5" Width="150" Content="PRODUCTOS" Command="{Binding UpdateViewCommand}" CommandParameter="productos"/>
-                <Button Margin="5" Width="150" Content="PROVEEDORES" Command="{Binding UpdateViewCommand}" CommandParameter="proveedores" Cursor="Hand"/>
+                <Button Margin="5" Width="150" Content="INICIO" Command="{Binding UpdateViewCommand}" CommandParameter="inicio" Cursor="Hand" Visibility="Collapsed"/>
+                <Button Width="204" Height="132" Style="{DynamicResource MisBotonesProducto}" Margin="5" Command="{Binding UpdateViewCommand}" CommandParameter="productos"/>
+                <Button Margin="5" Width="204" Height="132" Style="{DynamicResource MisBotonesProveedor}" Command="{Binding UpdateViewCommand}" CommandParameter="proveedores" Cursor="Hand"/>
             </StackPanel>
             <ContentControl Grid.Column="1" Content="{Binding SelectedViewModel}"/>
         </Grid>

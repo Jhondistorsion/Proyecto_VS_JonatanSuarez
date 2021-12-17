@@ -27,6 +27,7 @@ namespace Proyecto_VS_JonatanSuarez
             var paletteHelper = new PaletteHelper();
             ITheme theme = paletteHelper.GetTheme();
             theme.SetBaseTheme(Theme.Dark);
+         
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

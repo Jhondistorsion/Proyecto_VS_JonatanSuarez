@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:Proyecto_VS_JonatanSuarez.Views"
              x:Name="vistaProveedores"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="750" d:DesignWidth="1000">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -15,7 +15,17 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
-    <Grid Background="Azure">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="Foreground" Value="White"/>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Background" Value="Black"/>
+                <Setter Property="Cursor" Value="IBeam"/>
+            </Style>
+        </Grid.Resources>
 
         <!--GRID BASE_____________________________________ -->
 
@@ -56,7 +66,7 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:Name="btnCrear" Content="CREAR" Width="110" HorizontalAlignment="Center" Margin="10" Command="{Binding NuevoProveedorCommand}" CommandParameter="{Binding ElementName=vistaProveedores}" Cursor="Hand"/>
+            <Button x:Name="btnCrear" Content="CREAR" Width="110" Margin="10" Command="{Binding NuevoProveedorCommand}" CommandParameter="{Binding ElementName=vistaProveedores}" Cursor="Hand" Height="30"/>
             <Button x:Name="btnNuevo" Content="NUEVO" Width="110" HorizontalAlignment="Center" Margin="10" Click="btnNuevo_Click" Cursor="Hand"/>
             <Button x:Name="btnGuardar" Content="GUARDAR" Width="110" HorizontalAlignment="Center" Margin="10" Command="{Binding GuardarProveedorCommand}" CommandParameter="{Binding ElementName=vistaProveedores}" Cursor="Hand"/>
             <Button x:Name="btnModificar" Content="MODIFICAR" Width="110" HorizontalAlignment="Center" Margin="10" Cursor="Hand" Click="btnModificar_Click"/>
@@ -69,7 +79,7 @@
 
 
 
-            <ListView x:Name="proveedoresListView" ItemsSource="{Binding ListaProveedores}" MaxHeight="500">
+            <ListView x:Name="proveedoresListView" ItemsSource="{Binding ListaProveedores}" MaxHeight="400">
 
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">

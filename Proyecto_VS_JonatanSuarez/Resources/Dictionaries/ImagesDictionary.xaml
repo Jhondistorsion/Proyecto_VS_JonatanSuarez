@@ -2,5 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ImageBrush x:Key="fondologin" ImageSource="../Images/fondologin.jpeg"/>
+    <ImageBrush x:Key="fondobienvenida" ImageSource="../Images/fondobienvenida.jpeg"/>
+    <ImageBrush x:Key="fondoMenu" ImageSource="../Images/fondoMenu.jpg"/>
     <BitmapImage x:Key="login" UriSource="../Images/login.png"/>
 </ResourceDictionary>

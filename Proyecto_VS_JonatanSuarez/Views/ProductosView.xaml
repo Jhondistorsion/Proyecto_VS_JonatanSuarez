@@ -17,13 +17,24 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
-    <Grid Background="Wheat">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="Foreground" Value="White"/>
+            </Style>
+             <Style TargetType="TextBox">
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Background" Value="Black"/>
+                <Setter Property="Cursor" Value="IBeam"/>
+            </Style>
+
+        </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="340"/>
         </Grid.ColumnDefinitions>
 
-        <ListView x:Name="productosListView" Grid.Column="0" MaxWidth="600" MaxHeight="600" ItemsSource="{Binding ListaProductos}" d:ItemsSource="{d:SampleData ItemCount=5}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <ListView x:Name="productosListView" Grid.Column="0" MaxWidth="600" MaxHeight="600" ItemsSource="{Binding ListaProductos}" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,0,36">
 
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">
@@ -114,7 +125,7 @@
                     </ComboBox>
 
                     <!--VENTANA EMERGENTE SELECCION DE PROVEEDOR________________________________________________________-->
-                    <materialDesign:DialogHost x:Name="dialogProveedores" DialogTheme="Light" Grid.Column="0" Grid.Row="3"               >
+                    <materialDesign:DialogHost x:Name="dialogProveedores" DialogTheme="Dark" Grid.Column="0" Grid.Row="3"               >
                         <materialDesign:DialogHost.DialogContent>
                             <StackPanel Margin="16">
                                 <TextBlock Text="Selecciona un proveedor" />
@@ -185,37 +196,38 @@
                         <Button x:Name="btnBorrar" Content="BORRAR" Margin="5" Command="{Binding BorrarProductoCommand}" CommandParameter="{Binding ElementName=vistaProductos}" Cursor="Hand" Click="btnBorrar_Click" />
                         <Button x:Name="btnCancelar" Content="CANCELAR" Margin="5" Click="btnCancelar_Click" Cursor="Hand" />
                     </StackPanel>
-                    <Button x:Name="btnProveedor" Grid.ColumnSpan="2" Grid.Row="11" Content="MOSTRAR INFO DEL PROVEEDOR" Margin="5" Click="btnProveedor_Click"/>
+                    <Button x:Name="btnProveedor" Grid.ColumnSpan="2" Grid.Row="11" Content="MOSTRAR INFO DEL PROVEEDOR" Margin="5" Click="btnProveedor_Click" Cursor="Hand"/>
                 </Grid>
             </StackPanel>
 
             <!--STACK PROVEEDOR____________________________________-->
-            <StackPanel x:Name="stackProveedor" Grid.Row="2">
-                <Grid Height="143">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
+            <StackPanel x:Name="stackProveedor" Grid.Row="2" Margin="0,0,0,31">
+                <materialDesign:Card Padding="5" Margin="10">
+                    <Grid Height="143">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
 
-                    <TextBlock Grid.Row="0" Grid.Column="0" Margin="5" Text="CIF:"/>
-                    <TextBlock Grid.Row="1" Grid.Column="0" Margin="5" Text="{Binding P_cif, UpdateSourceTrigger=PropertyChanged}"  FontWeight="Bold"/>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Margin="5" Text="CIF:"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Margin="5" Text="{Binding P_cif, UpdateSourceTrigger=PropertyChanged}"  FontWeight="Bold"/>
 
-                    <TextBlock Grid.Row="0" Grid.Column="1" Margin="5" Text="Nombre:"/>
-                    <TextBlock Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding P_nombre}" FontWeight="Bold"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Margin="5" Text="Nombre:"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding P_nombre}" FontWeight="Bold"/>
 
-                    <TextBlock Grid.Row="2" Grid.Column="0" Margin="5" Text="Población:"/>
-                    <TextBlock Grid.Row="3" Grid.Column="0" Margin="5" Text="{Binding P_poblacion}" FontWeight="Bold"/>
+                        <TextBlock Grid.Row="2" Grid.Column="0" Margin="5" Text="Población:"/>
+                        <TextBlock Grid.Row="3" Grid.Column="0" Margin="5" Text="{Binding P_poblacion}" FontWeight="Bold"/>
 
-                    <TextBlock Grid.Row="2" Grid.Column="1" Margin="5" Text="Teléfono:"/>
-                    <TextBlock Grid.Row="3" Grid.Column="1" Margin="5" Text="{Binding P_telefono}" FontWeight="Bold"/>
-                </Grid>
-
+                        <TextBlock Grid.Row="2" Grid.Column="1" Margin="5" Text="Teléfono:"/>
+                        <TextBlock Grid.Row="3" Grid.Column="1" Margin="5" Text="{Binding P_telefono}" FontWeight="Bold"/>
+                    </Grid>
+                </materialDesign:Card>
             </StackPanel>
 
         </Grid>

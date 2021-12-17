@@ -14,8 +14,7 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
-    <Grid Background="Chartreuse">
-        <TextBlock Text="BIENVENIDO" FontSize="40" FontWeight="Bold" HorizontalAlignment="Center"/>
+    <Grid Background="{StaticResource fondobienvenida}" Width="1050" Height="750">
 
     </Grid>
 </UserControl>
