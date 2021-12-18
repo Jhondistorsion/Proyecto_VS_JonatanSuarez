@@ -79,6 +79,7 @@
     <Compile Include="Commands\ProductosCommands\IniciaNuevoProductoCommand.cs" />
     <Compile Include="Commands\ProductosCommands\MostrarProveedorCommand.cs" />
     <Compile Include="Commands\ProductosCommands\NuevoProductoCommand.cs" />
+    <Compile Include="Commands\ProductosCommands\OcultaProveedorCommand.cs" />
     <Compile Include="Commands\ProveedoresCommands\BorrarProveedorCommand.cs" />
     <Compile Include="Commands\ProveedoresCommands\CargarProveedorCommand.cs" />
     <Compile Include="Commands\ProveedoresCommands\CargarProveedoresCommand.cs" />

@@ -17,28 +17,34 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
-    <Grid>
+    <Grid Margin="89,0,0,0">
         <Grid.Resources>
             <Style TargetType="TextBlock">
                 <Setter Property="Foreground" Value="White"/>
             </Style>
-             <Style TargetType="TextBox">
+            <Style TargetType="TextBox">
                 <Setter Property="Foreground" Value="White"/>
                 <Setter Property="Background" Value="Black"/>
                 <Setter Property="Cursor" Value="IBeam"/>
             </Style>
 
         </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="292*"/>
+            <RowDefinition Height="43*"/>
+            <RowDefinition Height="415*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="340"/>
         </Grid.ColumnDefinitions>
 
-        <ListView x:Name="productosListView" Grid.Column="0" MaxWidth="600" MaxHeight="600" ItemsSource="{Binding ListaProductos}" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,0,36">
+        <ListView x:Name="productosListView" Grid.Column="0" MaxWidth="530" MaxHeight="500" ItemsSource="{Binding ListaProductos}" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="17,0,0,36" Grid.RowSpan="3">
 
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">
                     <i:InvokeCommandAction Command="{Binding CargarProductoCommand}" CommandParameter="{Binding ElementName=productosListView, Path=SelectedItem}"/>
+                    <i:InvokeCommandAction Command="{Binding OcultaProveedorCommand}" CommandParameter="{Binding ElementName=vistaProductos}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
 
@@ -46,9 +52,9 @@
                 <GridView>
                     <GridViewColumn Header="Cod.Barras" DisplayMemberBinding="{Binding Path=_id}"/>
                     <GridViewColumn Header="Fabricante" DisplayMemberBinding="{Binding Path=Fabricante}"/>
-                   <!-- <GridViewColumn Header="Formato" DisplayMemberBinding="{Binding Path=Formato}"/> -->
+                    <!-- <GridViewColumn Header="Formato" DisplayMemberBinding="{Binding Path=Formato}"/> -->
                     <!-- <GridViewColumn Header="Conector" DisplayMemberBinding="{Binding Path=Conector}"/> -->
-                    <!-- <GridViewColumn Header="Ref." DisplayMemberBinding="{Binding Path=Referencia}"/> -->
+                    <GridViewColumn Header="Ref." DisplayMemberBinding="{Binding Path=Referencia}"/>
                     <!-- <GridViewColumn Header="Descrip." DisplayMemberBinding="{Binding Path=Descripcion}"/> -->
                     <GridViewColumn Header="Precio" DisplayMemberBinding="{Binding Path=Precio}"/>
                     <!-- <GridViewColumn Header="F.Entrada" DisplayMemberBinding="{Binding Path=FechaEntrada}"/> -->
@@ -58,7 +64,7 @@
             </ListView.View>
         </ListView>
 
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="1" Grid.RowSpan="3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
                 <RowDefinition Height="124*"/>
@@ -79,8 +85,16 @@
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Filtrar por un criterio de búsqueda" FontWeight="Bold" Margin="8"/>
                     <TextBox x:Name="textBusqueda" Grid.Row="1" Grid.Column="0" Margin="0,0,0,-18" Cursor="IBeam" Text="{Binding Busqueda, UpdateSourceTrigger=PropertyChanged}"/>
-                    <Button x:Name="btnBuscar" Content="BUSCAR" Grid.Column="1" Grid.Row="1" Margin="0,0,0,-18" Height="30" Width="80" FontSize="12" Command="{Binding CargarProductosCommand}" CommandParameter="buscar" Cursor="Hand" Click="btnBuscar_Click"/>
-                    <Button x:Name="btnBuscarCancelar" Content="CANCELAR" Grid.Column="1" Grid.Row="1" Margin="0,0,0,-18" Height="30" Width="80" FontSize="9" Command="{Binding CargarProductosCommand}" CommandParameter="cancelar" Visibility="Collapsed" Click="btnBuscarCancelar_Click" Cursor="Hand"/>
+                    <Button x:Name="btnBuscar" Content="{materialDesign:PackIcon ArchiveSearch, Size=24}" Grid.Column="1" Grid.Row="1" Margin="23,0,44,-18" Height="30" FontSize="12" Command="{Binding CargarProductosCommand}" CommandParameter="buscar" Cursor="Hand" Click="btnBuscar_Click">
+                        <Button.Background>
+                            <SolidColorBrush Color="Orange"/>
+                        </Button.Background>
+                    </Button>
+                    <Button x:Name="btnBuscarCancelar" Content="CANCELAR" Grid.Column="1" Grid.Row="1" Margin="0,0,0,-18" Height="30" Width="80" FontSize="9" Command="{Binding CargarProductosCommand}" CommandParameter="cancelar" Visibility="Collapsed" Click="btnBuscarCancelar_Click" Cursor="Hand">
+                        <Button.Background>
+                            <SolidColorBrush Color="Orange"/>
+                        </Button.Background>
+                    </Button>
 
                 </Grid>
             </StackPanel>
@@ -115,8 +129,8 @@
                     <TextBox x:Name="textReferencia" Grid.Row="1" Grid.Column="1" Text="{Binding CurrentProducto.Referencia, UpdateSourceTrigger=PropertyChanged}" Margin="5" Cursor="IBeam"/>
 
                     <TextBlock Grid.Row="2" Grid.Column="0" Text="Proveedores" Margin="5"/>
-                    <ComboBox x:Name="cmbProveedor" Grid.Row="3" Grid.Column="0" Margin="5,5,55,5" ItemsSource="{Binding CurrentProducto.Proveedores, UpdateSourceTrigger=PropertyChanged}">
-                        
+                    <ComboBox x:Name="cmbProveedor" Grid.Row="3" Grid.Column="0" Margin="5,5,55,5" ItemsSource="{Binding CurrentProducto.Proveedores, UpdateSourceTrigger=PropertyChanged}" Background="orange">
+
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="SelectionChanged">
                                 <i:InvokeCommandAction Command="{Binding MostrarProveedorCommand}" CommandParameter="{Binding ElementName=cmbProveedor, Path=SelectedItem}"/>
@@ -143,9 +157,9 @@
                                         IsDefault="True" Margin="0,8,8,0" Content="ACEPTAR"
                                         Command="{Binding AgregaProveedorCommand}" 
                                         CommandParameter="{Binding ElementName=cmbListaProveedores, Path=SelectedItem}"
-                                        Click="btnAceptarProveedor_Click">        
+                                        Click="btnAceptarProveedor_Click">
                                     </Button>
-                                    
+
                                     <Button Style="{StaticResource MaterialDesignFlatButton}" IsCancel="True"
                                     Margin="0,8,8,0" Content="CANCELAR"
                                     Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
@@ -170,33 +184,61 @@
                     <TextBox x:Name="textDescripcion" Grid.Row="3" Grid.Column="1" Text="{Binding CurrentProducto.Descripcion, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
 
                     <TextBlock Grid.Row="4" Grid.Column="0" Text="Fabricante" Margin="5"/>
-                    <ComboBox x:Name="cmbFabricante" Grid.Row="5" Grid.Column="0" Margin="5" Text="{Binding CurrentProducto.Fabricante}" ItemsSource="{Binding ListaFabricantes}"/>
+                    <ComboBox x:Name="cmbFabricante" Grid.Row="5" Grid.Column="0" Margin="5" Text="{Binding CurrentProducto.Fabricante}" ItemsSource="{Binding ListaFabricantes}" Background="orange"/>
 
                     <TextBlock Grid.Row="4" Grid.Column="1" Text="Precio" Margin="5"/>
                     <TextBox x:Name="textPrecio" Grid.Row="5" Grid.Column="1" Text="{Binding CurrentProducto.Precio, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
 
                     <TextBlock Grid.Row="6" Grid.Column="0" Text="Formato" Margin="5"/>
-                    <ComboBox x:Name="cmbFormato" Grid.Row="7" Grid.Column="0" Margin="5" Text="{Binding CurrentProducto.Formato}" ItemsSource="{Binding ListaFormatos}"/>
+                    <ComboBox x:Name="cmbFormato" Grid.Row="7" Grid.Column="0" Margin="5" Text="{Binding CurrentProducto.Formato}" ItemsSource="{Binding ListaFormatos}" Background="orange"/>
 
                     <TextBlock Grid.Row="6" Grid.Column="1" Text="Fecha" Margin="5"/>
-                    <DatePicker x:Name="dateFecha" Grid.Row="7" Grid.Column="1" SelectedDate="{Binding CurrentProducto.FechaEntrada, StringFormat=dd/MM/yyyy, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                    <DatePicker x:Name="dateFecha" Grid.Row="7" Grid.Column="1" SelectedDate="{Binding CurrentProducto.FechaEntrada, StringFormat=dd/MM/yyyy, UpdateSourceTrigger=PropertyChanged}" Margin="5" Foreground="White"/>
 
                     <TextBlock Grid.Row="8" Grid.Column="0" Text="Conector" Margin="5"/>
-                    <ComboBox x:Name="cmbConector" Grid.Row="9" Grid.Column="0" Margin="5" Text="{Binding CurrentProducto.Conector}" ItemsSource="{Binding ListaConectores}"/>
+                    <ComboBox x:Name="cmbConector" Grid.Row="9" Grid.Column="0" Margin="5" Text="{Binding CurrentProducto.Conector}" ItemsSource="{Binding ListaConectores}" Background="orange"/>
 
                     <TextBlock Grid.Row="8" Grid.Column="1" Text="Stock" Margin="5"/>
                     <TextBox x:Name="textStock" Grid.Row="9" Grid.Column="1" Text="{Binding CurrentProducto.Stock, UpdateSourceTrigger=PropertyChanged}" Margin="5" Cursor="IBeam"/>
 
 
                     <StackPanel Grid.Row="10" Orientation="Horizontal" HorizontalAlignment="Center" Grid.ColumnSpan="2" Margin="10">
-                        <Button x:Name="btnCrear" Content="CREAR" Margin="5" Command="{Binding NuevoProductoCommand}" CommandParameter="{Binding ElementName=vistaProductos}" />
-                        <Button x:Name="btnNuevo" Content="NUEVO" Margin="5" Command="{Binding IniciaNuevoProductoCommand}" Click="btnNuevo_Click" Cursor="Hand"/>
-                        <Button x:Name="btnGuardar" Content="GUARDAR" Margin="5" Command="{Binding GuardarProductoCommand}" CommandParameter="{Binding ElementName=vistaProductos}" Cursor="Hand"/>
-                        <Button x:Name="btnModificar" Content="MODIFICAR" Margin="5" Click="btnModificar_Click" />
-                        <Button x:Name="btnBorrar" Content="BORRAR" Margin="5" Command="{Binding BorrarProductoCommand}" CommandParameter="{Binding ElementName=vistaProductos}" Cursor="Hand" Click="btnBorrar_Click" />
-                        <Button x:Name="btnCancelar" Content="CANCELAR" Margin="5" Click="btnCancelar_Click" Cursor="Hand" />
+                        <Button x:Name="btnCrear" Content="CREAR" Margin="5" Command="{Binding NuevoProductoCommand}" CommandParameter="{Binding ElementName=vistaProductos}">
+                            <Button.Background>
+                                <SolidColorBrush Color="Orange"/>
+                            </Button.Background>
+                        </Button>
+                        <Button x:Name="btnNuevo" Content="NUEVO" Margin="5" Command="{Binding IniciaNuevoProductoCommand}" Click="btnNuevo_Click" Cursor="Hand">
+                            <Button.Background>
+                                <SolidColorBrush Color="Orange"/>
+                            </Button.Background>
+                        </Button>
+                        <Button x:Name="btnGuardar" Margin="5" Content="GUARDAR" Command="{Binding GuardarProductoCommand}" CommandParameter="{Binding ElementName=vistaProductos}" Cursor="Hand">
+                            <Button.Background>
+                                <SolidColorBrush Color="Orange"/>
+                            </Button.Background>
+                        </Button>
+                        <Button x:Name="btnModificar" Content="MODIFICAR" Margin="5" Click="btnModificar_Click" Cursor="Hand">
+                            <Button.Background>
+                                <SolidColorBrush Color="Orange"/>
+                            </Button.Background>
+                        </Button>
+                        <Button x:Name="btnBorrar" Margin="5" Content="BORRAR" Command="{Binding BorrarProductoCommand}" CommandParameter="{Binding ElementName=vistaProductos}" Cursor="Hand" Click="btnBorrar_Click">
+                            <Button.Background>
+                                <SolidColorBrush Color="Orange"/>
+                            </Button.Background>
+                        </Button>
+                        <Button x:Name="btnCancelar" Content="CANCELAR" Margin="5" Click="btnCancelar_Click" Cursor="Hand">
+                            <Button.Background>
+                                <SolidColorBrush Color="Orange"/>
+                            </Button.Background>
+                        </Button>
                     </StackPanel>
-                    <Button x:Name="btnProveedor" Grid.ColumnSpan="2" Grid.Row="11" Content="MOSTRAR INFO DEL PROVEEDOR" Margin="5" Click="btnProveedor_Click" Cursor="Hand"/>
+                    <Button x:Name="btnProveedor" Grid.ColumnSpan="2" Grid.Row="11" Content="MOSTRAR INFO DEL PROVEEDOR" Margin="5" Click="btnProveedor_Click" Cursor="Hand">
+                        <Button.Background>
+                            <SolidColorBrush Color="Orange"/>
+                        </Button.Background>
+                    </Button>
                 </Grid>
             </StackPanel>
 
@@ -218,13 +260,13 @@
                         <TextBlock Grid.Row="0" Grid.Column="0" Margin="5" Text="CIF:"/>
                         <TextBlock Grid.Row="1" Grid.Column="0" Margin="5" Text="{Binding P_cif, UpdateSourceTrigger=PropertyChanged}"  FontWeight="Bold"/>
 
-                        <TextBlock Grid.Row="0" Grid.Column="1" Margin="5" Text="Nombre:"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Margin="5" Text="NOMBRE:"/>
                         <TextBlock Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding P_nombre}" FontWeight="Bold"/>
 
-                        <TextBlock Grid.Row="2" Grid.Column="0" Margin="5" Text="Población:"/>
+                        <TextBlock Grid.Row="2" Grid.Column="0" Margin="5" Text="POBLACIÓN:"/>
                         <TextBlock Grid.Row="3" Grid.Column="0" Margin="5" Text="{Binding P_poblacion}" FontWeight="Bold"/>
 
-                        <TextBlock Grid.Row="2" Grid.Column="1" Margin="5" Text="Teléfono:"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Margin="5" Text="TELÉFONO:"/>
                         <TextBlock Grid.Row="3" Grid.Column="1" Margin="5" Text="{Binding P_telefono}" FontWeight="Bold"/>
                     </Grid>
                 </materialDesign:Card>

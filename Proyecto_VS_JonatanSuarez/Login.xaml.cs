@@ -39,25 +39,25 @@ namespace Proyecto_VS_JonatanSuarez
             {
                 MessageBox.Show("El campo nombre no puede estar vacío");
             }
-            else if (boxPass.Text.Equals(""))
+            else if (boxPass.Password.Equals(""))
             {
                 MessageBox.Show("El campo contraseña no puede estar vacío");
 
             }
-            else if (boxUser.Text.Equals(user) && !boxPass.Text.Equals(pass))
+            else if (boxUser.Text.Equals(user) && !boxPass.Password.Equals(pass))
             {
                 MessageBox.Show("Usuario incorrecto");
             }
-            else if (!boxUser.Text.Equals(user) && boxPass.Text.Equals(pass))
+            else if (!boxUser.Text.Equals(user) && boxPass.Password.Equals(pass))
             {
                 MessageBox.Show("Usuario incorrecto");
 
             }
-            else if (!boxUser.Text.Equals(user) && !boxPass.Text.Equals(pass))
+            else if (!boxUser.Text.Equals(user) && !boxPass.Password.Equals(pass))
             {
                 MessageBox.Show("Usuario incorrecto");
             }
-            else if (boxUser.Text.Equals(user) && boxPass.Text.Equals(pass))
+            else if (boxUser.Text.Equals(user) && boxPass.Password.Equals(pass))
             {
                 MainWindow mainwindow = new MainWindow();
                 mainwindow.Show();

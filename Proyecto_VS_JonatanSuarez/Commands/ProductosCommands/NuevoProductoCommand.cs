@@ -31,25 +31,42 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
         {
             ProductosView vistaProductos = (ProductosView)parameter;
 
-            if (productosViewModel.CurrentProducto._id.Equals(""))
+            //if (productosViewModel.CurrentProducto._id.Equals(""))
+            if (productosViewModel.CurrentProducto._id == null)
             {
                 MessageBox.Show("Debes introducir un código de barras");
             }
-            else if (productosViewModel.CurrentProducto.Referencia.Equals(""))
+            else if (productosViewModel.CurrentProducto.Referencia == null)
             {
                 MessageBox.Show("Debes introducir una referencia");
             }
-            else if (productosViewModel.CurrentProducto.Descripcion.Equals(""))
+            else if (productosViewModel.CurrentProducto.Descripcion == null)
             {
                 MessageBox.Show("Debes introducir una descripción");
             }
-            else if (productosViewModel.CurrentProducto.Precio.Equals(""))
+            else if (productosViewModel.CurrentProducto.Precio == null)
             {
                 MessageBox.Show("Debes introducir un precio");
             }
-            else if (productosViewModel.CurrentProducto.Stock.Equals(""))
+            else if (productosViewModel.CurrentProducto.Stock == null)
             {
                 MessageBox.Show("Debes introducir el stock");
+            }
+            else if (productosViewModel.CurrentProducto.Fabricante == null)
+            {
+                MessageBox.Show("Debes seleccionar un fabricante");
+            }
+            else if (productosViewModel.CurrentProducto.Formato == null)
+            {
+                MessageBox.Show("Debes seleccionar un formato");
+            }
+            else if (productosViewModel.CurrentProducto.Conector == null)
+            {
+                MessageBox.Show("Debes seleccionar un conector");
+            }
+            else if (productosViewModel.CurrentProducto.Proveedores.Count == 0)
+            {
+                MessageBox.Show("Debes agregar al menos un proveedor");
             }
             else
             {

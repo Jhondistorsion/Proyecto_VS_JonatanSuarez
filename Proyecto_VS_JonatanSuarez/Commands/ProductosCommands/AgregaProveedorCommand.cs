@@ -35,7 +35,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
                 ProveedoresModel proveedor = (ProveedoresModel)parameter;
 
                 bool encontrado = false;
-                
+
                 try
                 {
                     foreach (string p in productosViewModel.CurrentProducto.Proveedores)
@@ -54,10 +54,23 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
 
                 }
 
-                if (!encontrado) { productosViewModel.CurrentProducto.Proveedores.Add(proveedor.Nombre); }
+                if (!encontrado)
+                {
+                    MessageBoxResult result = MessageBox.Show("¿Deseas agregar el proveedor?", "Nuevo proveedor", MessageBoxButton.YesNo);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        productosViewModel.CurrentProducto.Proveedores.Add(proveedor.Nombre);
+                        MessageBox.Show("Proveedor agregado correctamente", "Agregar proveedor");
+
+                    }
+                    if (result == MessageBoxResult.No)
+                    {
+                        MessageBox.Show("Operación cancelada", "Agregar proveedor");
+                    }
+
+                }
 
             }
-
         }
     }
 }

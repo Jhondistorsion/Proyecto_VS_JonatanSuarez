@@ -27,10 +27,12 @@
                     </Grid.RowDefinitions>
                     <Image Source="{StaticResource login}" Grid.Row="0" Height="70" Margin="15"/>
 
-                    <TextBox x:Name="boxUser" Background="white" materialDesign:HintAssist.Hint="Nombre de usuario" materialDesign:TextFieldAssist.HasClearButton="True" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Grid.Row="2" Height="40" Width="200" Cursor="IBeam" Margin="5"/>
-
-                    <TextBox x:Name="boxPass" Background="white" materialDesign:HintAssist.Hint="Contraseña" materialDesign:TextFieldAssist.HasClearButton="True" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Grid.Row="4" Height="40" Width="200" Margin="5"/>
-                    <Button Grid.Row="5" Content="LOGIN" Height="50" Width="200" Click="Button_Click" Margin="15" Cursor="Hand"/>
+                    <TextBox x:Name="boxUser" Background="white" materialDesign:HintAssist.Hint="Nombre de usuario" materialDesign:TextFieldAssist.HasClearButton="True" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Grid.Row="2" Height="40" Width="200" Cursor="IBeam" Margin="5" Padding="5"/>
+                    <PasswordBox x:Name="boxPass" Background="white" materialDesign:HintAssist.Hint="Contraseña" materialDesign:TextFieldAssist.HasClearButton="True" Grid.Row="4" Height="40" Width="200" Margin="5" Padding="5" Cursor="IBeam"/>
+                    <Button Grid.Row="5" Content="LOGIN" Height="50" Width="200" Click="Button_Click" Margin="15" Cursor="Hand">
+                        <Button.Background>
+                            <SolidColorBrush Color="Orange"/>
+                        </Button.Background></Button>
                 </Grid>
             </materialDesign:Card>
         </StackPanel>

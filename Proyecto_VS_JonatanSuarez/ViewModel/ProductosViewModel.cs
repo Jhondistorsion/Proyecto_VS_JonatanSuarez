@@ -100,6 +100,7 @@ namespace Proyecto_VS_JonatanSuarez.ViewModel
         public ICommand MostrarProveedorCommand { get; set; }
 
         public ICommand IniciaNuevoProductoCommand { get; set; }
+        public ICommand OcultaProveedorCommand { get; set; }
 
         private ObservableCollection<ProveedoresModel> listaProveedoresFull;
         public ObservableCollection<ProveedoresModel> ListaProveedoresFull
@@ -132,6 +133,7 @@ namespace Proyecto_VS_JonatanSuarez.ViewModel
             AgregaProveedorCommand = new AgregaProveedorCommand(this);
             MostrarProveedorCommand = new MostrarProveedorCommand(this);
             IniciaNuevoProductoCommand = new IniciaNuevoProductoCommand(this);
+            OcultaProveedorCommand = new OcultaProveedorCommand(this);
 
             CurrentProducto = new ProductoModel();
             Busqueda = "";
@@ -139,6 +141,7 @@ namespace Proyecto_VS_JonatanSuarez.ViewModel
             P_nombre = "";
             P_poblacion = "";
             P_telefono = "";
+
         }
     }
 }

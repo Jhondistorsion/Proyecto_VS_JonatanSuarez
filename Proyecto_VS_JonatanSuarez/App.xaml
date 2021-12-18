@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:Proyecto_VS_JonatanSuarez"
              xmlns:views="clr-namespace:Proyecto_VS_JonatanSuarez.Views"
              xmlns:viewmodels="clr-namespace:Proyecto_VS_JonatanSuarez.ViewModel"
-             StartupUri="Login.xaml">
+             StartupUri="MainWindow.xaml">
     <Application.Resources>
                      
         <ResourceDictionary>

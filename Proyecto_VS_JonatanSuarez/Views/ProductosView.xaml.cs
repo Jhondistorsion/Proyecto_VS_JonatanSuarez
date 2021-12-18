@@ -114,7 +114,6 @@ namespace Proyecto_VS_JonatanSuarez.Views
         {
             btnGuardar.Visibility = Visibility.Visible;
             btnCancelar.Visibility = Visibility.Visible;
-            btnCancelar.Content = "VOLVER";
 
             btnCrear.Visibility = Visibility.Collapsed;
             btnNuevo.Visibility = Visibility.Collapsed;
@@ -209,16 +208,35 @@ namespace Proyecto_VS_JonatanSuarez.Views
 
         private void btnProveedor_Click(object sender, RoutedEventArgs e)
         {
-            if (!stackProveedor.IsEnabled)
+            if (cmbProveedor.Text.Equals(""))
             {
-                stackProveedor.Visibility = Visibility.Visible;
-                stackProveedor.IsEnabled = true;
+                MessageBox.Show("Selecciona un proveedor del producto", "Atención");
             }
             else
             {
-                stackProveedor.Visibility = Visibility.Collapsed;
-                stackProveedor.IsEnabled = false;
+                if (!stackProveedor.IsEnabled)
+                {
+                    stackProveedor.Visibility = Visibility.Visible;
+                    btnProveedor.Content = "OCULTAR INFO DEL PROVEEDOR";
+                    stackProveedor.IsEnabled = true;
+                }
+                else
+                {
+                    stackProveedor.Visibility = Visibility.Collapsed;
+                    btnProveedor.Content = "MOSTRAR INFO DEL PROVEEDOR";
+                    stackProveedor.IsEnabled = false;
+                }
             }
+
+
+        }
+
+        public void OcultaProveedor()
+        {
+            stackProveedor.Visibility = Visibility.Collapsed;
+            btnProveedor.Content = "MOSTRAR INFO DEL PROVEEDOR";
+            stackProveedor.IsEnabled = false;
+
         }
     }
 }

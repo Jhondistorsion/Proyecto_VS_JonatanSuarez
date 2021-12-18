@@ -135,6 +135,7 @@ namespace Proyecto_VS_JonatanSuarez.Views
                 MessageBox.Show("Debes seleccionar un proveedor", "Atención");
             }
 
+
         }
     }
 }
