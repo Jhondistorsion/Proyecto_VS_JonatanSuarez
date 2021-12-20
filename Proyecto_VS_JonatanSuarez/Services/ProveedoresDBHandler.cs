@@ -91,6 +91,8 @@ namespace Proyecto_VS_JonatanSuarez.Services
 
         public static bool NuevoProveedor(ProveedoresModel proveedor)
         {
+            //Almaceno los proveedores con el modelo de proveedor para poder mostrar los datos del proveedor del producto
+            //posteriormente, no debería ser un problema en los requisitos del proyecto.
 
             bool okinsertar = false;
             bool duplicado = false;
