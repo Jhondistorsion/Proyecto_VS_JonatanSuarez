@@ -187,7 +187,7 @@
                     <ComboBox x:Name="cmbFabricante" Grid.Row="5" Grid.Column="0" Margin="5" Text="{Binding CurrentProducto.Fabricante}" ItemsSource="{Binding ListaFabricantes}" Background="orange"/>
 
                     <TextBlock Grid.Row="4" Grid.Column="1" Text="Precio" Margin="5"/>
-                    <TextBox x:Name="textPrecio" Grid.Row="5" Grid.Column="1" Text="{Binding CurrentProducto.Precio, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                    <TextBox x:Name="textPrecio" Grid.Row="5" Grid.Column="1" Text="{Binding CurrentProducto.Precio, UpdateSourceTrigger=PropertyChanged}" Margin="5" Cursor="IBeam"/>
 
                     <TextBlock Grid.Row="6" Grid.Column="0" Text="Formato" Margin="5"/>
                     <ComboBox x:Name="cmbFormato" Grid.Row="7" Grid.Column="0" Margin="5" Text="{Binding CurrentProducto.Formato}" ItemsSource="{Binding ListaFormatos}" Background="orange"/>

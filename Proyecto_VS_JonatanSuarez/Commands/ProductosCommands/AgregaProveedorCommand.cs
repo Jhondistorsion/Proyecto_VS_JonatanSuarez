@@ -41,7 +41,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
                     foreach (string p in productosViewModel.CurrentProducto.Proveedores)
                     {
 
-                        if (p.Equals(proveedor.Nombre))
+                        if (p.Equals(proveedor._id))
                         {
                             MessageBox.Show("El proveedor ya existe en la lista de proveedores", "Atención");
                             encontrado = true;
@@ -59,7 +59,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
                     MessageBoxResult result = MessageBox.Show("¿Deseas agregar el proveedor?", "Nuevo proveedor", MessageBoxButton.YesNo);
                     if (result == MessageBoxResult.Yes)
                     {
-                        productosViewModel.CurrentProducto.Proveedores.Add(proveedor.Nombre);
+                        productosViewModel.CurrentProducto.Proveedores.Add(proveedor._id);
                         MessageBox.Show("Proveedor agregado correctamente", "Agregar proveedor");
 
                     }

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -30,6 +31,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProveedoresCommands
         public void Execute(object parameter)
         {
             ProveedoresView vistaProveedores = (ProveedoresView)parameter;
+            Regex regex = new Regex("[^0-9]");
 
             if (proveedoresViewModel.CurrentProveedor.Nombre.Equals("") || proveedoresViewModel.CurrentProveedor.Nombre is null)
             {
@@ -41,8 +43,12 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProveedoresCommands
             {
                 MessageBox.Show("Debes introducir un teléfono");
             }
-            else
+            else if (regex.IsMatch(vistaProveedores.textTelefono.Text) || vistaProveedores.textTelefono.Text.Length > 10)
             {
+                MessageBox.Show("Solo se permiten números de hasta 10 cifras en el campo teléfono");
+            }
+            else 
+            { 
                 MessageBoxResult result = MessageBox.Show("¿Deseas realizar los cambios?", "Modificar", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {

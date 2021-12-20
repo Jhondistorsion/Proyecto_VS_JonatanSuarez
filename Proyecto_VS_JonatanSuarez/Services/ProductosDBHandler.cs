@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Proyecto_VS_JonatanSuarez.Services
 {
@@ -125,14 +126,31 @@ namespace Proyecto_VS_JonatanSuarez.Services
         {
                    
             bool okinsertar = false;
-            try
+            bool duplicado = false;
+
+            foreach(ProductoModel p in listaProductos)
             {
-                listaProductos.Add(producto);
-                okinsertar = true;
+                if (producto._id.Equals(p._id))
+                {
+                    duplicado = true;
+                    MessageBox.Show("El CIF del producto ya existe", "Error");
+                }
             }
-            catch (Exception ex) { }        
+
+            if (!duplicado)
+            {
+                try
+                {
+                    listaProductos.Add(producto);
+                    okinsertar = true;
+                }
+                catch (Exception ex) { }
+
+                return okinsertar;
+            }
 
             return okinsertar;
+            
         }
     }
 }

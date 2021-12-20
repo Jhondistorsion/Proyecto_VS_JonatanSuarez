@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -30,8 +31,9 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
         public void Execute(object parameter)
         {
             ProductosView vistaProductos = (ProductosView)parameter;
+            Regex regex = new Regex("[^0-9]");
 
-            //if (productosViewModel.CurrentProducto._id.Equals(""))
+
             if (productosViewModel.CurrentProducto._id == null)
             {
                 MessageBox.Show("Debes introducir un código de barras");
@@ -68,6 +70,21 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
             {
                 MessageBox.Show("Debes agregar al menos un proveedor");
             }
+            else if (regex.IsMatch(vistaProductos.textBarras.Text) || vistaProductos.textBarras.Text.Length > 10)
+            {
+                MessageBox.Show("Solo se permiten números de hasta 10 cifras en el campo Código de barras");
+
+            }
+            else if (regex.IsMatch(vistaProductos.textPrecio.Text) || vistaProductos.textPrecio.Text.Length > 10)
+            {
+                MessageBox.Show("Solo se permiten números de hasta 10 cifras en el campo Precio");
+
+            }
+            else if (regex.IsMatch(vistaProductos.textStock.Text) || vistaProductos.textStock.Text.Length > 10)
+            {
+                MessageBox.Show("Solo se permiten números de hasta 10 cifras en el campo Stock");
+
+            }
             else
             {
 
@@ -84,6 +101,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
                     else
                     {
                         MessageBox.Show("Error al crear el producto", "Atención");
+                        vistaProductos.E00EstadoInicial();
                     }
                 }
                 else if (result == MessageBoxResult.No)

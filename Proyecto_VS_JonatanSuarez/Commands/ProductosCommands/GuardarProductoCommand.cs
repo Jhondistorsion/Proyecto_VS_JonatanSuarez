@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -30,6 +31,8 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
         public void Execute(object parameter)
         {
             ProductosView vistaProductos = (ProductosView)parameter;
+            Regex regex = new Regex("[^0-9]");
+
 
             if (productosViewModel.CurrentProducto.Referencia.Equals(""))
             {
@@ -46,6 +49,16 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
             else if (productosViewModel.CurrentProducto.Stock.Equals(""))
             {
                 MessageBox.Show("Debes introducir el stock");
+            }
+            else if (regex.IsMatch(vistaProductos.textPrecio.Text) || vistaProductos.textPrecio.Text.Length > 10)
+            {
+                MessageBox.Show("Solo se permiten números de hasta 10 cifras en el campo Precio");
+
+            }
+            else if (regex.IsMatch(vistaProductos.textStock.Text) || vistaProductos.textStock.Text.Length > 10)
+            {
+                MessageBox.Show("Solo se permiten números de hasta 10 cifras en el campo Stock");
+
             }
             else
             {

@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Proyecto_VS_JonatanSuarez.Services
 {
@@ -42,8 +43,8 @@ namespace Proyecto_VS_JonatanSuarez.Services
         public static void CargarListaProveedoresProductos()
         {
             foreach (ProveedoresModel p in listaProveedores)
-            {
-                listaProveedoresProductos.Add(p.Nombre);
+            {              
+                listaProveedoresProductos.Add(p._id);
             }
         }
 
@@ -84,21 +85,39 @@ namespace Proyecto_VS_JonatanSuarez.Services
                 }
             }
             return okborrar;
+                
+            
         }
 
         public static bool NuevoProveedor(ProveedoresModel proveedor)
         {
 
             bool okinsertar = false;
-            try
-            {             
-                listaProveedores.Add(proveedor);
-                okinsertar = true;
+            bool duplicado = false;
+
+            foreach(ProveedoresModel p in listaProveedores)
+            {
+                if (proveedor._id.Equals(p._id))
+                {
+                    duplicado = true;
+                    MessageBox.Show("El CIF del proveedor ya existe", "Error");
+                }
             }
-            catch (Exception ex) { }
+
+            if (!duplicado)
+            {
+                try
+                {
+                    listaProveedores.Add(proveedor);
+                    okinsertar = true;
+                }
+                catch (Exception ex) { }
 
 
+                return okinsertar;
+            }
             return okinsertar;
+           
         }
     }
 }

@@ -29,8 +29,9 @@ namespace Proyecto_VS_JonatanSuarez.Commands
         }
 
         public void Execute(object parameter)
-        {
-            if(ProveedoresDBHandler.activaCargaProveedores && ProductosDBHandler.activaCargarListaProductos)
+        {          
+
+            if (ProveedoresDBHandler.activaCargaProveedores && ProductosDBHandler.activaCargarListaProductos)
             {
                 ProveedoresDBHandler.CargarListaProveedores();
                 ProveedoresDBHandler.CargarListaProveedoresProductos();

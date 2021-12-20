@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -35,16 +36,30 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
             {
                 string cmbProveedor = (string)parameter;
 
+                productosViewModel.P_cif = "";
+                productosViewModel.P_nombre = "";
+                productosViewModel.P_poblacion = "";
+                productosViewModel.P_telefono = "";
+
                 foreach (ProveedoresModel p in productosViewModel.ListaProveedoresFull)
                 {
-                    if (cmbProveedor.Equals(p.Nombre))
+                    if (cmbProveedor.Equals(p._id))
                     {
                         productosViewModel.P_cif = p._id;
                         productosViewModel.P_nombre = p.Nombre;
                         productosViewModel.P_poblacion = p.Poblacion;
                         productosViewModel.P_telefono = p.Telefono.ToString();
-                    }
+                        break;
+                    }                   
                 }
+                if(productosViewModel.P_cif.Equals(""))
+                {
+                    productosViewModel.P_cif = "No encontrado";
+                    productosViewModel.P_nombre = "No disponible";
+                    productosViewModel.P_poblacion = "No disponible";
+                    productosViewModel.P_telefono = "No disponible";
+                }
+
             }
                     
             

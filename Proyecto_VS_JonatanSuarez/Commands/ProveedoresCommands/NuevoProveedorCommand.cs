@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -30,6 +31,8 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProveedoresCommands
         public void Execute(object parameter)
         {
             ProveedoresView vistaProveedores = (ProveedoresView)parameter;
+            Regex regex = new Regex("[^0-9]");
+
             if (proveedoresViewModel.CurrentProveedor._id.Equals(""))
             {
                 MessageBox.Show("Debes introducir un CIF");
@@ -46,6 +49,14 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProveedoresCommands
             {
                 MessageBox.Show("Debes introducir un teléfono");
             }
+            else if (regex.IsMatch(vistaProveedores.textCif.Text) || vistaProveedores.textCif.Text.Length > 10)
+            {
+                MessageBox.Show("Solo se permiten números de hasta 10 cifras en el campo CIF");
+            }           
+            else if (regex.IsMatch(vistaProveedores.textTelefono.Text) || vistaProveedores.textTelefono.Text.Length > 10)
+            {
+                MessageBox.Show("Solo se permiten números de hasta 10 cifras en el campo teléfono");
+            }
             else
             {
 
@@ -55,13 +66,14 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProveedoresCommands
                 {
                     bool okinsertar = ProveedoresDBHandler.NuevoProveedor(proveedoresViewModel.CurrentProveedor);
                     if (okinsertar)
-                    {                    
+                    {
                         MessageBox.Show("Se ha creado el proveedor", "Atención");
                         vistaProveedores.E00EstadoInicial();
                     }
                     else
                     {
                         MessageBox.Show("Error al crear el proveedor", "Atención");
+                        vistaProveedores.E00EstadoInicial();
                     }
                 }
                 else if (result == MessageBoxResult.No)

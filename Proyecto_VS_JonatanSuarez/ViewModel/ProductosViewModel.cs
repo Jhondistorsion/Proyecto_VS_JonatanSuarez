@@ -115,8 +115,8 @@ namespace Proyecto_VS_JonatanSuarez.ViewModel
             ListaProductos = new ObservableCollection<ProductoModel>();
 
             ListaProveedores = new ObservableCollection<string>();
-            //ListaProveedores = ProveedoresDBHandler.ObtenerListaProveedores();
-            listaproveedorestotal = ProveedoresDBHandler.ObtenerListaProveedores();
+
+            listaproveedorestotal = new ObservableCollection<ProveedoresModel>();
 
             ListaProveedoresFull = new ObservableCollection<ProveedoresModel>();
             ListaFabricantes = new ObservableCollection<string>() { "Lexman", "Bosh", "Philips", "Osram","Ilumax","Panasonic"};

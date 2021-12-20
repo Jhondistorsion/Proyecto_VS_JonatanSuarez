@@ -46,6 +46,7 @@ namespace Proyecto_VS_JonatanSuarez.Views
             btnCrear.Visibility = Visibility.Collapsed;
             btnGuardar.Visibility = Visibility.Collapsed;
             btnCancelar.Visibility = Visibility.Collapsed;
+            btnBuscar.IsEnabled = true;
 
             btnCancelar.Content = "CANCELAR";
 
@@ -80,6 +81,7 @@ namespace Proyecto_VS_JonatanSuarez.Views
             btnModificar.Visibility = Visibility.Collapsed;
             btnBorrar.Visibility = Visibility.Collapsed;
             btnGuardar.Visibility = Visibility.Collapsed;
+            btnBuscar.IsEnabled = false;
 
             btnNuevoProveedor.IsEnabled = true;
 
@@ -119,6 +121,7 @@ namespace Proyecto_VS_JonatanSuarez.Views
             btnNuevo.Visibility = Visibility.Collapsed;
             btnBorrar.Visibility = Visibility.Collapsed;
             btnModificar.Visibility = Visibility.Collapsed;
+            btnBuscar.IsEnabled = false;
 
             btnNuevoProveedor.IsEnabled = true;
 
