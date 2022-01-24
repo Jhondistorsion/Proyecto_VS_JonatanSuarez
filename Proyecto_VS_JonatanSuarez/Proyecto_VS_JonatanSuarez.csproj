@@ -91,6 +91,9 @@
     </Compile>
     <Compile Include="Models\ProductoModel.cs" />
     <Compile Include="Models\ProveedoresModel.cs" />
+    <Compile Include="Models\RequestModel.cs" />
+    <Compile Include="Models\ResponseModel.cs" />
+    <Compile Include="Services\APIHandler.cs" />
     <Compile Include="Services\ProductosDBHandler.cs" />
     <Compile Include="Services\ProveedoresDBHandler.cs" />
     <Compile Include="ViewModel\BienvenidaViewModel.cs" />
