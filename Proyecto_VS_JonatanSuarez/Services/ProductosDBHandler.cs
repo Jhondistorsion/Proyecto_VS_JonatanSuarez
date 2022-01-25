@@ -17,6 +17,7 @@ namespace Proyecto_VS_JonatanSuarez.Services
 
         public static void CargarListaProductos(ObservableCollection<string> ListaProveedores, ObservableCollection<string> ListaFabricantes, ObservableCollection<string> ListaFormatos, ObservableCollection<string> ListaConectores)
         {
+            /*
 
             ListaProveedores = ProveedoresDBHandler.ObtenerListaProveedoresProductos();
 
@@ -42,7 +43,8 @@ namespace Proyecto_VS_JonatanSuarez.Services
                 p.Stock = r.Next(1, 500);
 
                 listaProductos.Add(p);
-            }           
+            }    
+            */
         }
 
 

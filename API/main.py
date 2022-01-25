@@ -72,8 +72,8 @@ def getImages(_idE):
 
 
 
-@app.route('/proovedores', methods=['POST','PUT','DELETE','GET'])
-def students():
+@app.route('/proveedores', methods=['POST','PUT','DELETE','GET'])
+def proveedores():
     print(request.json)
     response = ResponseModel()
     tokenSHA256Request = request.authorization['password']

@@ -1,4 +1,5 @@
-﻿using Proyecto_VS_JonatanSuarez.Services;
+﻿using Proyecto_VS_JonatanSuarez.Models;
+using Proyecto_VS_JonatanSuarez.Services;
 using Proyecto_VS_JonatanSuarez.ViewModel;
 using Proyecto_VS_JonatanSuarez.Views;
 using System;
@@ -28,7 +29,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProveedoresCommands
             this.proveedoresViewModel = proveedoresViewModel;
         }
 
-        public void Execute(object parameter)
+        public async void Execute(object parameter)
         {
             ProveedoresView vistaProveedores = (ProveedoresView)parameter;
             Regex regex = new Regex("[^0-9]");
@@ -52,10 +53,15 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProveedoresCommands
                 MessageBoxResult result = MessageBox.Show("¿Deseas realizar los cambios?", "Modificar", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
-                    bool okguardar = ProveedoresDBHandler.GuardarProveedor(proveedoresViewModel.CurrentProveedor);
+
+                    ResponseModel responseModel = await ProveedoresDBHandler.AccionProveedor("PUT", proveedoresViewModel);
+
+                    bool okguardar = responseModel.resultOk;
+
                     if (okguardar)
                     {
                         MessageBox.Show("Proveedor modificado con éxito", "Modificar");
+                        proveedoresViewModel.CargarProveedoresCommand.Execute("");
                         vistaProveedores.E00EstadoInicial();
                     }
                     else

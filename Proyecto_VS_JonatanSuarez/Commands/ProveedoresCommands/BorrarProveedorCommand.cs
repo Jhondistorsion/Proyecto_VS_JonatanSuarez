@@ -1,4 +1,5 @@
-﻿using Proyecto_VS_JonatanSuarez.Services;
+﻿using Proyecto_VS_JonatanSuarez.Models;
+using Proyecto_VS_JonatanSuarez.Services;
 using Proyecto_VS_JonatanSuarez.ViewModel;
 using Proyecto_VS_JonatanSuarez.Views;
 using System;
@@ -27,7 +28,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProveedoresCommands
             this.proveedoresViewModel = proveedoresViewModel;
         }
 
-        public void Execute(object parameter)
+        public async void Execute(object parameter)
         {
             ProveedoresView vistaProveedores = (ProveedoresView)parameter;
 
@@ -40,16 +41,19 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProveedoresCommands
                 MessageBoxResult result = MessageBox.Show("¿Deseas eliminar el proveedor?", "Borrar", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
-                    bool borrado = ProveedoresDBHandler.BorrarProveedor(proveedoresViewModel.CurrentProveedor);
-                    if (borrado)
+
+                    ResponseModel responseModel = await ProveedoresDBHandler.AccionProveedor("DELETE", proveedoresViewModel);
+                    if (responseModel.resultOk)
                     {
                         MessageBox.Show("Proveedor eliminado correctamente", "Borrar");
+                        proveedoresViewModel.CargarProveedoresCommand.Execute("");
                         vistaProveedores.E00EstadoInicial();
                     }
                     else
                     {
                         MessageBox.Show("Error al eliminar proveedor", "Borrar");
                     }
+
                 }
                 else if (result == MessageBoxResult.No)
                 {
@@ -57,7 +61,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProveedoresCommands
                 }
             }
 
-            
+
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Proyecto_VS_JonatanSuarez.Services;
+﻿using Proyecto_VS_JonatanSuarez.Models;
+using Proyecto_VS_JonatanSuarez.Services;
 using Proyecto_VS_JonatanSuarez.ViewModel;
 using Proyecto_VS_JonatanSuarez.Views;
 using System;
@@ -28,7 +29,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProveedoresCommands
             this.proveedoresViewModel = proveedoresViewModel;
         }
 
-        public void Execute(object parameter)
+        public async void Execute(object parameter)
         {
             ProveedoresView vistaProveedores = (ProveedoresView)parameter;
             Regex regex = new Regex("[^0-9]");
@@ -52,7 +53,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProveedoresCommands
             else if (regex.IsMatch(vistaProveedores.textCif.Text) || vistaProveedores.textCif.Text.Length > 10)
             {
                 MessageBox.Show("Solo se permiten números de hasta 10 cifras en el campo CIF");
-            }           
+            }
             else if (regex.IsMatch(vistaProveedores.textTelefono.Text) || vistaProveedores.textTelefono.Text.Length > 10)
             {
                 MessageBox.Show("Solo se permiten números de hasta 10 cifras en el campo teléfono");
@@ -62,6 +63,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProveedoresCommands
 
 
                 MessageBoxResult result = MessageBox.Show("¿Deseas crear el proveedor?", "Nuevo proveedor", MessageBoxButton.YesNo);
+                /*
                 if (result == MessageBoxResult.Yes)
                 {
                     bool okinsertar = ProveedoresDBHandler.NuevoProveedor(proveedoresViewModel.CurrentProveedor);
@@ -80,7 +82,29 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProveedoresCommands
                 {
                     MessageBox.Show("Operación cancelada");
                 }
+                */
 
+                if (result == MessageBoxResult.Yes)
+                {
+
+                    ResponseModel responseModel = await ProveedoresDBHandler.AccionProveedor("POST", proveedoresViewModel);
+
+                    if (responseModel.resultOk)
+                    {
+                        MessageBox.Show("Se ha creado el proveedor");
+                        proveedoresViewModel.CargarProveedoresCommand.Execute("");
+                        vistaProveedores.E00EstadoInicial();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al crear");
+                    }
+
+                }
+                else if (result == MessageBoxResult.No)
+                {
+                    MessageBox.Show("Operación cancelada");
+                }
             }
         }
     }

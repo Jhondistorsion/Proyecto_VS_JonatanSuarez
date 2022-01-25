@@ -56,7 +56,7 @@ class DBHandler(object):
 
 
     #######################################
-    #ESTUDIANTES
+    #PROVEEDORES
     def eliminarProveedor(self,_idS):
         response = ResponseModel()
 

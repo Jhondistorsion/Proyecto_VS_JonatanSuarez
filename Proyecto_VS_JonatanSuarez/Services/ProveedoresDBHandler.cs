@@ -1,4 +1,7 @@
-﻿using Proyecto_VS_JonatanSuarez.Models;
+﻿using Newtonsoft.Json;
+using Proyecto_VS_JonatanSuarez.Models;
+using Proyecto_VS_JonatanSuarez.ViewModel;
+using Proyecto_VS_JonatanSuarez.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,22 +18,22 @@ namespace Proyecto_VS_JonatanSuarez.Services
 
         public static bool activaCargaProveedores = true;
 
-        public static void CargarListaProveedores()
+        public async static void CargarListaProveedores()
         {
 
-            Random rnd = new Random();
+            ResponseModel responseModel = await ProveedoresDBHandler.AccionProveedor("GET", null);
 
-            for(int i = 0; i < 20; i++)
+            if (responseModel.resultOk)
             {
-                ProveedoresModel p = new ProveedoresModel();
-                p._id = rnd.Next(1000, 9000).ToString();
-                p.Nombre = "Almacén " + i.ToString();
-                p.Poblacion = "Población " + i.ToString();
-                p.Telefono = rnd.Next(900000, 999999);
-                listaProveedores.Add(p);
+                listaProveedores = JsonConvert.DeserializeObject<ObservableCollection<ProveedoresModel>>((string)responseModel.data);
+            }
+            else
+            {
+                MessageBox.Show((string)responseModel.data);
             }
 
             Console.WriteLine("Lista proveedores generada");
+           
         }
 
 
@@ -43,7 +46,7 @@ namespace Proyecto_VS_JonatanSuarez.Services
         public static void CargarListaProveedoresProductos()
         {
             foreach (ProveedoresModel p in listaProveedores)
-            {              
+            {
                 listaProveedoresProductos.Add(p._id);
             }
         }
@@ -52,74 +55,32 @@ namespace Proyecto_VS_JonatanSuarez.Services
         {
             return listaProveedoresProductos;
         }
-
-        public static bool GuardarProveedor(ProveedoresModel Proveedor)
+       
+        public static async Task<ResponseModel> AccionProveedor(string metodo, ProveedoresViewModel Proveedor)
         {
-            bool okguardar = false;
 
-            foreach(ProveedoresModel p in listaProveedores)
+            RequestModel requestModel = new RequestModel();
+            requestModel.route = "/proveedores";
+            requestModel.method = metodo;
+
+            if (metodo.Equals("DELETE"))
             {
-                if(p._id == Proveedor._id)
-                {
-                    p.Nombre = Proveedor.Nombre;
-                    p.Poblacion = Proveedor.Poblacion;
-                    p.Telefono = Proveedor.Telefono;
-                    okguardar = true;
-                    break;
-                }
+                requestModel.data = Proveedor.CurrentProveedor._id;
             }
-            return okguardar;
+            else if(metodo.Equals("GET") || metodo is null)
+            {
+                requestModel.data = "all";
+            }
+            else
+            {
+                requestModel.data = Proveedor.CurrentProveedor;
+            }
+          
+            ResponseModel responseModel = await APIHandler.ConsultAPI(requestModel);
+
+            return await Task.FromResult(responseModel);
         }
 
-        public static bool BorrarProveedor(ProveedoresModel Proveedor)
-        {
-            bool okborrar = false;
 
-            foreach (ProveedoresModel p in listaProveedores)
-            {
-                if (p._id == Proveedor._id)
-                {
-                    listaProveedores.Remove(p);
-                    okborrar = true;
-                    break;
-                }
-            }
-            return okborrar;
-                
-            
-        }
-
-        public static bool NuevoProveedor(ProveedoresModel proveedor)
-        {
-            //Almaceno los proveedores con el modelo de proveedor para poder mostrar los datos del proveedor del producto
-            //posteriormente, no debería ser un problema en los requisitos del proyecto.
-
-            bool okinsertar = false;
-            bool duplicado = false;
-
-            foreach(ProveedoresModel p in listaProveedores)
-            {
-                if (proveedor._id.Equals(p._id))
-                {
-                    duplicado = true;
-                    MessageBox.Show("El CIF del proveedor ya existe", "Error");
-                }
-            }
-
-            if (!duplicado)
-            {
-                try
-                {
-                    listaProveedores.Add(proveedor);
-                    okinsertar = true;
-                }
-                catch (Exception ex) { }
-
-
-                return okinsertar;
-            }
-            return okinsertar;
-           
-        }
     }
 }
