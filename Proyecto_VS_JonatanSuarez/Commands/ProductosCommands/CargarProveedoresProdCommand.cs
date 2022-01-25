@@ -32,8 +32,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
                 ProveedoresDBHandler.CargarListaProveedores();
                 ProveedoresDBHandler.CargarListaProveedoresProductos();
                 ProveedoresDBHandler.activaCargaProveedores = false;
-            }           
-            //productosViewModel.ListaProveedores = ProveedoresDBHandler.ObtenerListaProveedoresProductos();
+            }                      
             productosViewModel.ListaProveedoresFull = ProveedoresDBHandler.ObtenerListaProveedores();
             productosViewModel.Listaproveedorestotal = ProveedoresDBHandler.ObtenerListaProveedores();
 

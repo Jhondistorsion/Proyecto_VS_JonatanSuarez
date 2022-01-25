@@ -36,7 +36,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands
                 ProveedoresDBHandler.CargarListaProveedores();
                 ProveedoresDBHandler.CargarListaProveedoresProductos();
                 ObservableCollection<string> ListaProveedores = new ObservableCollection<string>();
-                ProductosDBHandler.CargarListaProductos(ListaProveedores, productosViewModel.ListaFabricantes, productosViewModel.ListaFormatos, productosViewModel.ListaConectores);
+                ProductosDBHandler.CargarListaProductos();
 
                 ProveedoresDBHandler.activaCargaProveedores = false;
                 ProductosDBHandler.activaCargarListaProductos = false;

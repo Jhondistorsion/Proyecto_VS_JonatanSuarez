@@ -122,6 +122,58 @@ def addSupplier(proveedor):
     return response
 
 
+#####PRODUCTOS------------------------------------------------------------------
+
+@app.route('/productos', methods=['POST','PUT','DELETE','GET'])
+def productos():
+    print(request.json)
+    response = ResponseModel()
+    tokenSHA256Request = request.authorization['password']
+    user = request.authorization['username']
+    route = request.json['route']
+
+    if checkTokenAuth(tokenSHA256Request, user, route):
+        try:
+            if request.method == 'POST':
+                response = addProduct(request.json['data'])
+            elif request.method == 'GET':
+                response = getProduct(request.json['data'])
+            elif request.method == 'PUT':
+                response = updateProduct(request.json['data'])
+            elif request.method == 'DELETE':
+                response = deleteProduct(request.json['data'])
+
+
+        except Exception as e:
+            print(e)
+    else:
+        response.data = 'NO TIENES ACCESO'
+
+    return json.dumps(response.__dict__)
+
+
+def deleteProduct(_idP):
+    response = DBHandler().eliminarProducto(_idP)
+    return response
+
+
+def updateProduct(producto):
+    response = DBHandler().actualizarProducto(producto)
+    return response
+
+def getProduct(_idP):
+    if _idP == 'all':
+        response = DBHandler().obtenerProductos()
+    else:
+        response = DBHandler().obtenerProveedores(_idP)
+
+    return response
+
+def addProduct(producto):
+    response = DBHandler().insertarProducto(producto)
+    return response
+
+
 
 
 

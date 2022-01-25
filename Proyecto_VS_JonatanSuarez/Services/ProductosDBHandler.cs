@@ -1,4 +1,6 @@
-﻿using Proyecto_VS_JonatanSuarez.Models;
+﻿using Newtonsoft.Json;
+using Proyecto_VS_JonatanSuarez.Models;
+using Proyecto_VS_JonatanSuarez.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,7 +17,7 @@ namespace Proyecto_VS_JonatanSuarez.Services
 
         public static bool activaCargarListaProductos = true;
 
-        public static void CargarListaProductos(ObservableCollection<string> ListaProveedores, ObservableCollection<string> ListaFabricantes, ObservableCollection<string> ListaFormatos, ObservableCollection<string> ListaConectores)
+        public static async void CargarListaProductos()
         {
             /*
 
@@ -45,6 +47,19 @@ namespace Proyecto_VS_JonatanSuarez.Services
                 listaProductos.Add(p);
             }    
             */
+
+            ResponseModel responseModel = await AccionProducto("GET", null);
+
+            if (responseModel.resultOk)
+            {
+                listaProductos = JsonConvert.DeserializeObject<ObservableCollection<ProductoModel>>((string)responseModel.data);
+            }
+            else
+            {
+                MessageBox.Show((string)responseModel.data);
+            }
+
+            Console.WriteLine("Lista proveedores generada");
         }
 
 
@@ -153,6 +168,31 @@ namespace Proyecto_VS_JonatanSuarez.Services
 
             return okinsertar;
             
+        }
+
+        public static async Task<ResponseModel> AccionProducto(string metodo, ProductosViewModel Producto)
+        {
+
+            RequestModel requestModel = new RequestModel();
+            requestModel.route = "/productos";
+            requestModel.method = metodo;
+
+            if (metodo.Equals("DELETE"))
+            {
+                requestModel.data = Producto.CurrentProducto._id;
+            }
+            else if (metodo.Equals("GET") || metodo is null)
+            {
+                requestModel.data = "all";
+            }
+            else
+            {
+                requestModel.data = Producto.CurrentProducto;
+            }
+
+            ResponseModel responseModel = await APIHandler.ConsultAPI(requestModel);
+
+            return await Task.FromResult(responseModel);
         }
     }
 }

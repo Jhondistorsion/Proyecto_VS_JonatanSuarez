@@ -21,7 +21,7 @@ namespace Proyecto_VS_JonatanSuarez.Services
         public async static void CargarListaProveedores()
         {
 
-            ResponseModel responseModel = await ProveedoresDBHandler.AccionProveedor("GET", null);
+            ResponseModel responseModel = await AccionProveedor("GET", null);
 
             if (responseModel.resultOk)
             {

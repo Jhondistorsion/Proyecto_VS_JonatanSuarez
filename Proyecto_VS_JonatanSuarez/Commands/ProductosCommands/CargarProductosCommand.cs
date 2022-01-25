@@ -1,4 +1,5 @@
-﻿using Proyecto_VS_JonatanSuarez.Models;
+﻿using Newtonsoft.Json;
+using Proyecto_VS_JonatanSuarez.Models;
 using Proyecto_VS_JonatanSuarez.Services;
 using Proyecto_VS_JonatanSuarez.ViewModel;
 using System;
@@ -7,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
@@ -27,11 +29,21 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
             this.productosViewModel = productosViewModel;
         }
 
-        public void Execute(object parameter)
+        public async void Execute(object parameter)
         {
             if (parameter == null)
-            {                            
-                productosViewModel.ListaProductos = ProductosDBHandler.ObtenerListaProductos();
+            {
+                //productosViewModel.ListaProductos = ProductosDBHandler.ObtenerListaProductos();
+                ResponseModel responseModel = await ProductosDBHandler.AccionProducto("GET", productosViewModel);
+
+                if (responseModel.resultOk)
+                {
+                    productosViewModel.ListaProductos = JsonConvert.DeserializeObject<ObservableCollection<ProductoModel>>((string)responseModel.data);
+                }
+                else
+                {
+                    MessageBox.Show((string)responseModel.data);
+                }
             }
             else if(parameter is string)
             {

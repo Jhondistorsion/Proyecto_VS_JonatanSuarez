@@ -1,4 +1,5 @@
-﻿using Proyecto_VS_JonatanSuarez.Services;
+﻿using Proyecto_VS_JonatanSuarez.Models;
+using Proyecto_VS_JonatanSuarez.Services;
 using Proyecto_VS_JonatanSuarez.ViewModel;
 using Proyecto_VS_JonatanSuarez.Views;
 using System;
@@ -27,7 +28,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
             this.productosViewModel = productosViewModel;
         }
 
-        public void Execute(object parameter)
+        public async void Execute(object parameter)
         {
             ProductosView vistaProveedores = (ProductosView)parameter;           
 
@@ -40,8 +41,8 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
                 MessageBoxResult result = MessageBox.Show("¿Deseas eliminar el producto?", "Borrar", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
-                    bool borrado = ProductosDBHandler.BorrarProducto(productosViewModel.CurrentProducto);
-                    if (borrado)
+                    ResponseModel responseModel = await ProductosDBHandler.AccionProducto("DELETE", productosViewModel);
+                    if (responseModel.resultOk)
                     {
                         MessageBox.Show("Producto eliminado correctamente", "Borrar");
                         vistaProveedores.E00EstadoInicial();

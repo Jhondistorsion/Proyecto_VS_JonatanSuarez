@@ -6,7 +6,6 @@ from ResponseModel import ResponseModel
 class DBHandler(object):
     def __init__(self):
         self.db = self.conectar()
-        #self.collection = self.db.get_collection('Estudiantes')
 
 
     def conectar(self):
@@ -121,6 +120,78 @@ class DBHandler(object):
             self.collection.insert_one(proveedor)
             response.resultOk = True
             response.data = 'Proveedor insertado con exito'
+        except Exception as e:
+            print(e)
+
+        return response
+
+    #######################################
+    #PRODUCTOS
+
+    def eliminarProducto(self,_idP):
+        response = ResponseModel()
+
+        try:
+            self.collection = self.db.get_collection('Productos')
+            self.collection.delete_one({'_id':_idP})
+            response.resultOk = True
+            response.data = 'Producto eliminado con exito'
+        except Exception as e:
+            print(e)
+
+        return response
+
+    def obtenerProducto(self,_idP):
+        response = ResponseModel()
+        try:
+            self.collection = self.db.get_collection('Productos')
+            producto = self.collection.find_one({'_id':_idP})
+            response.resultOk = True
+            response.data = str(producto)
+        except Exception as e:
+            print(e)
+
+        return response
+
+
+    def actualizarProducto(self, producto):
+        response = ResponseModel()
+        print(producto['Referencia'])
+
+        try:
+            self.collection = self.db.get_collection('Productos')
+            self.collection.update_one({'_id':producto['_id']},{'$set':producto})
+            response.resultOk = True
+            response.data = 'Producto actualizado con exito'
+        except Exception as e:
+            print(e)
+
+        return response
+
+    def obtenerProductos(self):
+        response = ResponseModel()
+        try:
+            self.collection = self.db.get_collection('Productos')
+            listaProductos = []
+            coleccion = self.collection.find({})
+            for producto in coleccion:
+                listaProductos.append(producto)
+
+            response.resultOk = True
+            response.data = str(listaProductos)
+
+        except Exception as e:
+            print(e)
+
+        return response
+
+    def insertarProducto(self, producto):
+        response = ResponseModel()
+        try:
+            self.collection = self.db.get_collection('Productos')
+            self.collection.insert_one(producto)
+            response.resultOk = True
+            response.data = 'Producto insertado con exito'
         except Exception as e:
             print(e)
 

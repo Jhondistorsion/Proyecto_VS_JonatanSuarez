@@ -1,4 +1,5 @@
-﻿using Proyecto_VS_JonatanSuarez.Services;
+﻿using Proyecto_VS_JonatanSuarez.Models;
+using Proyecto_VS_JonatanSuarez.Services;
 using Proyecto_VS_JonatanSuarez.ViewModel;
 using Proyecto_VS_JonatanSuarez.Views;
 using System;
@@ -28,7 +29,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
             this.productosViewModel = productosViewModel;
         }
 
-        public void Execute(object parameter)
+        public async void Execute(object parameter)
         {
             ProductosView vistaProductos = (ProductosView)parameter;
             Regex regex = new Regex("[^0-9]");
@@ -92,10 +93,27 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
                 MessageBoxResult result = MessageBox.Show("¿Deseas crear el producto?", "Nuevo producto", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
+
+                    /*
+                    
                     bool okinsertar = ProductosDBHandler.NuevoProducto(productosViewModel.CurrentProducto);
                     if (okinsertar)
                     {
                         MessageBox.Show("Se ha creado el producto", "Atención");
+                        vistaProductos.E00EstadoInicial();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al crear el producto", "Atención");
+                        vistaProductos.E00EstadoInicial();
+                    }
+                    */
+
+                    ResponseModel responseModel = await ProductosDBHandler.AccionProducto("POST", productosViewModel);                    
+                    if (responseModel.resultOk)
+                    {
+                        MessageBox.Show("Se ha creado el producto", "Atención");
+                        productosViewModel.CargarProductosCommand.Execute("");
                         vistaProductos.E00EstadoInicial();
                     }
                     else

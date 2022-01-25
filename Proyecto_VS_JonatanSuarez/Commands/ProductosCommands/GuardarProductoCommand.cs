@@ -1,4 +1,5 @@
-﻿using Proyecto_VS_JonatanSuarez.Services;
+﻿using Proyecto_VS_JonatanSuarez.Models;
+using Proyecto_VS_JonatanSuarez.Services;
 using Proyecto_VS_JonatanSuarez.ViewModel;
 using Proyecto_VS_JonatanSuarez.Views;
 using System;
@@ -28,7 +29,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
             this.productosViewModel = productosViewModel;
         }
 
-        public void Execute(object parameter)
+        public async void Execute(object parameter)
         {
             ProductosView vistaProductos = (ProductosView)parameter;
             Regex regex = new Regex("[^0-9]");
@@ -66,10 +67,11 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
                 MessageBoxResult result = MessageBox.Show("¿Deseas realizar los cambios?", "Modificar", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
-                    bool okguardar = ProductosDBHandler.GuardarProducto(productosViewModel.CurrentProducto);
-                    if (okguardar)
+                    ResponseModel responseModel = await ProductosDBHandler.AccionProducto("PUT", productosViewModel);                   
+                    if (responseModel.resultOk)
                     {
                         MessageBox.Show("Producto modificado con éxito", "Modificar");
+                        productosViewModel.CargarProductosCommand.Execute("");
                         vistaProductos.E00EstadoInicial();
                     }
                     else
