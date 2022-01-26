@@ -70,9 +70,12 @@ namespace Proyecto_VS_JonatanSuarez.Services
 
         private static ObservableCollection<ProductoModel> listaProductosBusqueda = new ObservableCollection<ProductoModel>();
 
-        public static void CargarListaProveedoresBusqueda(string busqueda)
+        public static void CargarListaProveedoresBusqueda(ProductoModel producto)
         {
             listaProductosBusqueda = new ObservableCollection<ProductoModel>();
+            listaProductosBusqueda.Add(producto);
+
+            /*
 
             foreach(ProductoModel p in listaProductos)
             {
@@ -90,6 +93,7 @@ namespace Proyecto_VS_JonatanSuarez.Services
                     listaProductosBusqueda.Add(p);
                 }
             }
+            */
         }
 
         public static ObservableCollection<ProductoModel> ObtenerListaProductosBusqueda()
@@ -210,6 +214,7 @@ namespace Proyecto_VS_JonatanSuarez.Services
                 try
                 {
                     Producto.CurrentProducto = JsonConvert.DeserializeObject<ProductoModel>((string)responseModel.data);
+                    CargarListaProveedoresBusqueda(Producto.CurrentProducto);
                 }
                 catch (Exception ex)
                 {
