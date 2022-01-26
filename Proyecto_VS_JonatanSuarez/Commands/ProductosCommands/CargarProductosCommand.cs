@@ -35,7 +35,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
 
             if (parameter == null || parameter =="")
             {
-                //productosViewModel.ListaProductos = ProductosDBHandler.ObtenerListaProductos();
+
                 ResponseModel responseModel = await ProductosDBHandler.AccionProducto("GET", productosViewModel);
 
                 if (responseModel.resultOk)
@@ -52,8 +52,6 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
                 string orden = parameter.ToString();
                 if (orden.Equals("buscar"))
                 {
-                    //ProductosDBHandler.CargarListaProveedoresBusqueda(productosViewModel.Busqueda);
-                    //productosViewModel.ListaProductos = ProductosDBHandler.ObtenerListaProductosBusqueda();
 
                     ResponseModel responseModel = await ProductosDBHandler.BuscarProducto(productosViewModel);
                     if (responseModel.resultOk)
@@ -61,22 +59,11 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
                         productosViewModel.ListaProductos = ProductosDBHandler.ObtenerListaProductosBusqueda();
                     }
 
-
                 }
                 else if (orden.Equals("cancelar"))
                 {
                     productosViewModel.ListaProductos = ProductosDBHandler.ObtenerListaProductos();
 
-                    ResponseModel responseModel = await ProductosDBHandler.AccionProducto("GET", productosViewModel);
-
-                    if (responseModel.resultOk)
-                    {
-                        productosViewModel.ListaProductos = JsonConvert.DeserializeObject<ObservableCollection<ProductoModel>>((string)responseModel.data);
-                    }
-                    else
-                    {
-                        MessageBox.Show((string)responseModel.data);
-                    }
                 }
                 
             }

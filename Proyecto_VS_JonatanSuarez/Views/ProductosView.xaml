@@ -83,7 +83,7 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Filtrar por un criterio de búsqueda" FontWeight="Bold" Margin="8"/>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Buscar un producto por código de barras" FontWeight="Bold" Margin="8"/>
                     <TextBox x:Name="textBusqueda" Grid.Row="1" Grid.Column="0" Margin="0,0,0,-18" Cursor="IBeam" Text="{Binding Busqueda, UpdateSourceTrigger=PropertyChanged}"/>
                     <Button x:Name="btnBuscar" Content="{materialDesign:PackIcon ArchiveSearch, Size=24}" Grid.Column="1" Grid.Row="1" Margin="23,0,44,-18" Height="30" FontSize="12" Command="{Binding CargarProductosCommand}" CommandParameter="buscar" Cursor="Hand" Click="btnBuscar_Click">
                         <Button.Background>

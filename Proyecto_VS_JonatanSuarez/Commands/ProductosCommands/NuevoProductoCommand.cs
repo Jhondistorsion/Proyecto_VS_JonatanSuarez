@@ -94,21 +94,6 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
                 if (result == MessageBoxResult.Yes)
                 {
 
-                    /*
-                    
-                    bool okinsertar = ProductosDBHandler.NuevoProducto(productosViewModel.CurrentProducto);
-                    if (okinsertar)
-                    {
-                        MessageBox.Show("Se ha creado el producto", "Atención");
-                        vistaProductos.E00EstadoInicial();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error al crear el producto", "Atención");
-                        vistaProductos.E00EstadoInicial();
-                    }
-                    */
-
                     ResponseModel responseModel = await ProductosDBHandler.AccionProducto("POST", productosViewModel);                    
                     if (responseModel.resultOk)
                     {

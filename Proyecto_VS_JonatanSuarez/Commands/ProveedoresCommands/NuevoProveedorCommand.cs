@@ -63,26 +63,6 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProveedoresCommands
 
 
                 MessageBoxResult result = MessageBox.Show("¿Deseas crear el proveedor?", "Nuevo proveedor", MessageBoxButton.YesNo);
-                /*
-                if (result == MessageBoxResult.Yes)
-                {
-                    bool okinsertar = ProveedoresDBHandler.NuevoProveedor(proveedoresViewModel.CurrentProveedor);
-                    if (okinsertar)
-                    {
-                        MessageBox.Show("Se ha creado el proveedor", "Atención");
-                        vistaProveedores.E00EstadoInicial();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error al crear el proveedor", "Atención");
-                        vistaProveedores.E00EstadoInicial();
-                    }
-                }
-                else if (result == MessageBoxResult.No)
-                {
-                    MessageBox.Show("Operación cancelada");
-                }
-                */
 
                 if (result == MessageBoxResult.Yes)
                 {

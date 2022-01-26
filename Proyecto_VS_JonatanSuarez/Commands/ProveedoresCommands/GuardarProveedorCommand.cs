@@ -56,9 +56,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProveedoresCommands
 
                     ResponseModel responseModel = await ProveedoresDBHandler.AccionProveedor("PUT", proveedoresViewModel);
 
-                    bool okguardar = responseModel.resultOk;
-
-                    if (okguardar)
+                    if (responseModel.resultOk)
                     {
                         MessageBox.Show("Proveedor modificado con éxito", "Modificar");
                         proveedoresViewModel.CargarProveedoresCommand.Execute("");
