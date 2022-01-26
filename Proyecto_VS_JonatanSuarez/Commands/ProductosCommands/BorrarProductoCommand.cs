@@ -30,11 +30,11 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
 
         public async void Execute(object parameter)
         {
-            ProductosView vistaProveedores = (ProductosView)parameter;           
+            ProductosView vistaProductos = (ProductosView)parameter;           
 
             if (productosViewModel.CurrentProducto._id is null || productosViewModel.CurrentProducto._id.Equals(""))
-            {               
-                vistaProveedores.E00EstadoInicial();
+            {
+                vistaProductos.E00EstadoInicial();
             }
             else
             {
@@ -45,7 +45,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
                     if (responseModel.resultOk)
                     {
                         MessageBox.Show("Producto eliminado correctamente", "Borrar");
-                        vistaProveedores.E00EstadoInicial();
+                        vistaProductos.E00EstadoInicial();
                     }
                     else
                     {

@@ -165,7 +165,7 @@ def getProduct(_idP):
     if _idP == 'all':
         response = DBHandler().obtenerProductos()
     else:
-        response = DBHandler().obtenerProveedores(_idP)
+        response = DBHandler().obtenerProducto(_idP)
 
     return response
 
