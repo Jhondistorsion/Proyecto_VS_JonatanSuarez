@@ -194,5 +194,35 @@ namespace Proyecto_VS_JonatanSuarez.Services
 
             return await Task.FromResult(responseModel);
         }
+
+        public static async Task<ResponseModel> BuscarProducto(ProductosViewModel Producto)
+        {
+
+            RequestModel requestModel = new RequestModel();
+            requestModel.route = "/productos";
+            requestModel.method = "GET";
+            requestModel.data = Producto.Busqueda;
+          
+            ResponseModel responseModel = await APIHandler.ConsultAPI(requestModel);
+
+            if (responseModel.resultOk)
+            {
+                try
+                {
+                    Producto.CurrentProducto = JsonConvert.DeserializeObject<ProductoModel>((string)responseModel.data);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Producto no encontrado");
+                }
+
+            }
+            else
+            {
+                MessageBox.Show((string)responseModel.data);
+            }
+
+            return await Task.FromResult(responseModel);
+        }
     }
 }

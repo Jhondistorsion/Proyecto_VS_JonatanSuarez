@@ -112,7 +112,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
                     ResponseModel responseModel = await ProductosDBHandler.AccionProducto("POST", productosViewModel);                    
                     if (responseModel.resultOk)
                     {
-                        MessageBox.Show("Se ha creado el producto", "Atención");
+                        MessageBox.Show("Se ha creado el producto");
                         productosViewModel.CargarProductosCommand.Execute("");
                         vistaProductos.E00EstadoInicial();
                     }

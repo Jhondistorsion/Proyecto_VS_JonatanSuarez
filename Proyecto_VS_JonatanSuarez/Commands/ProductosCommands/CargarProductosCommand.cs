@@ -33,7 +33,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
         public async void Execute(object parameter)
         {          
 
-            if (parameter == null)
+            if (parameter == null || parameter =="")
             {
                 //productosViewModel.ListaProductos = ProductosDBHandler.ObtenerListaProductos();
                 ResponseModel responseModel = await ProductosDBHandler.AccionProducto("GET", productosViewModel);
@@ -55,30 +55,8 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
                     //ProductosDBHandler.CargarListaProveedoresBusqueda(productosViewModel.Busqueda);
                     //productosViewModel.ListaProductos = ProductosDBHandler.ObtenerListaProductosBusqueda();
 
-                    RequestModel requestModel = new RequestModel()
-                    {
-                        route = "/productos",
-                        method = "GET",
-                        data = productosViewModel.Busqueda
-                    };
+                    ResponseModel responseModel = await ProductosDBHandler.BuscarProducto(productosViewModel);
 
-                    ResponseModel responseModel = await APIHandler.ConsultAPI(requestModel);
-
-                    if (responseModel.resultOk)
-                    {
-                        try
-                        {
-                            productosViewModel.CurrentProducto = JsonConvert.DeserializeObject<ProductoModel>((string)responseModel.data);
-                        }catch (Exception ex)
-                        {
-                            MessageBox.Show("Producto no encontrado");
-                        }
-                        
-                    }
-                    else
-                    {
-                        MessageBox.Show((string)responseModel.data);
-                    }
 
                 }
                 else if (orden.Equals("cancelar"))
