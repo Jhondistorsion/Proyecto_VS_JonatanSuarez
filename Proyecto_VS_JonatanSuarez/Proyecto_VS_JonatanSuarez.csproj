@@ -89,6 +89,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\CargaBaseDatosCommand.cs" />
+    <Compile Include="Commands\LoginCommand\CheckLoginCommand.cs" />
     <Compile Include="Commands\ProductosCommands\AgregaProveedorCommand.cs" />
     <Compile Include="Commands\ProductosCommands\BorrarProductoCommand.cs" />
     <Compile Include="Commands\ProductosCommands\CargarProductoCommand.cs" />
@@ -112,10 +113,12 @@
     <Compile Include="Models\ProveedoresModel.cs" />
     <Compile Include="Models\RequestModel.cs" />
     <Compile Include="Models\ResponseModel.cs" />
+    <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Services\APIHandler.cs" />
     <Compile Include="Services\ProductosDBHandler.cs" />
     <Compile Include="Services\ProveedoresDBHandler.cs" />
     <Compile Include="ViewModel\BienvenidaViewModel.cs" />
+    <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ProductosViewModel.cs" />
     <Compile Include="ViewModel\ProveedoresViewModel.cs" />

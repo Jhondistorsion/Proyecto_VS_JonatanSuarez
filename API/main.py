@@ -11,8 +11,8 @@ app = Flask(__name__)
 
 PASS = "52893970L"
 
-def checkTokenAuth(tokenSHA256Request, USER, route):
 
+def checkTokenAuth(tokenSHA256Request, USER, route):
     passSHA256 = sha256(PASS.encode('utf-8')).hexdigest()
     minutes = datetime.now().minute
 
@@ -29,7 +29,8 @@ def checkTokenAuth(tokenSHA256Request, USER, route):
         print('acceso denegado')
         return False
 
-@app.route('/images', methods=['POST','PUT','DELETE','GET'])
+
+@app.route('/login', methods=['GET'])
 def images():
     print(request.json)
     response = ResponseModel()
@@ -39,18 +40,9 @@ def images():
 
     if checkTokenAuth(tokenSHA256Request, user, route):
         try:
-            if request.method == 'POST':
-                response = addImage(request.json['data'])
-            elif request.method == 'GET':
-                response = getImages(request.json['data'])
-                #response = getStudent(request.json['data'])
-            elif request.method == 'PUT':
-                pass
-                #response = updateStudent(request.json['data'])
-            elif request.method == 'DELETE':
-                pass
-                #response = deleteStudent(request.json['data'])
 
+            if request.method == 'GET':
+                response = getLogin(request.json['data'])
 
         except Exception as e:
             print(e)
@@ -59,20 +51,13 @@ def images():
 
     return json.dumps(response.__dict__)
 
-def addImage(image):
-    response = DBHandler().insertarImagen(image)
-    return response
 
-def getImages(_idE):
-    response = DBHandler().obtenerImagenes(_idE)
+def getLogin(_user):
+    response = DBHandler().comprobarLogin(_user)
     return response
 
 
-
-
-
-
-@app.route('/proveedores', methods=['POST','PUT','DELETE','GET'])
+@app.route('/proveedores', methods=['POST', 'PUT', 'DELETE', 'GET'])
 def proveedores():
     print(request.json)
     response = ResponseModel()
@@ -109,6 +94,7 @@ def updateSupplier(proveedor):
     response = DBHandler().actualizarProveedor(proveedor)
     return response
 
+
 def getSupplier(_idS):
     if _idS == 'all':
         response = DBHandler().obtenerProveedores()
@@ -117,6 +103,7 @@ def getSupplier(_idS):
 
     return response
 
+
 def addSupplier(proveedor):
     response = DBHandler().insertarProveedor(proveedor)
     return response
@@ -124,7 +111,7 @@ def addSupplier(proveedor):
 
 #####PRODUCTOS------------------------------------------------------------------
 
-@app.route('/productos', methods=['POST','PUT','DELETE','GET'])
+@app.route('/productos', methods=['POST', 'PUT', 'DELETE', 'GET'])
 def productos():
     print(request.json)
     response = ResponseModel()
@@ -161,6 +148,7 @@ def updateProduct(producto):
     response = DBHandler().actualizarProducto(producto)
     return response
 
+
 def getProduct(_idP):
     if _idP == 'all':
         response = DBHandler().obtenerProductos()
@@ -169,12 +157,10 @@ def getProduct(_idP):
 
     return response
 
+
 def addProduct(producto):
     response = DBHandler().insertarProducto(producto)
     return response
-
-
-
 
 
 if __name__ == '__main__':

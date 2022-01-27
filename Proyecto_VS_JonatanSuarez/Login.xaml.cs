@@ -1,4 +1,7 @@
 ﻿using MaterialDesignThemes.Wpf;
+using Proyecto_VS_JonatanSuarez.Models;
+using Proyecto_VS_JonatanSuarez.Services;
+using Proyecto_VS_JonatanSuarez.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,10 +33,8 @@ namespace Proyecto_VS_JonatanSuarez
          
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            string user = "admin";
-            string pass = "salinas";
 
             if (boxUser.Text.Equals(""))
             {
@@ -44,25 +45,34 @@ namespace Proyecto_VS_JonatanSuarez
                 MessageBox.Show("El campo contraseña no puede estar vacío");
 
             }
-            else if (boxUser.Text.Equals(user) && !boxPass.Password.Equals(pass))
+            else
             {
-                MessageBox.Show("Usuario incorrecto");
-            }
-            else if (!boxUser.Text.Equals(user) && boxPass.Password.Equals(pass))
-            {
-                MessageBox.Show("Usuario incorrecto");
+                UsuarioModel loginUsuario = new UsuarioModel(boxUser.Text, boxPass.Password);
 
+
+                RequestModel requestModel = new RequestModel();
+                requestModel.route = "/login";
+                requestModel.method = "GET";
+                requestModel.data = loginUsuario;
+                ResponseModel responseModel = await APIHandler.ConsultAPI(requestModel);
+
+                if (responseModel.resultOk)
+                {
+                    entrar();
+                }
+                else
+                {
+                    MessageBox.Show("El usuario o la clave son incorrectos");
+                }
             }
-            else if (!boxUser.Text.Equals(user) && !boxPass.Password.Equals(pass))
-            {
-                MessageBox.Show("Usuario incorrecto");
-            }
-            else if (boxUser.Text.Equals(user) && boxPass.Password.Equals(pass))
-            {
-                MainWindow mainwindow = new MainWindow();
-                mainwindow.Show();
-                this.Close();
-            }
+            
+        }
+            
+        private void entrar()
+        {
+            MainWindow mainwindow = new MainWindow();
+            mainwindow.Show();
+            this.Close();
         }
     }
 

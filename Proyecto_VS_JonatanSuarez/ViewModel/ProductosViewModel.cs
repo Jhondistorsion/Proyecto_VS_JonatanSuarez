@@ -95,7 +95,7 @@ namespace Proyecto_VS_JonatanSuarez.ViewModel
         public ICommand GuardarProductoCommand { get; set; }
         public ICommand BorrarProductoCommand { get; set; }
         public ICommand NuevoProductoCommand { get; set; }
-        public ICommand CargaBaseDatos { get; set; }
+        public ICommand CargaBaseDatosCommand { get; set; }
         public ICommand AgregaProveedorCommand { get; set; }
         public ICommand MostrarProveedorCommand { get; set; }
 
@@ -129,7 +129,7 @@ namespace Proyecto_VS_JonatanSuarez.ViewModel
             GuardarProductoCommand = new GuardarProductoCommand(this);
             BorrarProductoCommand = new BorrarProductoCommand(this);
             NuevoProductoCommand = new NuevoProductoCommand(this);
-            CargaBaseDatos = new CargaBaseDatosCommand(this);
+            CargaBaseDatosCommand = new CargaBaseDatosCommand(this);
             AgregaProveedorCommand = new AgregaProveedorCommand(this);
             MostrarProveedorCommand = new MostrarProveedorCommand(this);
             IniciaNuevoProductoCommand = new IniciaNuevoProductoCommand(this);

@@ -17,6 +17,9 @@
             <DataTemplate DataType="{x:Type viewmodels:ProveedoresViewModel}">
                 <views:ProveedoresView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
+                <local:Login/>
+            </DataTemplate>
         
                     
             <!--Librerias Material Design-->

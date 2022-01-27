@@ -12,8 +12,7 @@
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding CargarProveedoresProdCommand}"/>
-            <i:InvokeCommandAction Command="{Binding CargarProductosCommand}"/>
+            <i:InvokeCommandAction Command="{Binding CargaBaseDatosCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
@@ -181,7 +180,7 @@
 
 
                     <TextBlock Grid.Row="2" Grid.Column="1" Text="Descripción" Margin="5"/>
-                    <TextBox x:Name="textDescripcion" Grid.Row="3" Grid.Column="1" Text="{Binding CurrentProducto.Descripcion, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                    <TextBox x:Name="textDescripcion" Grid.Row="3" Grid.Column="1" Text="{Binding CurrentProducto.Descripcion, UpdateSourceTrigger=PropertyChanged}" Margin="5" Cursor="IBeam"/>
 
                     <TextBlock Grid.Row="4" Grid.Column="0" Text="Fabricante" Margin="5"/>
                     <ComboBox x:Name="cmbFabricante" Grid.Row="5" Grid.Column="0" Margin="5" Text="{Binding CurrentProducto.Fabricante}" ItemsSource="{Binding ListaFabricantes}" Background="orange"/>

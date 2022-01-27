@@ -45,6 +45,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
                     if (responseModel.resultOk)
                     {
                         MessageBox.Show("Producto eliminado correctamente", "Borrar");
+                        productosViewModel.CargarProductosCommand.Execute("");
                         vistaProductos.E00EstadoInicial();
                     }
                     else

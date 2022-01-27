@@ -62,7 +62,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands.ProductosCommands
                 }
                 else if (orden.Equals("cancelar"))
                 {
-                    productosViewModel.ListaProductos = ProductosDBHandler.ObtenerListaProductos();
+                    productosViewModel.CargarProductosCommand.Execute("");
 
                 }
                 

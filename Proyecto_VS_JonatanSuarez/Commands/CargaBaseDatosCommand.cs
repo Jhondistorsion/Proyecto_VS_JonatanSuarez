@@ -1,4 +1,5 @@
-﻿using Proyecto_VS_JonatanSuarez.Models;
+﻿using Proyecto_VS_JonatanSuarez.Commands.ProductosCommands;
+using Proyecto_VS_JonatanSuarez.Models;
 using Proyecto_VS_JonatanSuarez.Services;
 using Proyecto_VS_JonatanSuarez.ViewModel;
 using System;
@@ -43,6 +44,8 @@ namespace Proyecto_VS_JonatanSuarez.Commands
 
                 Console.WriteLine("BASE DE DATOS CARGADA");
             }
+            productosViewModel.CargarProveedoresProdCommand.Execute("");
+            productosViewModel.CargarProductosCommand.Execute("");
         }
     }
 }

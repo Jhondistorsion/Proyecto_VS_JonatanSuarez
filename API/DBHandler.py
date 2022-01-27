@@ -7,61 +7,40 @@ class DBHandler(object):
     def __init__(self):
         self.db = self.conectar()
 
-
     def conectar(self):
         client = MongoClient(
-            host = 'infsalinas.sytes.net:10450',
-            serverSelectionTimeoutMS = 3000,
-            username = '2dam26',
-            password = '52893970L',
-            authSource = '2dam26'
+            host='infsalinas.sytes.net:10450',
+            serverSelectionTimeoutMS=3000,
+            username='2dam26',
+            password='52893970L',
+            authSource='2dam26'
         )
         db = client.get_database('2dam26')
         return db
 
-
-    def insertarImagen(self, image):
+    def comprobarLogin(self, _user):
         response = ResponseModel()
         try:
-            self.collection = self.db.get_collection('Imagenes')
-            self.collection.update_one({'_id':image['_id']},{'$push':{'imagenes':image['imagenes']}}, upsert=True)
-            response.resultOk = True
-            response.data = 'Imagen insertada con exito'
-        except Exception as e:
-            print(e)
-
-        return response
-
-    def obtenerImagenes(self, _idE):
-        response = ResponseModel()
-        try:
-            self.collection = self.db.get_collection('Imagenes')
-            imagenes = self.collection.find_one({'_id': _idE})
-
-            if imagenes is None:
-                print("ES NONE")
-                response.resultOk = False
-                response.data = "No hay imagenes"
-            else:
+            self.collection = self.db.get_collection('Usuarios')
+            usuario = self.collection.find_one({'User': _user['User'], 'Pass': _user['Pass']})
+            if usuario != None:
                 response.resultOk = True
-                response.data = str(imagenes)
-
+            else:
+                response.resultOk = False
 
         except Exception as e:
             print(e)
 
         return response
-
-
 
     #######################################
-    #PROVEEDORES
-    def eliminarProveedor(self,_idS):
+    # PROVEEDORES
+    def eliminarProveedor(self, _idS):
         response = ResponseModel()
 
         try:
             self.collection = self.db.get_collection('Proveedores')
-            self.collection.delete_one({'_id':_idS})
+            self.collection.delete_one({'_id': _idS})
             response.resultOk = True
             response.data = 'Proveedor eliminado con exito'
         except Exception as e:
@@ -69,11 +48,11 @@ class DBHandler(object):
 
         return response
 
-    def obtenerProveedor(self,_idS):
+    def obtenerProveedor(self, _idS):
         response = ResponseModel()
         try:
             self.collection = self.db.get_collection('Proveedores')
-            proveedor = self.collection.find_one({'_id':_idS})
+            proveedor = self.collection.find_one({'_id': _idS})
             response.resultOk = True
             response.data = str(proveedor)
         except Exception as e:
@@ -81,14 +60,13 @@ class DBHandler(object):
 
         return response
 
-
     def actualizarProveedor(self, proveedor):
         response = ResponseModel()
         print(proveedor['Nombre'])
 
         try:
             self.collection = self.db.get_collection('Proveedores')
-            self.collection.update_one({'_id':proveedor['_id']},{'$set':proveedor})
+            self.collection.update_one({'_id': proveedor['_id']}, {'$set': proveedor})
             response.resultOk = True
             response.data = 'Proveedor actualizado con exito'
         except Exception as e:
@@ -126,14 +104,14 @@ class DBHandler(object):
         return response
 
     #######################################
-    #PRODUCTOS
+    # PRODUCTOS
 
-    def eliminarProducto(self,_idP):
+    def eliminarProducto(self, _idP):
         response = ResponseModel()
 
         try:
             self.collection = self.db.get_collection('Productos')
-            self.collection.delete_one({'_id':_idP})
+            self.collection.delete_one({'_id': _idP})
             response.resultOk = True
             response.data = 'Producto eliminado con exito'
         except Exception as e:
@@ -141,11 +119,11 @@ class DBHandler(object):
 
         return response
 
-    def obtenerProducto(self,_idP):
+    def obtenerProducto(self, _idP):
         response = ResponseModel()
         try:
             self.collection = self.db.get_collection('Productos')
-            producto = self.collection.find_one({'_id':_idP})
+            producto = self.collection.find_one({'_id': _idP})
             response.resultOk = True
             response.data = str(producto)
         except Exception as e:
@@ -153,14 +131,13 @@ class DBHandler(object):
 
         return response
 
-
     def actualizarProducto(self, producto):
         response = ResponseModel()
         print(producto['Referencia'])
 
         try:
             self.collection = self.db.get_collection('Productos')
-            self.collection.update_one({'_id':producto['_id']},{'$set':producto})
+            self.collection.update_one({'_id': producto['_id']}, {'$set': producto})
             response.resultOk = True
             response.data = 'Producto actualizado con exito'
         except Exception as e:
