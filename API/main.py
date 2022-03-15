@@ -10,7 +10,7 @@ from ResponseModel import ResponseModel
 app = Flask(__name__)
 
 PASS = "52893970L"
-
+#
 
 def checkTokenAuth(tokenSHA256Request, USER, route):
     passSHA256 = sha256(PASS.encode('utf-8')).hexdigest()
