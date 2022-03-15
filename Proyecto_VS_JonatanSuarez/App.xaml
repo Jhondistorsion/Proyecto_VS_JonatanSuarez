@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:Proyecto_VS_JonatanSuarez"
              xmlns:views="clr-namespace:Proyecto_VS_JonatanSuarez.Views"
              xmlns:viewmodels="clr-namespace:Proyecto_VS_JonatanSuarez.ViewModel"
-             StartupUri="Login.xaml">
+             StartupUri="MainWindow.xaml">
     <Application.Resources>
                      
         <ResourceDictionary>
@@ -19,6 +19,15 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
                 <local:Login/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:FacturasViewModel}">
+                <views:FacturasView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:ConsultasViewModel}">
+                <views:ConsultasView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:ReportViewModel}">
+                <views:ReportView/>
             </DataTemplate>
         
                     

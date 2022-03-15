@@ -93,7 +93,7 @@
 
 
 
-            <ListView x:Name="proveedoresListView" ItemsSource="{Binding ListaProveedores}" MaxHeight="400">
+            <ListView x:Name="proveedoresListView" ItemsSource="{Binding ListaProveedores}" MaxHeight="400" d:ItemsSource="{d:SampleData ItemCount=5}">
 
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">

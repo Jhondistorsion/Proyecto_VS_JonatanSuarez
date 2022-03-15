@@ -17,6 +17,8 @@ namespace Proyecto_VS_JonatanSuarez.Commands
             return true;
         }
 
+        public ReportViewModel reportViewModel { get; set; }
+
         public void Execute(object parameter)
         {
             if(parameter is string)
@@ -32,6 +34,18 @@ namespace Proyecto_VS_JonatanSuarez.Commands
                 {
                     ViewModel.SelectedViewModel = new ProveedoresViewModel();
                 }
+                else if (vista.Equals("facturas"))
+                {
+                    ViewModel.SelectedViewModel = new FacturasViewModel();
+                }
+                else if (vista.Equals("consultas"))
+                {
+                    ViewModel.SelectedViewModel = new ConsultasViewModel(this);
+                }
+                else if (vista.Equals("informe"))
+                {
+                    ViewModel.SelectedViewModel = reportViewModel;
+                }
             }
         }
 
@@ -41,6 +55,7 @@ namespace Proyecto_VS_JonatanSuarez.Commands
         {
             this.ViewModel = viewModel;
             this.ViewModel.SelectedViewModel = new BienvenidaViewModel();
+            reportViewModel = new ReportViewModel();
         }
     }
 }

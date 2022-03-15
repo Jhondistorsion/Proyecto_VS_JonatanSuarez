@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Proyecto_VS_JonatanSuarez"
         mc:Ignorable="d"
-        Title="MainWindow" Height="750" Width="1250">
+        Title="Bombillo Manager" Height="750" Width="1250">
     <StackPanel Background="{StaticResource fondoMenu}">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -18,6 +18,8 @@
                 <Button Margin="5" Width="150" Content="INICIO" Command="{Binding UpdateViewCommand}" CommandParameter="inicio" Cursor="Hand" Visibility="Collapsed"/>
                 <Button Width="204" Height="132" Style="{DynamicResource MisBotonesProducto}" Margin="5" Command="{Binding UpdateViewCommand}" CommandParameter="productos"/>
                 <Button Margin="5" Width="204" Height="132" Style="{DynamicResource MisBotonesProveedor}" Command="{Binding UpdateViewCommand}" CommandParameter="proveedores" Cursor="Hand"/>
+                <Button Margin="5" Width="204" Height="132" Style="{DynamicResource MisBotonesFactura}" Command="{Binding UpdateViewCommand}" CommandParameter="facturas" Cursor="Hand"/>
+                <Button Margin="5" Width="204" Height="132" Style="{DynamicResource MisBotonesConsulta}" Command="{Binding UpdateViewCommand}" CommandParameter="consultas" Cursor="Hand"/>
             </StackPanel>
             <ContentControl Grid.Column="1" Content="{Binding SelectedViewModel}"/>
         </Grid>
